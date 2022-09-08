@@ -1,0 +1,19 @@
+node_modules
+unpackage
+/build
+/logs
+
+.vite-ssg-temp
+
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+
+# lock
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+*.log

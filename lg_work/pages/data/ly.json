@@ -1,0 +1,480 @@
+[{
+	"week": 2,
+	"name": "周二",
+	"class": [{
+		"teacher": "Fric老师",
+		"time": "下午 17:50",
+		"room": "第7教室",
+		"course": "",
+		"students": []
+	}, {
+		"teacher": "Fric老师",
+		"time": "下午 19:10",
+		"room": "第7教室",
+		"course": "",
+		"students": [{
+			"name": "郑佳艺",
+			"petName": "佳艺",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "王识勋",
+			"petName": "识勋",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "许琳伟",
+			"petName": "琳伟",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "张芊芊",
+			"petName": "芊芊",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "姚景瀚",
+			"petName": "景瀚",
+			"age": 6,
+			"level": 6
+		}]
+	}]
+
+}, {
+	"week": 3,
+	"name": "周三",
+	"class": [{
+		"teacher": "Fric老师",
+		"time": "下午 17:50",
+		"room": "第7教室",
+		"course": "",
+		"students": [{
+			"name": "高湛贺",
+			"petName": "湛贺",
+			"age": 6,
+			"level": 6
+		},{
+			"name": "龚万力",
+			"petName": "万力",
+			"age": 6,
+			"level": 6
+		},{
+			"name": "徐俊轩",
+			"petName": "俊轩",
+			"age": 6,
+			"level": 6
+		},{
+			"name": "李航熠",
+			"petName": "航熠",
+			"age": 6,
+			"level": 6
+		},{
+			"name": "谭笑笑",
+			"petName": "笑笑",
+			"age": 6,
+			"level": 6
+		},{
+			"name": "彭钰尧",
+			"petName": "钰尧",
+			"age": 6,
+			"level": 6
+		}]
+	}, {
+		"teacher": "Fric老师",
+		"time": "下午 19:20",
+		"room": "第7教室",
+		"course": "",
+		"students": [{
+			"name": "吕林泽",
+			"petName": "林泽",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "吴佳航",
+			"petName": "佳航",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "苏弘轩",
+			"petName": "弘轩",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "黄俊盎",
+			"petName": "俊盎",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "刘一昂",
+			"petName": "一昂",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "王嘉琪",
+			"petName": "嘉琪",
+			"age": 6,
+			"level": 6
+		}]
+	}]
+
+}, {
+	"week": 4,
+	"name": "周四",
+	"class": [{
+		"teacher": "Fric老师",
+		"time": "下午 17:50",
+		"room": "第7教室",
+		"course": "",
+		"students": [{
+			"name": "宋易宸",
+			"petName": "易宸",
+			"age": 6,
+			"level": 6
+		},{
+			"name": "赵瀚正",
+			"petName": "瀚正",
+			"age": 6,
+			"level": 6
+		},{
+			"name": "吴宸宇",
+			"petName": "宸宇",
+			"age": 6,
+			"level": 6
+		},{
+			"name": "程弈凯",
+			"petName": "弈凯",
+			"age": 6,
+			"level": 6
+		},{
+			"name": "牛煜兮",
+			"petName": "煜兮",
+			"age": 6,
+			"level": 6
+		},{
+			"name": "耘  棣",
+			"petName": "耘棣",
+			"age": 6,
+			"level": 6
+		}]
+	}, {
+		"teacher": "Fric老师",
+		"time": "下午 19:20",
+		"room": "第7教室",
+		"course": "",
+		"students": [{
+			"name": "刘洛图",
+			"petName": "子栋",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "李嘉俊",
+			"petName": "浩良",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "黄埔乐言",
+			"petName": "甜源",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "王誉洋",
+			"petName": "轶然",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "包启志",
+			"petName": "楚尧",
+			"age": 6,
+			"level": 6
+		}]
+	}]
+
+}, {
+	"week": 5,
+	"name": "周五",
+	"class": [{
+		"teacher": "Fric老师",
+		"time": "下午 17:50",
+		"room": "第7教室",
+		"course": "",
+		"students": [{
+			"name": "余昭亮",
+			"petName": "昭亮",
+			"age": 7,
+			"level": 7
+		}, {
+			"name": "何思睿",
+			"petName": "思睿",
+			"age": 7,
+			"level": 7
+		}, {
+			"name": "侯佳珩",
+			"petName": "佳珩",
+			"age": 7,
+			"level": 7
+		}, {
+			"name": "孙睿谦",
+			"petName": "睿谦",
+			"age": 7,
+			"level": 7
+		}, {
+			"name": "党鸿砚",
+			"petName": "鸿砚",
+			"age": 7,
+			"level": 7
+		}]
+	}, {
+		"teacher": "Fric老师",
+		"time": "下午 19:20",
+		"room": "第7教室",
+		"course": "",
+		"students": [{
+			"name": "彭  起",
+			"petName": "彭起",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "杨禹涛",
+			"petName": "禹涛",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "董致远",
+			"petName": "致远",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "韩佳恩",
+			"petName": "佳恩",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "林琮迪",
+			"petName": "琮迪",
+			"age": 6,
+			"level": 6
+		}]
+	}]
+
+}, {
+	"week": 6,
+	"name": "周六",
+	"class": [{
+		"teacher": "Fric老师",
+		"time": "上午 9:10",
+		"room": "第7教室",
+		"course": "",
+		"students": [{
+			"name": "徐浩翔",
+			"petName": "浩翔",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "曾梓睿",
+			"petName": "梓睿",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "徐梓涵",
+			"petName": "梓涵",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "王彦博",
+			"petName": "彦博",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "李溪明",
+			"petName": "溪明",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "冯保华",
+			"petName": "保华",
+			"age": 6,
+			"level": 6
+		}]
+	}, {
+		"teacher": "Fric老师",
+		"time": "下午 14:30",
+		"room": "第7教室",
+		"course": "",
+		"students": [{
+			"name": "付御函",
+			"petName": "御函",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "段承昊",
+			"petName": "承昊",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "屈子扬",
+			"petName": "子扬",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "吴奇睿",
+			"petName": "奇睿",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "谢茗轩",
+			"petName": "茗轩",
+			"age": 6,
+			"level": 6
+		}]
+	}, {
+		"teacher": "Fric老师",
+		"time": "下午 16:30",
+		"room": "第7教室",
+		"course": "",
+		"students": [{
+			"name": "曲咏歌",
+			"petName": "咏歌",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "张桂铭",
+			"petName": "桂铭",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "王珩迪",
+			"petName": "珩迪",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "胡瑜恒",
+			"petName": "瑜恒",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "袁今锋",
+			"petName": "今锋",
+			"age": 6,
+			"level": 6
+		}]
+	}]
+
+}, {
+	"week": 0,
+	"name": "周日",
+	"class": [{
+		"teacher": "Fric老师",
+		"time": "上午 10:00",
+		"room": "第7教室",
+		"course": "",
+		"students": [{
+			"name": "郭瀚远",
+			"petName": "瀚远",
+			"age": 8,
+			"level": 7
+		},{
+			"name": "叶钧浩",
+			"petName": "钧浩",
+			"age": 8,
+			"level": 7
+		},{
+			"name": "陆峻玮",
+			"petName": "峻玮",
+			"age": 8,
+			"level": 7
+		},{
+			"name": "丁亚宣",
+			"petName": "亚宣",
+			"age": 8,
+			"level": 7
+		},{
+			"name": "李柏霖",
+			"petName": "柏霖",
+			"age": 8,
+			"level": 7
+		},{
+			"name": "柳子涵",
+			"petName": "子涵",
+			"age": 8,
+			"level": 7
+		}]
+	}, {
+		"teacher": "Fric老师",
+		"time": "下午 14:30",
+		"room": "第7教室",
+		"course": "",
+		"students": [{
+			"name": "刘晨曦",
+			"petName": "晨曦",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "李睿",
+			"petName": "李睿",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "周辰鋼",
+			"petName": "辰鋼",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "芦梓轩",
+			"petName": "梓轩",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "寇天睿",
+			"petName": "天睿",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "史安冉",
+			"petName": "安冉",
+			"age": 6,
+			"level": 6
+		}]
+	}, {
+		"teacher": "Fric老师",
+		"time": "下午 16:45",
+		"room": "第7教室",
+		"course": "",
+		"students": [{
+			"name": "宋宸辰",
+			"petName": "宸辰",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "匡振戊",
+			"petName": "振戊",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "张轩宁",
+			"petName": "轩宁",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "张宸宇",
+			"petName": "宸宇",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "李昱瑶",
+			"petName": "昱瑶",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "生俊熙",
+			"petName": "俊熙",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "田玫思沅",
+			"petName": "思沅",
+			"age": 6,
+			"level": 6
+		}]
+	}]
+
+}]

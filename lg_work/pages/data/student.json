@@ -1,0 +1,355 @@
+[{
+	"week": 2,
+	"name": "周二",
+	"class": [{
+		"teacher": "君君老师",
+		"time": "下午 17:50",
+		"room": "第二教室",
+		"course": "",
+		"students": [{
+			"name": "韦琳芝",
+			"petName": "琳芝",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "仝峻赫",
+			"petName": "峻赫",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "赵茁然",
+			"petName": "茁然",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "史帅霖",
+			"petName": "帅霖",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "徐梓洋",
+			"petName": "梓洋",
+			"age": 6,
+			"level": 6
+		}]
+	}, {
+		"teacher": "君君老师",
+		"time": "下午 19:20",
+		"room": "第二教室",
+		"course": "",
+		"students": []
+	}]
+
+}, {
+	"week": 3,
+	"name": "周三",
+	"class": [{
+		"teacher": "君君老师",
+		"time": "下午 17:50",
+		"room": "第二教室",
+		"course": "",
+		"students": []
+	}, {
+		"teacher": "君君老师",
+		"time": "下午 19:20",
+		"room": "第三教室",
+		"course": "",
+		"students": [{
+			"name": "许晨曦",
+			"petName": "晨曦",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "陈映羲",
+			"petName": "映羲",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "李悦畅",
+			"petName": "悦畅",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "胡景晟",
+			"petName": "景晟",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "张怡莘",
+			"petName": "怡莘",
+			"age": 6,
+			"level": 6
+		}]
+	}]
+
+}, {
+	"week": 4,
+	"name": "周四",
+	"class": [{
+		"teacher": "君君老师",
+		"time": "下午 17:50",
+		"room": "第二教室",
+		"course": "",
+		"students": []
+	}, {
+		"teacher": "君君老师",
+		"time": "下午 19:20",
+		"room": "第二教室",
+		"course": "",
+		"students": [{
+			"name": "魏子栋",
+			"petName": "子栋",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "罗浩良",
+			"petName": "浩良",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "党甜源",
+			"petName": "甜源",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "张轶然",
+			"petName": "轶然",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "丁楚尧",
+			"petName": "楚尧",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "刘栩睿",
+			"petName": "栩睿",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "买庆泽西",
+			"petName": "一一",
+			"age": 6,
+			"level": 6
+		}]
+	}]
+
+}, {
+	"week": 5,
+	"name": "周五",
+	"class": [{
+		"teacher": "君君老师",
+		"time": "下午 17:50",
+		"room": "第二教室",
+		"course": "",
+		"students": [{
+			"name": "王韬睿",
+			"petName": "韬睿",
+			"age": 7,
+			"level": 7
+		}, {
+			"name": "尚川皓",
+			"petName": "川皓",
+			"age": 7,
+			"level": 7
+		}, {
+			"name": "宋梓源",
+			"petName": "梓源",
+			"age": 7,
+			"level": 7
+		}]
+	}, {
+		"teacher": "君君老师",
+		"time": "下午 19:20",
+		"room": "第一教室",
+		"course": "",
+		"students": [{
+			"name": "张家瑞",
+			"petName": "家瑞",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "夏苏原",
+			"petName": "苏原",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "陈宣硕",
+			"petName": "宣硕",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "温卓然",
+			"petName": "卓然",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "王羿迪",
+			"petName": "羿迪",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "张家梁",
+			"petName": "家梁",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "吴玥兮",
+			"petName": "玥兮",
+			"age": 6,
+			"level": 6
+		}]
+	}]
+
+}, {
+	"week": 6,
+	"name": "周六",
+	"class": [{
+		"teacher": "君君老师",
+		"time": "上午 9:10",
+		"room": "第二教室",
+		"course": "",
+		"students": [{
+			"name": "魏翊倬",
+			"petName": "翊倬",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "李歆悦",
+			"petName": "歆悦",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "臧晨恺",
+			"petName": "晨恺",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "王新杨",
+			"petName": "新杨",
+			"age": 6,
+			"level": 6
+		}]
+	}, {
+		"teacher": "君君老师",
+		"time": "上午 10:30",
+		"room": "第二教室",
+		"course": "",
+		"students": [{
+			"name": "江乔桉",
+			"petName": "乔桉",
+			"parent": "爸爸",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "张彦博",
+			"petName": "彦博",
+			"parent": "爸爸",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "付安冉",
+			"petName": "安冉",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "张钧智",
+			"petName": "钧智",
+			"parent": "爸爸",
+			"age": 6,
+			"level": 6
+		}]
+	}]
+
+}, {
+	"week": 0,
+	"name": "周日",
+	"class": [{
+		"teacher": "君君老师",
+		"time": "上午 10:30",
+		"room": "第二教室",
+		"course": "",
+		"students": [{
+			"name": "张艺歆",
+			"petName": "艺歆",
+			"age": 8,
+			"level": 7
+		}]
+	}, {
+		"teacher": "君君老师",
+		"time": "下午 14:30",
+		"room": "第一教室",
+		"course": "",
+		"students": [{
+			"name": "张恒郗",
+			"petName": "恒郗",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "Sara",
+			"petName": "Sara",
+			"parent": "爸爸",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "王铭硕",
+			"petName": "铭硕",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "汤普森",
+			"petName": "普森",
+			"parent": "爸爸",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "黄栋",
+			"petName": "黄栋",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "李京鸿",
+			"petName": "京鸿",
+			"parent": "爸爸",
+			"age": 6,
+			"level": 6
+		}]
+	}, {
+		"teacher": "君君老师",
+		"time": "下午 16:30",
+		"room": "第二教室",
+		"course": "",
+		"students": [{
+			"name": "刘奕辰",
+			"petName": "奕辰",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "王泽霖",
+			"petName": "泽霖",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "党英沦",
+			"petName": "英沦",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "党英睿",
+			"petName": "英睿",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "张皓祺",
+			"petName": "皓祺",
+			"age": 6,
+			"level": 6
+		}, {
+			"name": "薛淞硕",
+			"petName": "淞硕",
+			"age": 6,
+			"level": 6
+		}]
+	}]
+
+}]
