@@ -26,6 +26,7 @@ import AccountTarget from "~/api/apis/account";
 import storage from "@service/storage/storage";
 import { SpiAxios } from "@service/spi/spi";
 import { ElMessage, ElNotification } from "element-plus";
+import global from "~/core/global";
 
 const username = ref("");
 const password = ref("");

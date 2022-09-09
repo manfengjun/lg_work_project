@@ -1,5 +1,5 @@
-import { IUserModel } from '../model/account/user'
-import * as userRepo from '../repository/user'
+import { IRoomModel } from '../model/class/room'
+import * as roomRepo from '../repository/room'
 import { Md5 } from 'ts-md5'
 
 export const createUser = async (payload: IUserModel): Promise<IUserModel> => {
