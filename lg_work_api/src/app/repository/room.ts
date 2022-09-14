@@ -21,7 +21,7 @@ export const update = async (id: number, payload: {}) => {
     }
   })
 }
-export const findroom = async (room: IRoomModel) => {
+export const findRoom = async (room: IRoomModel) => {
   const data = await Room.findOne({
     where: {
       name: `${room.name}`

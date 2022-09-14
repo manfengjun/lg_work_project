@@ -3,7 +3,11 @@
     <el-container>
       <el-header>
         <span>教室管理</span>
-        <el-button :bg="true" type="primary" :icon="Plus" @click="insert"
+        <el-button
+          :bg="true"
+          type="primary"
+          :icon="Plus"
+          @click="dialogFormVisible = true"
           >新增</el-button
         >
       </el-header>
@@ -22,6 +26,29 @@
       </el-main>
     </el-container>
   </div>
+  <el-dialog
+    v-model="dialogFormVisible"
+    title="新增教室"
+    width="25%"
+    align-center
+  >
+    <el-form :model="form" label-position="left">
+      <el-form-item label="教室名称" label-width="80px" required>
+        <el-input v-model="form.name" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="年龄段" label-width="80px" required>
+        <el-input v-model="form.level" autocomplete="off"  />
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false"
+          >保存</el-button
+        >
+      </span>
+    </template>
+  </el-dialog>
 </template>
 <style lang="scss">
 .room-container {
@@ -46,13 +73,24 @@
     }
   }
 }
+.ep-dialog {
+  .ep-dialog__footer {
+    text-align: center;
+  }
+}
 </style>
 
 <script lang="ts" setup>
+import { reactive, ref } from "vue";
+
 import { Plus } from "@element-plus/icons-vue";
 import RoomTarget from "~/api/apis/room";
 import { SpiAxios } from "~/service/spi/spi";
-
+const dialogFormVisible = ref(false);
+const form = reactive({
+  name: "",
+  level: "",
+});
 const insert = () => {
   SpiAxios.create(RoomTarget.insert({}))
     .http()
@@ -61,6 +99,7 @@ const insert = () => {
       console.log(err);
     });
 };
+
 const tableData = [
   {
     date: "2016-05-03",
