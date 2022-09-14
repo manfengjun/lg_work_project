@@ -13,7 +13,7 @@ const education = [
     {
         name: 'room',
         path: path + '/room',
-        component: () => import('/src/views/education/room.vue')
+        component: () => import('/src/views/education/room/room.vue')
     },
     {
         name: 'teacher',

@@ -2,16 +2,16 @@ import { where } from 'sequelize/types'
 import { Room } from '../model/class'
 import { IRoomModel } from '../model/class/room'
 
-export const create = async (user: IRoomModel) => {
+export const create = async (room: IRoomModel) => {
   const data = await Room.findOne({
     where: {
-      username: `${user.username}`
+      name: `${room.name}`
     }
   })
   if (data && data.id) {
-    global.UnifyResponse.error({ code: -1, message: '用户已存在' })
+    global.UnifyResponse.error({ code: -1, message: '教室已存在' })
   }
-  return Room.create(user)
+  return Room.create(room)
 }
 
 export const update = async (id: number, payload: {}) => {
@@ -21,27 +21,24 @@ export const update = async (id: number, payload: {}) => {
     }
   })
 }
-export const findUser = async (user: IRoomModel) => {
+export const findRoom = async (room: IRoomModel) => {
   const data = await Room.findOne({
     where: {
-      username: `${user.username}`
+      name: `${room.name}`
     }
   })
   if (!data) {
-    global.UnifyResponse.error({ code: -1, message: '用户不存在' })
-  }
-  if (data?.password != user.password) {
-    global.UnifyResponse.error({ code: -1, message: '密码错误' })
+    global.UnifyResponse.error({ code: -1, message: '教室不存在' })
   }
   return data!
 }
 export const getById = async (id: number) => {
-  const user = await Room.findByPk(id)
+  const room = await Room.findByPk(id)
 
-  if (!user) {
+  if (!room) {
     global.UnifyResponse.notFoundException(10020)
   }
-  return user!
+  return room!
 }
 
 export const deleteById = async (id: number) => {

@@ -10,7 +10,7 @@ import {
   prefix,
   security
 } from 'koa-swagger-decorator'
-import * as userSerivce from '../../service/user'
+import * as roomSerivce from '../../service/room'
 import { generateToken } from '../../../core/auth'
 import RedisClient from '../../../core/redis'
 import CacheClient from '../../../core/cache'
@@ -22,17 +22,15 @@ const roomSchema = {
   level: { type: 'string', required: true }
 }
 
-@prefix('/rooms')
+@prefix('/room')
 export default class UserController {
   @request('post', '/list')
   @summary('Get rooms')
   @description('example: /room/list')
   @tag
-  @body(roomSchema)
   @security([{ api_key: [] }])
   async getList(ctx: Context) {
-    const id = ctx.params.id
-    ctx.body = await userSerivce.getUserById(id)
+    global.UnifyResponse.success(ctx,await roomSerivce.getAll())
   }
 
   @request('post', '/insert')
@@ -42,6 +40,6 @@ export default class UserController {
   @body(roomSchema)
   async insert(ctx: Context) {
     const room = ctx.request.body
-    ctx.body = await userSerivce.createUser(user)
+    global.UnifyResponse.success(ctx,await roomSerivce.createRoom(room))
   }
 }
