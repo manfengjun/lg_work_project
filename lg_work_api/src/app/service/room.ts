@@ -2,7 +2,7 @@ import { IRoomModel } from '../model/class/room'
 import * as roomRepo from '../repository/room'
 import { Md5 } from 'ts-md5'
 
-export const createUser = async (payload: IUserModel): Promise<IUserModel> => {
+export const createUser = async (payload: IRoomModel): Promise<IRoomModel> => {
   if (!payload.username || payload.username.length <= 0) {
     global.UnifyResponse.error({ code: -1, message: '用户名不能为空' })
 
@@ -21,11 +21,11 @@ export const updateUser = async (
   return userRepo.update(id,payload)
 }
 
-export const getUserById = (id: number): Promise<IUserModel> => {
+export const getUserById = (id: number): Promise<IRoomModel> => {
   return userRepo.getById(id)
 }
 
-export const findUser = (payload: IUserModel): Promise<IUserModel> => {
+export const findUser = (payload: IRoomModel): Promise<IRoomModel> => {
   if (!payload.username || payload.username.length <= 0) {
     global.UnifyResponse.error({ code: -1, message: '用户名不能为空' })
 
@@ -41,6 +41,6 @@ export const deleteById = (id: number): Promise<boolean> => {
   return userRepo.deleteById(id)
 }
 
-export const getAll = (): Promise<IUserModel[]> => {
+export const getAll = (): Promise<IRoomModel[]> => {
   return userRepo.getAll()
 }
