@@ -16,7 +16,7 @@ class SpiResponseInterceptor {
         instance.interceptors.request.use(function (config) {
             // 一般会请求拦截里面加token
             const token = Storage.get("token")
-            config.headers!["Authorization"] = token;
+            config.headers!["authorization"] = 'Bearer '+ token;
             return config;
         }, function (error) {
             return Promise.reject(error);
@@ -32,3 +32,4 @@ class SpiResponseInterceptor {
         });
     }
 }
+export default SpiResponseInterceptor

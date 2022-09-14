@@ -50,13 +50,13 @@ class RoomTarget extends SpiTarget {
     public get path(): string {
         switch (this.type) {
             case Room.insert:
-                return '/user/login'
+                return '/room/insert'
             case Room.update:
-                return '/user/login'
+                return '/room/update'
             case Room.rooms:
-                return '/user/login'
+                return '/room/list'
             case Room.del:
-                return '/user/login'
+                return '/room/del'
             default:
                 return ''
         }
@@ -75,8 +75,10 @@ class RoomTarget extends SpiTarget {
         return target
     }
 
-    static rooms() {
-
+    static rooms(data: {}) {
+        let target = new RoomTarget(Room.rooms)
+        target.data = data
+        return target
     }
 
 }

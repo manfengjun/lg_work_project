@@ -1,6 +1,7 @@
 import axios from "axios"
 import { AxiosInstance, AxiosResponse } from "axios"
 import SpiLogInterceptor from "./spi_log"
+import SpiResponseInterceptor from "./spi_response"
 import { SpiManager } from "./spi_manage"
 import { SpiTarget } from "./spi_target"
 import { RequestError } from './spi_error'
@@ -14,6 +15,8 @@ class SpiAxios {
         })
         SpiLogInterceptor.getInstance().onRequest(this.instance)
         SpiLogInterceptor.getInstance().onResponse(this.instance)
+        SpiResponseInterceptor.getInstance().onRequest(this.instance)
+        SpiResponseInterceptor.getInstance().onResponse(this.instance)
     }
     static create(target: SpiTarget): SpiAxios {
         return new SpiAxios(target)
