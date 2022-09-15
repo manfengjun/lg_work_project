@@ -36,7 +36,7 @@ export const getById = async (id: number) => {
   const room = await Room.findByPk(id)
 
   if (!room) {
-    global.UnifyResponse.notFoundException(10020)
+    global.UnifyResponse.error({ code: -1, message: '该教室不存在' })
   }
   return room!
 }
@@ -45,8 +45,7 @@ export const deleteById = async (id: number) => {
   const numDeleted = await Room.destroy({
     where: { id }
   })
-
-  return !!numDeleted
+  return numDeleted > 0
 }
 
 export const getAll = async () => {

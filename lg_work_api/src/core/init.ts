@@ -18,7 +18,7 @@ export default class InitManager {
   initCore() {
     InitGlobal.init() // global var and methods
     this.app.use(Koa2Cors()) // cross-domain processing
-    this.app.use(KoaBody({ multipart: true })) // body parameter processing
+    this.app.use(KoaBody({ multipart: true, strict: false, })) // body parameter processing
     this.app.use(catchError) // global exception handling
     this.app.use(auth)
     this._initRoutesAndSwagger() // router and api docs

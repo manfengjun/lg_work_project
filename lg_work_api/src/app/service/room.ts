@@ -14,7 +14,7 @@ export const updateRoom = async (
   id: number,
   payload: {}
 ): Promise<[affectedCount: number]> => {
-  return roomRepo.update(id,payload)
+  return roomRepo.update(id, payload)
 }
 
 export const getRoomById = (id: number): Promise<IRoomModel> => {
@@ -30,7 +30,11 @@ export const findRoom = (payload: IRoomModel): Promise<IRoomModel> => {
 }
 
 export const deleteById = (id: number): Promise<boolean> => {
-  return roomRepo.deleteById(id)
+  let result = roomRepo.deleteById(id)
+  if (!result) {
+    global.UnifyResponse.error({ code: -1, message: '删除失败' })
+  }
+  return result
 }
 
 export const getAll = (): Promise<IRoomModel[]> => {

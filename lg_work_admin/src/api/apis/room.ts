@@ -3,7 +3,7 @@ enum Room {
     rooms,
     insert,
     update,
-    del,
+    delete,
 }
 
 class RoomTarget extends SpiTarget {
@@ -23,8 +23,8 @@ class RoomTarget extends SpiTarget {
                 return HTTPMETHOD.post
             case Room.update:
                 return HTTPMETHOD.post
-            case Room.del:
-                return HTTPMETHOD.post
+            case Room.delete:
+                return HTTPMETHOD.delete
             default:
                 return HTTPMETHOD.get
         }
@@ -55,8 +55,8 @@ class RoomTarget extends SpiTarget {
                 return '/room/update'
             case Room.rooms:
                 return '/room/list'
-            case Room.del:
-                return '/room/del'
+            case Room.delete:
+                return '/room/delete'
             default:
                 return ''
         }
@@ -75,11 +75,16 @@ class RoomTarget extends SpiTarget {
         return target
     }
 
-    static rooms(data: {}) {
+    static rooms(data: {} = {}) {
         let target = new RoomTarget(Room.rooms)
         target.data = data
         return target
     }
 
+    static deleteById(data: {} = {}) {
+        let target = new RoomTarget(Room.delete)
+        target.data = data
+        return target
+    }
 }
 export default RoomTarget

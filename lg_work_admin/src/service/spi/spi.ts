@@ -4,7 +4,7 @@ import SpiLogInterceptor from "./spi_log"
 import SpiResponseInterceptor from "./spi_response"
 import { SpiManager } from "./spi_manage"
 import { SpiTarget } from "./spi_target"
-import { RequestError } from './spi_error'
+import { ElMessage } from "element-plus"
 class SpiAxios {
     target: SpiTarget
     public instance!: AxiosInstance
@@ -21,8 +21,7 @@ class SpiAxios {
     static create(target: SpiTarget): SpiAxios {
         return new SpiAxios(target)
     }
-    http<T = any>(): Promise<any> {
-        console.log(this.target.data)
+    http(isToast: boolean = true): Promise<any> {
         let response = this.instance.request({
             baseURL: this.target.baseUrl,
             headers: this.target.headers,
@@ -44,10 +43,22 @@ class SpiAxios {
                         reject({ code: code, msg: res.data.message, data: '' });
                     }
                 } else {
+                    if(isToast) {
+                        ElMessage.error(res.data.message)
+                    }
                     let code = res.data.code
                     reject({ code: code, msg: res.data.message, data: '' });
                 }
             }).catch((err) => {
+                if(!err.response.data) {
+                    if(isToast) {
+                        ElMessage.error('网络异常')
+                    }
+                    reject({ code: -1, msg: "网络异常", data: '' });
+                }
+                if(isToast) {
+                    ElMessage.error(err.response.data.message)
+                }
                 let code = err.response.data.code
                 reject({ code: code, msg: err.response.data.message, data: '' });
             });
