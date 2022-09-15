@@ -7,7 +7,8 @@ export interface IUserModel {
   username: string
   password: string
   token?: string
-  teacherId?: number
+  roomId?: number
+  teacherName?: string
 }
 
 export type CUserModel = Omit<IUserModel, 'id'>
@@ -19,8 +20,8 @@ export default class User
   public username!: string
   public password!: string
   public token?: string
-  public teacherId?: number
-
+  public teacherName?: string
+  public roomId?: number
 }
 
 User.init(
@@ -42,7 +43,11 @@ User.init(
       type: DataTypes.STRING,
       allowNull: true
     },
-    teacherId: {
+    teacherName: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    roomId: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
