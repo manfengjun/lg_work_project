@@ -104,7 +104,7 @@ import GradeTarget from "~/api/apis/grade";
 import RoomTarget from "~/api/apis/room";
 import Storage from "@service/storage/storage";
 import { SpiAxios } from "@service/spi/spi";
-import { list, room, getRoomList} from './grade'
+import { list, getList, insert, deleteById, room, getRoomList } from "./grade";
 const dialogFormVisible = ref(false);
 const ruleFormRef = ref<FormInstance>();
 const form = reactive({
@@ -127,33 +127,13 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      SpiAxios.create(GradeTarget.insert(form))
-        .http()
-        .then((data) => {
-          ElMessage.success("添加成功");
-          list.data.push(data);
-          formEl.resetFields();
-        })
-        .catch((err) => {
-          ElMessage.error(err.msg);
-          console.log(err);
-        });
+      insert(formEl, form);
     } else {
       console.log("error submit!", fields);
     }
   });
 };
-
-const deleteById = (id: number) => {
-  SpiAxios.create(GradeTarget.deleteById({ id: id }))
-    .http()
-    .then((data) => {
-      ElMessage.success("删除成功");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+getList();
 getRoomList();
 </script>
 <style lang="scss">
