@@ -1,6 +1,6 @@
 import Room from './room'
 import Teacher from './teacher'
 import Student from './student'
-import LGClass from './class'
+import Grade from './grade'
 
-export { Room, Teacher, Student, LGClass}
+export { Room, Teacher, Student, Grade}

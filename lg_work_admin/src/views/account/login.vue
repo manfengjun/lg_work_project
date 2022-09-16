@@ -50,12 +50,13 @@ const login = () => {
     .then((data) => {
       storage.set("token", data.token);
       storage.set("user", data);
+      global.user = data
       ElMessage({
         message: "登录成功，欢迎回来！",
         type: "success",
       });
       global.$router.push({
-        path: "/work",
+        name: "center",
       });
     })
     .catch((err) => {

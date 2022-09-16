@@ -2,21 +2,23 @@ import { DataTypes, Model } from 'sequelize'
 import CONFIG from '../../../config'
 import sequelizeClient from '../../../core/database'
 
-export interface IClassModel {
+export interface IGradeModel {
   id: number
   name: string
   level: string
   week: string
-  time: String
+  time: string
   teacherId: number
   roomId: number
+  teacherName: string
+  roomName: string
 }
 
-export type CIClassModel = Omit<IClassModel, 'id'>
+export type CIGradeModel = Omit<IGradeModel, 'id'>
 
-export default class LGClass
-  extends Model<IClassModel, IClassModel>
-  implements IClassModel {
+export default class Grade
+  extends Model<IGradeModel, IGradeModel>
+  implements IGradeModel {
   public id!: number
   public name!: string
   public level!: string
@@ -24,9 +26,11 @@ export default class LGClass
   public time!: string
   public teacherId!: number
   public roomId!: number
+  public teacherName!: string
+  public roomName!: string
 }
 
-LGClass.init(
+Grade.init(
   {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -55,6 +59,14 @@ LGClass.init(
     },
     roomId: {
       type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false
+    },
+    teacherName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    roomName: {
+      type: DataTypes.STRING,
       allowNull: false
     }
   },

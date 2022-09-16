@@ -1,4 +1,4 @@
 import { User } from './account'
-import { Room, Teacher, Student, LGClass } from './class'
+import { Room, Teacher, Student, Grade } from './class'
 
-export { User, Room, Teacher, Student, LGClass }
+export { User, Room, Teacher, Student, Grade }

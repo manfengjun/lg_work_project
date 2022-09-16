@@ -1,8 +1,8 @@
-const path = '/work/center'
+const path = '/work'
 const center = [
     {
         name: 'center',
-        path: path + '/index',
+        path: path + '/center',
         component: () => import('/src/views/center/center.vue')
     },
     
