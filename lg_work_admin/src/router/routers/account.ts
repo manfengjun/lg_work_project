@@ -1,4 +1,4 @@
-const path = '/work/account'
+const path = '/work'
 const education = [
     {
         name: 'login',

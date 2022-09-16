@@ -1,9 +1,9 @@
 const path = 'education'
 const education = [
     {
-        name: 'class',
-        path: path + '/class',
-        component: () => import('/src/views/education/class.vue')
+        name: 'grade',
+        path: path + '/grade',
+        component: () => import('/src/views/education/grade/grade.vue')
     },
     {
         name: 'student',

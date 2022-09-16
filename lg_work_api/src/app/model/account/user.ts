@@ -20,8 +20,9 @@ export default class User
   public username!: string
   public password!: string
   public token?: string
-  public teacherName?: string
   public roomId?: number
+  public teacherName?: string
+
 }
 
 User.init(
@@ -43,12 +44,12 @@ User.init(
       type: DataTypes.STRING,
       allowNull: true
     },
-    teacherName: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
     roomId: {
       type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    teacherName: {
+      type: DataTypes.STRING,
       allowNull: true
     },
   },

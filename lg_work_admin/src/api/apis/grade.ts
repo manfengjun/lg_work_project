@@ -1,0 +1,90 @@
+import { HTTPMETHOD, SpiTarget } from "@service/spi/spi_target"
+enum Grade {
+    grades,
+    insert,
+    update,
+    delete,
+}
+
+class GradeTarget extends SpiTarget {
+    public type!: Grade
+    constructor(type: Grade) {
+        super();
+        this.type = type
+    }
+    public get baseUrl(): string {
+        return super.baseUrl
+    }
+    public get method(): HTTPMETHOD {
+        switch (this.type) {
+            case Grade.grades:
+                return HTTPMETHOD.post
+            case Grade.insert:
+                return HTTPMETHOD.post
+            case Grade.update:
+                return HTTPMETHOD.post
+            case Grade.delete:
+                return HTTPMETHOD.delete
+            default:
+                return HTTPMETHOD.get
+        }
+    }
+    public set params(value: {}) {
+        super.params = value;
+    }
+    public set data(value: {}) {
+        super.data = value;
+    }
+    public get params(): {} {
+        return super.params
+    }
+    public get data(): {} {
+        return super.data
+    }
+    public get headers(): Record<string, string | number | boolean> {
+        return super.headers
+    }
+    public get logEnable(): boolean {
+        return super.logEnable
+    }
+    public get path(): string {
+        switch (this.type) {
+            case Grade.insert:
+                return '/grade/insert'
+            case Grade.update:
+                return '/grade/update'
+            case Grade.grades:
+                return '/grade/list'
+            case Grade.delete:
+                return '/grade/delete'
+            default:
+                return ''
+        }
+    }
+    /**
+     *
+     *
+     * @static
+     * @param {{}} data
+     * @return {*} 
+     * @memberof GradeTarget
+     */
+    static insert(data: {}) {
+        let target = new GradeTarget(Grade.insert)
+        target.data = data
+        return target
+    }
+
+    static grades(data: {} = {}) {
+        let target = new GradeTarget(Grade.grades)
+        target.data = data
+        return target
+    }
+
+    static deleteById(data: {} = {}) {
+        let target = new GradeTarget(Grade.delete)
+        target.data = data
+        return target
+    }
+}
+export default GradeTarget

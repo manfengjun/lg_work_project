@@ -25,7 +25,7 @@ const delSchema = {
   id: { type: 'number', required: true }
 }
 @prefix('/room')
-export default class UserController {
+export default class RoomController {
   @request('post', '/list')
   @summary('Get rooms')
   @description('example: /room/list')
