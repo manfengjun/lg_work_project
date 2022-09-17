@@ -8,7 +8,7 @@ const education = [
     {
         name: 'student',
         path: path + '/student',
-        component: () => import('/src/views/education/student.vue')
+        component: () => import('/src/views/education/student/student.vue')
     },
     {
         name: 'room',

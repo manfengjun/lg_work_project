@@ -11,4 +11,15 @@ interface Room {
     name: string
     level: string
 }
-export { User, Room }
+interface Grade {
+    id: number
+    name: string
+    level: string
+    week: string
+    time: string
+    teacherId: number
+    roomId: number
+    teacherName: string
+    roomName: string
+}
+export { User, Room, Grade}

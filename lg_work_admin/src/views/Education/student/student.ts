@@ -1,28 +1,28 @@
 import { reactive, ref } from "vue";
+import StudentTarget from "~/api/apis/student";
 import GradeTarget from "~/api/apis/grade";
-import RoomTarget from "~/api/apis/room";
 import { SpiAxios } from "@service/spi/spi";
-import { Room, User } from "~/model/base";
+import { Grade } from "~/model/base";
 import Storage from "@service/storage/storage";
 import { ElMessage, FormInstance } from "element-plus";
-class Grade {
+class Student {
     public name!: string
     public level!: string
     public week!: string
     public time!: string
-    public room?: Room
-    public roomId!: number
-    public roomName!: string
+    public grade?: Student
+    public gradeId!: number
+    public gradeName!: string
     public teacherId!: number
     public teacherName!: string
 }
-/** 班级数据 */
+/** 学生数据 */
 const list = reactive({
     data: [] as any,
 });
 const getList = () => {
     SpiAxios
-        .create(GradeTarget.grades())
+        .create(StudentTarget.students())
         .http()
         .then((data) => {
             console.log(data);
@@ -32,15 +32,15 @@ const getList = () => {
             console.log(err);
         });
 }
-/** 新增班级 */
-const insert = (formEl: FormInstance, form: Grade) => {
-    form.roomId = form.room?.id!
-    form.roomName = form.room?.name!
+/** 新增学生 */
+const insert = (formEl: FormInstance, form: Student) => {
+    form.gradeId = form.grade?.id!
+    form.gradeName = form.grade?.name!
     const user = Storage.get('user')
     form.teacherId = user.id
     form.teacherName = user.teacherName
     form.name = form.week + ' ' + form.time + ' ' + form.level + '岁 ' + form.teacherName
-    SpiAxios.create(GradeTarget.insert(form))
+    SpiAxios.create(StudentTarget.insert(form))
         .http()
         .then((data) => {
             ElMessage.success("添加成功");
@@ -52,9 +52,9 @@ const insert = (formEl: FormInstance, form: Grade) => {
             console.log(err);
         });
 }
-/** 删除班级 */
+/** 删除学生 */
 const deleteById = (id: number) => {
-    SpiAxios.create(GradeTarget.deleteById({ id: id }))
+    SpiAxios.create(StudentTarget.deleteById({ id: id }))
         .http()
         .then((data) => {
             ElMessage.success("删除成功")
@@ -64,20 +64,20 @@ const deleteById = (id: number) => {
             console.log(err)
         });
 }
-/** 教室数据 */
-const room = reactive({
-    data: [] as Room[],
+/** 班级数据 */
+const grade = reactive({
+    data: [] as Grade[],
 });
-const getRoomList = () => {
+const getGradeList = () => {
     SpiAxios
-        .create(RoomTarget.rooms())
+        .create(GradeTarget.grades())
         .http()
         .then((data) => {
             console.log(data);
-            room.data = data;
+            grade.data = data;
         })
         .catch((err) => {
             console.log(err);
         });
 }
-export { Grade,list, getList, insert, deleteById, room, getRoomList }
+export { Student,list, getList, insert, deleteById, grade, getGradeList }
