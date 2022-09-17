@@ -6,4 +6,9 @@ interface User {
     roomId: number
     teacherName: string
 }
-export { User }
+interface Room {
+    id: number
+    name: string
+    level: string
+}
+export { User, Room }
