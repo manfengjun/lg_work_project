@@ -1,5 +1,5 @@
 import { where } from 'sequelize/types'
-import { Student } from '../model/class'
+import { Grade, Student } from '../model/class'
 import { IStudentModel } from '../model/class/student'
 
 export const create = async (student: IStudentModel) => {

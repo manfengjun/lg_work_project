@@ -14,17 +14,15 @@ import * as studentSerivce from '../../service/student'
 import { generateToken } from '../../../core/auth'
 import RedisClient from '../../../core/redis'
 import CacheClient from '../../../core/cache'
+import * as gradeSerivce from '../../service/grade'
 
 const tag = tags(['student'])
 const studentSchema = {
   name: { type: 'string', required: true },
-  level: { type: 'string', required: true },
-  week: { type: 'string', required: true },
-  time: { type: 'string', required: true },
-  teacherId: { type: 'number', required: true },
-  roomId: { type: 'number', required: true },
-  teacherName: { type: 'string', required: true },
-  roomName: { type: 'string', required: true }
+  petName: { type: 'string', required: false },
+  parent: { type: 'string', required: false },
+  classId: { type: 'number', required: true },
+  level: { type: 'number', required: false }
 }
 const delSchema = {
   id: { type: 'number', required: true }
@@ -61,5 +59,4 @@ export default class studentController {
     const id = ctx.request.body.id
     global.UnifyResponse.success(ctx, await studentSerivce.deleteById(id))
   }
-
 }

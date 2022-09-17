@@ -7,15 +7,14 @@ import Storage from "@service/storage/storage";
 import { ElMessage, FormInstance } from "element-plus";
 class Student {
     public name!: string
-    public level!: string
-    public week!: string
-    public time!: string
-    public grade?: Student
-    public gradeId!: number
-    public gradeName!: string
-    public teacherId!: number
-    public teacherName!: string
+    public petName?: string
+    public level?: string
+    public grade?: Grade
+    public classId!: number
+    public parent?: string
 }
+
+
 /** 学生数据 */
 const list = reactive({
     data: [] as any,
@@ -34,12 +33,7 @@ const getList = () => {
 }
 /** 新增学生 */
 const insert = (formEl: FormInstance, form: Student) => {
-    form.gradeId = form.grade?.id!
-    form.gradeName = form.grade?.name!
-    const user = Storage.get('user')
-    form.teacherId = user.id
-    form.teacherName = user.teacherName
-    form.name = form.week + ' ' + form.time + ' ' + form.level + '岁 ' + form.teacherName
+    form.classId = form.grade?.id!
     SpiAxios.create(StudentTarget.insert(form))
         .http()
         .then((data) => {

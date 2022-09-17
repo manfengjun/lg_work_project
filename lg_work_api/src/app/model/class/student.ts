@@ -1,6 +1,7 @@
 import { DataTypes, Model } from 'sequelize'
 import CONFIG from '../../../config'
 import sequelizeClient from '../../../core/database'
+import Grade, { IGradeModel } from './grade'
 
 export interface IStudentModel {
     id: number
@@ -9,6 +10,7 @@ export interface IStudentModel {
     level?: string
     classId: number
     parent?:string
+    grade?: IGradeModel
 }
 
 export type CIStudentModel = Omit<IStudentModel, 'id'>

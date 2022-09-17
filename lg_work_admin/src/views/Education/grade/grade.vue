@@ -85,7 +85,7 @@ const form = reactive<Grade>(new Grade());
 const rules = reactive<FormRules>({
   level: [{ required: true, message: "请输入年龄段", trigger: "blur" }],
   week: [{ required: true, message: "请选择时间", trigger: "blur" }],
-  time: [{ required: true, message: "请选择教室", trigger: "blur" }],
+  time: [{ required: true, message: "请选择时间", trigger: "blur" }],
   room: [{ required: true, message: "请选择教室", trigger: "blur" }],
 });
 const submitForm = async (formEl: FormInstance | undefined) => {

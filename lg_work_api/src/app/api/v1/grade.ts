@@ -40,6 +40,18 @@ export default class GradeController {
     global.UnifyResponse.success(ctx, await gradeSerivce.getAll())
   }
 
+  @request('post', '/by')
+  @summary('Get grade by id')
+  @description('example: /grade/by/1')
+  @tag
+  @path({
+    id: { type: 'number', required: true, default: null, description: 'id' }
+  })
+  @security([{ api_key: [] }])
+  async getGradeById(ctx: Context) {
+    const id = ctx.params.id
+    global.UnifyResponse.success(ctx, await gradeSerivce.getGradeById(id))
+  }
 
   @request('post', '/insert')
   @summary('grade insert')
