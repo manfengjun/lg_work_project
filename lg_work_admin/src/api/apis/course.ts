@@ -62,7 +62,7 @@ class CourseTarget extends SpiTarget {
             case Course.courses:
                 return '/course/list'
             case Course.commonMoulds:
-                return '/course/list'
+                return '/course/by'
             case Course.moulds:
                 return '/course/moulds'
             case Course.delete:

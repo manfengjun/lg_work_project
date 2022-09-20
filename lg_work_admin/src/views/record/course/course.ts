@@ -13,7 +13,7 @@ class Course {
 const option_status = ref(0)
 const select = ref('6')
 
-/** 学生数据 */
+/** 主题数据 */
 const data_source = reactive({
     grade: {},
     data: [] as any,
@@ -30,7 +30,7 @@ const getList = () => {
             console.log(err)
         })
 }
-/** 新增学生 */
+/** 新增主题 */
 const option = (formEl: FormInstance, form: Course) => {
     switch (option_status.value) {
         case 0:
@@ -65,7 +65,7 @@ const option = (formEl: FormInstance, form: Course) => {
     }
 
 }
-/** 删除学生 */
+/** 删除主题 */
 const deleteById = (id: number) => {
     SpiAxios.create(CourseTarget.deleteById({ id: id }))
         .http()

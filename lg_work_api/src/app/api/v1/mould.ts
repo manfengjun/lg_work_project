@@ -37,6 +37,20 @@ export default class MouldController {
     global.UnifyResponse.success(ctx, await mouldSerivce.getAll())
   }
 
+  @request('post', '/by')
+  @summary('Get course by id')
+  @description('example: /course/by')
+  @tag
+  @path({
+    id: { type: 'number', required: true, default: null, description: 'id' }
+  })
+  @security([{ api_key: [] }])
+  async getGradeById(ctx: Context) {
+    const id = ctx.params.id
+    global.UnifyResponse.success(ctx, await mouldSerivce.getMouldById(id))
+  }
+
+
   @request('post', '/insert')
   @summary('mould insert')
   @description('example: /mould/insert')
