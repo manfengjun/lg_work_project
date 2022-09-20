@@ -51,6 +51,20 @@ export default class CourseController {
     global.UnifyResponse.success(ctx, await courseSerivce.getListByLevel(level))
   }
 
+  @request('post', '/by')
+  @summary('Get course by id')
+  @description('example: /course/by')
+  @tag
+  @body({
+    id: { type: 'number', required: true, default: null, description: 'id' }
+  })
+  @security([{ api_key: [] }])
+  async getGradeById(ctx: Context) {
+    const id = ctx.request.body.id
+    global.UnifyResponse.success(ctx, await courseSerivce.getCourseById(id))
+  }
+
+
   @request('post', '/insert')
   @summary('course insert')
   @description('example: /course/insert')

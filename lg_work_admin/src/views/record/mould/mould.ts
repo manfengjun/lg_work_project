@@ -25,11 +25,26 @@ const data_source = reactive({
 })
 const getList = () => {
     SpiAxios
-        .create(MouldTarget.moulds({ "level": level.value }))
+        .create(CourseTarget.moulds({ id: course.value }))
         .http()
         .then((data) => {
             console.log(data)
-            data_source.data = data
+            data_source.data = data.moulds
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+const common_source = reactive({
+    data: [] as any,
+})
+const getCommonList = () => {
+    SpiAxios
+        .create(CourseTarget.moulds({ id: 1 }))
+        .http()
+        .then((data) => {
+            console.log(data)
+            common_source.data = data.moulds
         })
         .catch((err) => {
             console.log(err)
@@ -45,7 +60,8 @@ const option = (formEl: FormInstance, form: Mould) => {
                 .http()
                 .then((data) => {
                     ElMessage.success("添加成功")
-                    data_source.data.push(data)
+                    getList()
+                    getCommonList()
                     formEl.resetFields()
                 })
                 .catch((err) => {
@@ -59,6 +75,7 @@ const option = (formEl: FormInstance, form: Mould) => {
                 .then((data) => {
                     ElMessage.success("修改成功")
                     getList()
+                    getCommonList()
                     formEl.resetFields()
                 })
                 .catch((err) => {
@@ -89,7 +106,7 @@ const courses = reactive({
 })
 const getCourseList = () => {
     SpiAxios
-        .create(CourseTarget.moulds({ "level": level.value }))
+        .create(CourseTarget.courses({ "level": level.value }))
         .http()
         .then((data) => {
             console.log(data)
@@ -99,21 +116,7 @@ const getCourseList = () => {
             console.log(err)
         })
 }
-const common_mould= reactive({
-    data: [] as any,
-})
-const getCommonCourseList = () => {
-    SpiAxios
-    .create(CourseTarget.moulds({ "level": level.value }))
-    .http()
-        .then((data) => {
-            console.log(data)
-            types.data = data
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-}
+
 /** 课程主题模板类型数据 */
 const types = reactive({
     data: [] as any,
@@ -137,6 +140,8 @@ export {
     Mould,
     data_source,
     getList,
+    common_source,
+    getCommonList,
     option,
     deleteById,
     courses,

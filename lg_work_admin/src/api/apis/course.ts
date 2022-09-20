@@ -1,7 +1,6 @@
 import { HTTPMETHOD, SpiTarget } from "@service/spi/spi_target"
 enum Course {
     courses,
-    commonMoulds,
     insert,
     update,
     delete,
@@ -61,10 +60,8 @@ class CourseTarget extends SpiTarget {
                 return '/course/update'
             case Course.courses:
                 return '/course/list'
-            case Course.commonMoulds:
-                return '/course/by'
             case Course.moulds:
-                return '/course/moulds'
+                return '/course/by'
             case Course.delete:
                 return '/course/delete'
             default:
@@ -99,11 +96,7 @@ class CourseTarget extends SpiTarget {
         target.data = data
         return target
     }
-    static commonMoulds(data: {} = {}) {
-        let target = new CourseTarget(Course.commonMoulds)
-        target.data = data
-        return target
-    }
+    
     static deleteById(data: {} = {}) {
         let target = new CourseTarget(Course.delete)
         target.data = data

@@ -15,7 +15,7 @@ const select = ref('6')
 
 /** 主题数据 */
 const data_source = reactive({
-    grade: {},
+    course: {},
     data: [] as any,
 })
 const getList = () => {

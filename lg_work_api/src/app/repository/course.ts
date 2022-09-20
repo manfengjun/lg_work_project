@@ -33,8 +33,7 @@ export const findCourse = async (course: ICourseModel) => {
   return data!
 }
 export const getById = async (id: number) => {
-  const course = await Course.findByPk(id)
-  const grade = await Course.findOne({
+  const course = await Course.findOne({
     where: {
       id: `${id}`
     },
