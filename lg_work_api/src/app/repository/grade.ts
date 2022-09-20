@@ -9,7 +9,7 @@ export const create = async (grade: IGradeModel) => {
     }
   })
   if (data && data.id) {
-    global.UnifyResponse.error({ code: -1, message: '教室已存在' })
+    global.UnifyResponse.error({ code: -1, message: '班级已存在' })
   }
   return Grade.create(grade)
 }

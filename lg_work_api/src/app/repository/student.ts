@@ -9,7 +9,7 @@ export const create = async (student: IStudentModel) => {
     }
   })
   if (data && data.id) {
-    global.UnifyResponse.error({ code: -1, message: '教室已存在' })
+    global.UnifyResponse.error({ code: -1, message: '学员已存在' })
   }
   return Student.create(student)
 }
@@ -28,7 +28,7 @@ export const findStudent = async (student: IStudentModel) => {
     }
   })
   if (!data) {
-    global.UnifyResponse.error({ code: -1, message: '教室不存在' })
+    global.UnifyResponse.error({ code: -1, message: '学员不存在' })
   }
   return data!
 }
@@ -36,7 +36,7 @@ export const getById = async (id: number) => {
   const student = await Student.findByPk(id)
 
   if (!student) {
-    global.UnifyResponse.error({ code: -1, message: '该教室不存在' })
+    global.UnifyResponse.error({ code: -1, message: '该学员不存在' })
   }
   return student!
 }

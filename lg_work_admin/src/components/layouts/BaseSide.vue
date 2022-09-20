@@ -40,11 +40,30 @@
         >
       </el-menu-item-group>
     </el-sub-menu>
-    <el-menu-item index="3">
-      <el-icon><document /></el-icon>
-
-      <template #title>成长记录</template>
-    </el-menu-item>
+    <el-sub-menu index="3">
+      <template #title>
+        <el-icon><document /></el-icon>
+        <span>成长记录</span>
+      </template>
+      <el-menu-item-group>
+        <el-menu-item index="/work/record/course">
+          <template #title>
+            <span>课程管理</span>
+          </template></el-menu-item
+        >
+        <el-menu-item index="/work/record/mould">
+          <template #title>
+            <span>模板管理</span>
+          </template></el-menu-item
+        >
+        <el-menu-item index="/work/record/record">
+          <template #title>
+            <span>成长记录管理</span>
+          </template></el-menu-item
+        >
+      </el-menu-item-group>
+    </el-sub-menu>
+    
   </el-menu>
 </template>
 

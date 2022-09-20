@@ -18,9 +18,10 @@ import * as gradeSerivce from '../../service/grade'
 
 const tag = tags(['student'])
 const studentSchema = {
+  id: { type: 'number', required: false },
   name: { type: 'string', required: true },
-  petName: { type: 'string', required: false },
-  parent: { type: 'string', required: false },
+  petName: { type: 'string', required: false},
+  parent: { type: 'string', required: false},
   classId: { type: 'number', required: true },
   level: { type: 'number', required: false }
 }
@@ -49,6 +50,15 @@ export default class studentController {
     global.UnifyResponse.success(ctx, await studentSerivce.createStudent(studentModel))
   }
 
+  @request('put', '/update')
+  @summary('student update')
+  @description('example: /student/update')
+  @tag
+  @body(studentSchema)
+  async update(ctx: Context) {
+    const student = ctx.request.body
+    global.UnifyResponse.success(ctx, await studentSerivce.updateStudent(student.id, student))
+  }
 
   @request('delete', '/delete')
   @summary('student delete')

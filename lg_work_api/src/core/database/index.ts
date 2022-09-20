@@ -15,7 +15,7 @@ class SequelizeClient {
         dialect: DATABASE.DIALECT as Dialect,
         host: DATABASE.HOST,
         port: DATABASE.PORT,
-        logging: false
+        logging: true
       }
     )
 

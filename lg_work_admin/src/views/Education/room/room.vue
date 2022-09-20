@@ -7,32 +7,49 @@
           :bg="true"
           type="primary"
           :icon="Plus"
-          @click="dialogFormVisible = true"
+          @click="
+            option_status = 0;
+            dialogFormVisible = true;
+          "
           >新增</el-button
         >
       </el-header>
       <el-main>
-        <el-table :stripe="true" :data="list.data" style="width: 100%">
+        <el-table :stripe="true" :data="list.data">
           <el-table-column type="index" label="序号" width="100" />
           <el-table-column prop="name" label="教室名称" width="180" />
           <el-table-column prop="level" label="年龄段" />
           <el-table-column fixed="right" label="操作" width="120">
             <template #default="scope">
-              <el-button link type="primary" size="small">编辑</el-button>
               <el-button
                 link
                 type="primary"
                 size="small"
-                @click="deleteById(list.data[scope.$index].id)"
-                >删除</el-button
+                @click="edit(list.data[scope.$index])"
+                >编辑</el-button
               >
+              <el-popconfirm
+                confirm-button-text="确认"
+                cancel-button-text="取消"
+                icon-color="#626AEF"
+                title="您确认要删除吗?"
+                @confirm="deleteById(list.data[scope.$index].id)"
+              >
+                <template #reference>
+                  <el-button link type="primary" size="small">删除</el-button>
+                </template>
+              </el-popconfirm>
             </template>
           </el-table-column>
         </el-table>
       </el-main>
     </el-container>
   </div>
-  <el-dialog v-model="dialogFormVisible" title="新增教室" width="25%">
+  <el-dialog
+    v-model="dialogFormVisible"
+    :title="option_status == 0 ? '新增教室' : '修改教室'"
+    width="25%"
+  >
     <el-form
       ref="ruleFormRef"
       :model="form"
@@ -53,7 +70,7 @@
           type="primary"
           @click="
             dialogFormVisible = false;
-            submitForm(ruleFormRef)
+            submitForm(ruleFormRef);
           "
           >保存</el-button
         >
@@ -64,20 +81,16 @@
 
 
 <script lang="ts" setup>
-import { reactive, ref } from "vue"
-import { ElMessage, FormInstance, FormRules } from "element-plus"
-import RoomModel from "./room"
-import { Plus, SetUp, User } from "@element-plus/icons-vue"
-import RoomTarget from "~/api/apis/room"
-import { SpiAxios } from "~/service/spi/spi"
-import { dataType } from "element-plus/es/components/table-v2/src/common"
-
-const dialogFormVisible = ref(false)
-const ruleFormRef = ref<FormInstance>()
-const form = reactive({
-  name: "",
-  level: "",
-})
+import { reactive, ref } from "vue";
+import { ElMessage, FormInstance, FormRules } from "element-plus";
+import { Plus, SetUp, User } from "@element-plus/icons-vue";
+import RoomTarget from "~/api/apis/room";
+import { SpiAxios } from "~/service/spi/spi";
+import { dataType } from "element-plus/es/components/table-v2/src/common";
+import { Room, option_status, list, getList, option, deleteById } from "./room";
+const dialogFormVisible = ref(false);
+const ruleFormRef = ref<FormInstance>();
+const form = reactive<Room>(new Room());
 const rules = reactive<FormRules>({
   name: [{ required: true, message: "请输入教室名称", trigger: "blur" }],
   level: [
@@ -87,55 +100,25 @@ const rules = reactive<FormRules>({
       trigger: "blur",
     },
   ],
-})
+});
+const edit = (e: Room) => {
+  form.id = e.id;
+  form.name = e.name;
+  form.level = e.level;
+  dialogFormVisible.value = true;
+  option_status.value = 1;
+};
 const submitForm = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return
+  if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      SpiAxios.create(RoomTarget.insert(form))
-        .http()
-        .then((data) => {
-          ElMessage.success("添加成功")
-          list.data.push(data)
-          formEl.resetFields()
-        })
-        .catch((err) => {
-          ElMessage.error(err.msg)
-          console.log(err)
-        })
+      option(formEl, form);
     } else {
-      console.log("error submit!", fields)
+      console.log("error submit!", fields);
     }
-  })
-}
-
-const deleteById = (id: number) => {
-  SpiAxios.create(RoomTarget.deleteById({ id: id }))
-    .http()
-    .then((data) => {
-      ElMessage.success("删除成功")
-      getList()
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-}
-
-const list = reactive({
-  data: [] as any,
-})
-const getList = () => {
-  SpiAxios.create(RoomTarget.rooms())
-    .http()
-    .then((data) => {
-      console.log(data)
-      list.data = data
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-}
-getList()
+  });
+};
+getList();
 </script>
 <style lang="scss">
 .room-container {

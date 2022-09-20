@@ -5,6 +5,7 @@ import SpiResponseInterceptor from "./spi_response"
 import { SpiManager } from "./spi_manage"
 import { SpiTarget } from "./spi_target"
 import { ElMessage } from "element-plus"
+import { delNullProperty } from "../validate/validate"
 class SpiAxios {
     target: SpiTarget
     public instance!: AxiosInstance
@@ -19,6 +20,7 @@ class SpiAxios {
         SpiResponseInterceptor.getInstance().onResponse(this.instance)
     }
     static create(target: SpiTarget): SpiAxios {
+        target.data = delNullProperty(target.data)
         return new SpiAxios(target)
     }
     http(isToast: boolean = true): Promise<any> {
@@ -64,5 +66,6 @@ class SpiAxios {
             });
         });
     }
+    
 }
 export { SpiAxios }

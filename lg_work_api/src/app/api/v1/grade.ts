@@ -17,6 +17,7 @@ import CacheClient from '../../../core/cache'
 
 const tag = tags(['grade'])
 const gradeSchema = {
+  id: { type: 'number', required: false },
   name: { type: 'string', required: true },
   level: { type: 'string', required: true },
   week: { type: 'string', required: true },
@@ -38,6 +39,16 @@ export default class GradeController {
   @security([{ api_key: [] }])
   async getList(ctx: Context) {
     global.UnifyResponse.success(ctx, await gradeSerivce.getAll())
+  }
+
+  @request('post', '/students')
+  @summary('Get students')
+  @description('example: /grade/students')
+  @tag
+  @security([{ api_key: [] }])
+  async getStudents(ctx: Context) {
+    const id = ctx.request.body.id
+    global.UnifyResponse.success(ctx, await gradeSerivce.getGradeById(id))
   }
 
   @request('post', '/by')
@@ -63,6 +74,15 @@ export default class GradeController {
     global.UnifyResponse.success(ctx, await gradeSerivce.createGrade(gradeModel))
   }
 
+  @request('put', '/update')
+  @summary('grade update')
+  @description('example: /grade/update')
+  @tag
+  @body(gradeSchema)
+  async update(ctx: Context) {
+    const grade = ctx.request.body
+    global.UnifyResponse.success(ctx, await gradeSerivce.updateGrade(grade.id, grade))
+  }
 
   @request('delete', '/delete')
   @summary('grade delete')

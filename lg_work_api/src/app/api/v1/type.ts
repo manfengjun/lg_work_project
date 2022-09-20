@@ -10,14 +10,14 @@ import {
   prefix,
   security
 } from 'koa-swagger-decorator'
-import * as roomSerivce from '../../service/room'
+import * as typeSerivce from '../../service/type'
 import { generateToken } from '../../../core/auth'
 import RedisClient from '../../../core/redis'
 import CacheClient from '../../../core/cache'
 
-const tag = tags(['room'])
+const tag = tags(['type'])
 
-const roomSchema = {
+const typeSchema = {
   id: { type: 'number', required: false },
   name: { type: 'string', required: true },
   level: { type: 'string', required: true }
@@ -25,45 +25,45 @@ const roomSchema = {
 const delSchema = {
   id: { type: 'number', required: true }
 }
-@prefix('/room')
-export default class RoomController {
+@prefix('/type')
+export default class TypeController {
   @request('post', '/list')
-  @summary('Get rooms')
-  @description('example: /room/list')
+  @summary('Get types')
+  @description('example: /type/list')
   @tag
   @security([{ api_key: [] }])
   async getList(ctx: Context) {
-    global.UnifyResponse.success(ctx, await roomSerivce.getAll())
+    global.UnifyResponse.success(ctx, await typeSerivce.getAll())
   }
 
   @request('post', '/insert')
-  @summary('room insert')
-  @description('example: /room/insert')
+  @summary('type insert')
+  @description('example: /type/insert')
   @tag
-  @body(roomSchema)
+  @body(typeSchema)
   async insert(ctx: Context) {
-    const room = ctx.request.body
-    global.UnifyResponse.success(ctx, await roomSerivce.createRoom(room))
+    const type = ctx.request.body
+    global.UnifyResponse.success(ctx, await typeSerivce.createType(type))
   }
 
   @request('put', '/update')
-  @summary('room update')
-  @description('example: /room/update')
+  @summary('type update')
+  @description('example: /type/update')
   @tag
-  @body(roomSchema)
+  @body(typeSchema)
   async update(ctx: Context) {
-    const room = ctx.request.body
-    global.UnifyResponse.success(ctx, await roomSerivce.updateRoom(room.id, room))
+    const type = ctx.request.body
+    global.UnifyResponse.success(ctx, await typeSerivce.updateType(type.id, type))
   }
 
   @request('delete', '/delete')
-  @summary('room delete')
-  @description('example: /room/delete')
+  @summary('type delete')
+  @description('example: /type/delete')
   @tag
   @body(delSchema)
   async delete(ctx: Context) {
     const id = ctx.request.body.id
-    global.UnifyResponse.success(ctx, await roomSerivce.deleteById(id))
+    global.UnifyResponse.success(ctx, await typeSerivce.deleteById(id))
   }
 
 }

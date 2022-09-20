@@ -22,7 +22,7 @@ class RoomTarget extends SpiTarget {
             case Room.insert:
                 return HTTPMETHOD.post
             case Room.update:
-                return HTTPMETHOD.post
+                return HTTPMETHOD.put
             case Room.delete:
                 return HTTPMETHOD.delete
             default:
@@ -74,7 +74,11 @@ class RoomTarget extends SpiTarget {
         target.data = data
         return target
     }
-
+    static update(data: {}) {
+        let target = new RoomTarget(Room.update)
+        target.data = data
+        return target
+    }
     static rooms(data: {} = {}) {
         let target = new RoomTarget(Room.rooms)
         target.data = data

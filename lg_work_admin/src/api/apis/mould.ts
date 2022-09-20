@@ -1,15 +1,14 @@
 import { HTTPMETHOD, SpiTarget } from "@service/spi/spi_target"
-enum Grade {
-    grades,
+enum Mould {
+    moulds,
     insert,
     update,
     delete,
-    students
 }
 
-class GradeTarget extends SpiTarget {
-    public type!: Grade
-    constructor(type: Grade) {
+class MouldTarget extends SpiTarget {
+    public type!: Mould
+    constructor(type: Mould) {
         super();
         this.type = type
     }
@@ -18,15 +17,13 @@ class GradeTarget extends SpiTarget {
     }
     public get method(): HTTPMETHOD {
         switch (this.type) {
-            case Grade.grades:
+            case Mould.moulds:
                 return HTTPMETHOD.post
-                case Grade.students:
+            case Mould.insert:
                 return HTTPMETHOD.post
-            case Grade.insert:
-                return HTTPMETHOD.post
-            case Grade.update:
+            case Mould.update:
                 return HTTPMETHOD.put
-            case Grade.delete:
+            case Mould.delete:
                 return HTTPMETHOD.delete
             default:
                 return HTTPMETHOD.get
@@ -52,16 +49,14 @@ class GradeTarget extends SpiTarget {
     }
     public get path(): string {
         switch (this.type) {
-            case Grade.insert:
-                return '/grade/insert'
-            case Grade.update:
-                return '/grade/update'
-            case Grade.grades:
-                return '/grade/list'
-                case Grade.students:
-                return '/grade/students'
-            case Grade.delete:
-                return '/grade/delete'
+            case Mould.insert:
+                return '/mould/insert'
+            case Mould.update:
+                return '/mould/update'
+            case Mould.moulds:
+                return '/mould/list'
+            case Mould.delete:
+                return '/mould/delete'
             default:
                 return ''
         }
@@ -72,32 +67,28 @@ class GradeTarget extends SpiTarget {
      * @static
      * @param {{}} data
      * @return {*} 
-     * @memberof GradeTarget
+     * @memberof MouldTarget
      */
     static insert(data: {}) {
-        let target = new GradeTarget(Grade.insert)
+        let target = new MouldTarget(Mould.insert)
         target.data = data
         return target
     }
     static update(data: {}) {
-        let target = new GradeTarget(Grade.update)
+        let target = new MouldTarget(Mould.update)
         target.data = data
         return target
     }
-    static grades(data: {} = {}) {
-        let target = new GradeTarget(Grade.grades)
+    static moulds(data: {} = {}) {
+        let target = new MouldTarget(Mould.moulds)
         target.data = data
         return target
     }
-    static students(data: {} = {}) {
-        let target = new GradeTarget(Grade.students)
-        target.data = data
-        return target
-    }
+
     static deleteById(data: {} = {}) {
-        let target = new GradeTarget(Grade.delete)
+        let target = new MouldTarget(Mould.delete)
         target.data = data
         return target
     }
 }
-export default GradeTarget
+export default MouldTarget

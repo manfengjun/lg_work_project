@@ -1,15 +1,14 @@
 import { HTTPMETHOD, SpiTarget } from "@service/spi/spi_target"
-enum Grade {
-    grades,
+enum Type {
+    types,
     insert,
     update,
     delete,
-    students
 }
 
-class GradeTarget extends SpiTarget {
-    public type!: Grade
-    constructor(type: Grade) {
+class TypeTarget extends SpiTarget {
+    public type!: Type
+    constructor(type: Type) {
         super();
         this.type = type
     }
@@ -18,15 +17,13 @@ class GradeTarget extends SpiTarget {
     }
     public get method(): HTTPMETHOD {
         switch (this.type) {
-            case Grade.grades:
+            case Type.types:
                 return HTTPMETHOD.post
-                case Grade.students:
+            case Type.insert:
                 return HTTPMETHOD.post
-            case Grade.insert:
-                return HTTPMETHOD.post
-            case Grade.update:
+            case Type.update:
                 return HTTPMETHOD.put
-            case Grade.delete:
+            case Type.delete:
                 return HTTPMETHOD.delete
             default:
                 return HTTPMETHOD.get
@@ -52,16 +49,14 @@ class GradeTarget extends SpiTarget {
     }
     public get path(): string {
         switch (this.type) {
-            case Grade.insert:
-                return '/grade/insert'
-            case Grade.update:
-                return '/grade/update'
-            case Grade.grades:
-                return '/grade/list'
-                case Grade.students:
-                return '/grade/students'
-            case Grade.delete:
-                return '/grade/delete'
+            case Type.insert:
+                return '/type/insert'
+            case Type.update:
+                return '/type/update'
+            case Type.types:
+                return '/type/list'
+            case Type.delete:
+                return '/type/delete'
             default:
                 return ''
         }
@@ -72,32 +67,28 @@ class GradeTarget extends SpiTarget {
      * @static
      * @param {{}} data
      * @return {*} 
-     * @memberof GradeTarget
+     * @memberof TypeTarget
      */
     static insert(data: {}) {
-        let target = new GradeTarget(Grade.insert)
+        let target = new TypeTarget(Type.insert)
         target.data = data
         return target
     }
     static update(data: {}) {
-        let target = new GradeTarget(Grade.update)
+        let target = new TypeTarget(Type.update)
         target.data = data
         return target
     }
-    static grades(data: {} = {}) {
-        let target = new GradeTarget(Grade.grades)
+    static types(data: {} = {}) {
+        let target = new TypeTarget(Type.types)
         target.data = data
         return target
     }
-    static students(data: {} = {}) {
-        let target = new GradeTarget(Grade.students)
-        target.data = data
-        return target
-    }
+
     static deleteById(data: {} = {}) {
-        let target = new GradeTarget(Grade.delete)
+        let target = new TypeTarget(Type.delete)
         target.data = data
         return target
     }
 }
-export default GradeTarget
+export default TypeTarget

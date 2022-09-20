@@ -3,10 +3,19 @@
     <el-container>
       <el-header>
         <span>班级管理</span>
-        <el-button :bg="true" type="primary" :icon="Plus" @click="dialogFormVisible = true">新增</el-button>
+        <el-button
+          :bg="true"
+          type="primary"
+          :icon="Plus"
+          @click="
+            option_status = 0;
+            dialogFormVisible = true;
+          "
+          >新增</el-button
+        >
       </el-header>
       <el-main>
-        <el-table :stripe="true" :data="list.data" style="width: 100%">
+        <el-table :stripe="true" :data="list.data">
           <el-table-column type="index" label="序号" width="100" />
           <el-table-column prop="name" label="班级名称" width="180" />
           <el-table-column prop="week" label="课程日期" width="120" />
@@ -16,16 +25,42 @@
           <el-table-column prop="level" label="年龄段" />
           <el-table-column fixed="right" label="操作" width="120">
             <template #default="scope">
-              <el-button link type="primary" size="small">编辑</el-button>
-              <el-button link type="primary" size="small" @click="deleteById(list.data[scope.$index].id)">删除</el-button>
+              <el-button
+                link
+                type="primary"
+                size="small"
+                @click="edit(list.data[scope.$index])"
+                >编辑</el-button
+              >
+              <el-popconfirm
+                confirm-button-text="确认"
+                cancel-button-text="取消"
+                icon-color="#626AEF"
+                title="您确认要删除吗?"
+                @confirm="deleteById(list.data[scope.$index].id)"
+              >
+                <template #reference>
+                  <el-button link type="primary" size="small">删除</el-button>
+                </template>
+              </el-popconfirm>
             </template>
           </el-table-column>
         </el-table>
       </el-main>
     </el-container>
   </div>
-  <el-dialog v-model="dialogFormVisible" title="新增班级" width="50%">
-    <el-form :inline="true" ref="ruleFormRef" :model="form" :rules="rules" label-position="top">
+  <el-dialog
+    v-model="dialogFormVisible"
+    :title="option_status == 0 ? '新增班级' : '修改班级'"
+    width="50%"
+  >
+    <el-form
+      :inline="true"
+      ref="ruleFormRef"
+      :model="form"
+      :rules="rules"
+      label-position="top"
+    >
       <el-form-item label="年龄段" prop="level" label-width="80px">
         <el-select v-model="form.level" placeholder="请选择年龄段">
           <el-option label="3" value="3" />
@@ -37,12 +72,27 @@
           <el-option label="9" value="9" />
         </el-select>
       </el-form-item>
-      <el-form-item label="课程教室" prop="week" label-width="80px" class="grade-time">
+      <el-form-item
+        label="课程教室"
+        prop="week"
+        label-width="80px"
+        class="grade-time"
+      >
         <el-select v-model="form.room" value-key="id" placeholder="请选择教室">
-          <el-option v-for="item in room.data" :key="item.id" :label="item.name" :value="item" />
+          <el-option
+            v-for="item in room.data"
+            :key="item.id"
+            :label="item.name"
+            :value="item"
+          />
         </el-select>
       </el-form-item>
-      <el-form-item label="课程时间" prop="week" label-width="80px" class="grade-time">
+      <el-form-item
+        label="课程时间"
+        prop="week"
+        label-width="80px"
+        class="grade-time"
+      >
         <el-select v-model="form.week" placeholder="请选择日期">
           <el-option label="周一" value="周一" />
           <el-option label="周二" value="周二" />
@@ -52,17 +102,25 @@
           <el-option label="周六" value="周六" />
           <el-option label="周日" value="周日" />
         </el-select>
-        <el-time-picker format="HH:mm" value-format="HH:mm" v-model="form.time" placeholder="请选择时间" />
+        <el-time-picker
+          format="HH:mm"
+          value-format="HH:mm"
+          v-model="form.time"
+          placeholder="请选择时间"
+        />
       </el-form-item>
-      
     </el-form>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取消</el-button>
-        <el-button type="primary" @click="
-          dialogFormVisible = false;
-          submitForm(ruleFormRef);
-        ">保存</el-button>
+        <el-button
+          type="primary"
+          @click="
+            dialogFormVisible = false;
+            submitForm(ruleFormRef);
+          "
+          >保存</el-button
+        >
       </span>
     </template>
   </el-dialog>
@@ -78,7 +136,16 @@ import GradeTarget from "~/api/apis/grade";
 import RoomTarget from "~/api/apis/room";
 import Storage from "@service/storage/storage";
 import { SpiAxios } from "@service/spi/spi";
-import { Grade, list, getList, insert, deleteById, room, getRoomList } from "./grade";
+import {
+  Grade,
+  option_status,
+  list,
+  getList,
+  option,
+  deleteById,
+  room,
+  getRoomList,
+} from "./grade";
 const dialogFormVisible = ref(false);
 const ruleFormRef = ref<FormInstance>();
 const form = reactive<Grade>(new Grade());
@@ -88,11 +155,22 @@ const rules = reactive<FormRules>({
   time: [{ required: true, message: "请选择时间", trigger: "blur" }],
   room: [{ required: true, message: "请选择教室", trigger: "blur" }],
 });
+const edit = (e: Grade) => {
+  form.id = e.id;
+  form.level = e.level;
+  form.week = e.week;
+  form.time = e.time;
+  form.room = room.data.filter((item) => {
+    return item.id == e.roomId;
+  })[0];
+  dialogFormVisible.value = true;
+  option_status.value = 1;
+};
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      insert(formEl, form);
+      option(formEl, form);
     } else {
       console.log("error submit!", fields);
     }

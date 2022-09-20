@@ -22,7 +22,7 @@ class StudentTarget extends SpiTarget {
             case Student.insert:
                 return HTTPMETHOD.post
             case Student.update:
-                return HTTPMETHOD.post
+                return HTTPMETHOD.put
             case Student.delete:
                 return HTTPMETHOD.delete
             default:
@@ -71,6 +71,11 @@ class StudentTarget extends SpiTarget {
      */
     static insert(data: {}) {
         let target = new StudentTarget(Student.insert)
+        target.data = data
+        return target
+    }
+    static update(data: any) {
+        let target = new StudentTarget(Student.update)
         target.data = data
         return target
     }

@@ -2,7 +2,7 @@
   <div class="student-container">
     <el-container>
       <el-header>
-        <span>学生管理</span>
+        <span>课程管理</span>
         <el-button
           :bg="true"
           type="primary"
@@ -17,19 +17,20 @@
       <el-main>
         <el-select
           v-model="select"
-          placeholder="请选择班级"
+          placeholder="请选择年龄段"
           size="large"
           class="select-class"
           @change="selectGrade"
         >
-          <el-option
-            v-for="item in grade.data"
-            :key="item.id"
-            :label="item.name"
-            :value="item.id"
-          />
+          <el-option label="3岁" value="3" />
+          <el-option label="4岁" value="4" />
+          <el-option label="5岁" value="5" />
+          <el-option label="6岁" value="6" />
+          <el-option label="7岁" value="7" />
+          <el-option label="8岁" value="8" />
+          <el-option label="9岁" value="9" />
         </el-select>
-        <el-table :stripe="true" :data="data_source.data" style="width: 100%">
+        <el-table :stripe="true" :data="data_source.data">
           <el-table-column
             align="center"
             type="index"
@@ -39,20 +40,8 @@
           <el-table-column
             align="center"
             prop="name"
-            label="姓名"
+            label="课程名称"
             width="180"
-          />
-          <el-table-column
-            align="center"
-            prop="petName"
-            label="小名"
-            width="180"
-          />
-          <el-table-column
-            align="center"
-            prop="parent"
-            label="联系人"
-            width="120"
           />
           <el-table-column align="center" prop="level" label="年龄段" />
           <el-table-column
@@ -88,7 +77,7 @@
   </div>
   <el-dialog
     v-model="dialogFormVisible"
-    :title="option_status == 0 ? '新增教室' : '修改教室'"
+    :title="option_status == 0 ? '新增课程' : '修改课程'"
     width="50%"
   >
     <el-form
@@ -98,39 +87,18 @@
       :rules="rules"
       label-position="top"
     >
-      <el-form-item label="姓名" label-width="80px" prop="name">
+      <el-form-item label="课程名称" label-width="80px" prop="name">
         <el-input v-model="form.name" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="小名" label-width="80px" prop="petName">
-        <el-input v-model="form.petName" autocomplete="off" />
-      </el-form-item>
-      <el-form-item label="联系人" label-width="80px" prop="parent">
-        <el-input v-model="form.parent" autocomplete="off" />
-      </el-form-item>
-      <el-form-item label="年龄段" prop="level" label-width="80px">
+      <el-form-item label="年龄段" label-width="80px" prop="petName">
         <el-select v-model="form.level" placeholder="请选择年龄段">
-          <el-option label="3" value="3" />
-          <el-option label="4" value="4" />
-          <el-option label="5" value="5" />
-          <el-option label="6" value="6" />
-          <el-option label="7" value="7" />
-          <el-option label="8" value="8" />
-          <el-option label="9" value="9" />
-        </el-select>
-      </el-form-item>
-      <el-form-item
-        label="所在班级"
-        prop="grade"
-        label-width="80px"
-        class="student-time"
-      >
-        <el-select v-model="form.grade" value-key="id" placeholder="请选择班级">
-          <el-option
-            v-for="item in grade.data"
-            :key="item.id"
-            :label="item.name"
-            :value="item"
-          />
+          <el-option label="3岁" value="3" />
+          <el-option label="4岁" value="4" />
+          <el-option label="5岁" value="5" />
+          <el-option label="6岁" value="6" />
+          <el-option label="7岁" value="7" />
+          <el-option label="8岁" value="8" />
+          <el-option label="9岁" value="9" />
         </el-select>
       </el-form-item>
     </el-form>
@@ -149,9 +117,9 @@
     </template>
   </el-dialog>
 </template>
-  
-  
-<script lang="ts" setup>
+    
+    
+  <script lang="ts" setup>
 import { reactive, ref } from "vue";
 import { ElMessage, FormInstance, FormRules } from "element-plus";
 import { Plus } from "@element-plus/icons-vue";
@@ -163,35 +131,24 @@ import { SpiAxios } from "@service/spi/spi";
 import {
   select,
   option_status,
-  Student,
+  Course,
   data_source,
   getList,
   option,
   deleteById,
-  grade,
-  getGradeList,
-} from "./student";
-import { Grade } from "../grade/grade";
+} from "./course";
 const dialogFormVisible = ref(false);
 const ruleFormRef = ref<FormInstance>();
-const form = reactive<Student>(new Student());
+const form = reactive<Course>(new Course());
 
 const rules = reactive<FormRules>({
   name: [{ required: true, message: "请输入姓名", trigger: "blur" }],
-  petName: [{ required: false, message: "请输入小名", trigger: "blur" }],
-  parent: [{ required: false, message: "请选择联系人", trigger: "blur" }],
   level: [{ required: false, message: "请选择年龄段", trigger: "blur" }],
-  grade: [{ required: true, message: "请选择班级", trigger: "blur" }],
 });
-const edit = (e: Student) => {
+const edit = (e: Course) => {
   form.id = e.id;
   form.name = e.name;
-  form.petName = e.petName;
-  form.parent = e.parent;
   form.level = e.level;
-  form.grade = grade.data.filter((item) => {
-    return item.id == e.classId;
-  })[0];
   dialogFormVisible.value = true;
   option_status.value = 1;
   dialogFormVisible.value = true;
@@ -211,9 +168,8 @@ const selectGrade = (val: number) => {
   getList();
 };
 getList();
-getGradeList();
 </script>
-<style lang="scss">
+  <style lang="scss">
 .student-container {
   padding: 20px;
 

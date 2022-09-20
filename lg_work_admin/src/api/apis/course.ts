@@ -1,15 +1,16 @@
 import { HTTPMETHOD, SpiTarget } from "@service/spi/spi_target"
-enum Grade {
-    grades,
+enum Course {
+    courses,
+    commonMoulds,
     insert,
     update,
     delete,
-    students
+    moulds
 }
 
-class GradeTarget extends SpiTarget {
-    public type!: Grade
-    constructor(type: Grade) {
+class CourseTarget extends SpiTarget {
+    public type!: Course
+    constructor(type: Course) {
         super();
         this.type = type
     }
@@ -18,15 +19,17 @@ class GradeTarget extends SpiTarget {
     }
     public get method(): HTTPMETHOD {
         switch (this.type) {
-            case Grade.grades:
+            case Course.courses:
                 return HTTPMETHOD.post
-                case Grade.students:
+            case Course.commonMoulds:
                 return HTTPMETHOD.post
-            case Grade.insert:
+            case Course.moulds:
                 return HTTPMETHOD.post
-            case Grade.update:
+            case Course.insert:
+                return HTTPMETHOD.post
+            case Course.update:
                 return HTTPMETHOD.put
-            case Grade.delete:
+            case Course.delete:
                 return HTTPMETHOD.delete
             default:
                 return HTTPMETHOD.get
@@ -52,16 +55,18 @@ class GradeTarget extends SpiTarget {
     }
     public get path(): string {
         switch (this.type) {
-            case Grade.insert:
-                return '/grade/insert'
-            case Grade.update:
-                return '/grade/update'
-            case Grade.grades:
-                return '/grade/list'
-                case Grade.students:
-                return '/grade/students'
-            case Grade.delete:
-                return '/grade/delete'
+            case Course.insert:
+                return '/course/insert'
+            case Course.update:
+                return '/course/update'
+            case Course.courses:
+                return '/course/list'
+            case Course.commonMoulds:
+                return '/course/list'
+            case Course.moulds:
+                return '/course/moulds'
+            case Course.delete:
+                return '/course/delete'
             default:
                 return ''
         }
@@ -72,32 +77,37 @@ class GradeTarget extends SpiTarget {
      * @static
      * @param {{}} data
      * @return {*} 
-     * @memberof GradeTarget
+     * @memberof CourseTarget
      */
     static insert(data: {}) {
-        let target = new GradeTarget(Grade.insert)
+        let target = new CourseTarget(Course.insert)
         target.data = data
         return target
     }
     static update(data: {}) {
-        let target = new GradeTarget(Grade.update)
+        let target = new CourseTarget(Course.update)
         target.data = data
         return target
     }
-    static grades(data: {} = {}) {
-        let target = new GradeTarget(Grade.grades)
+    static courses(data: {} = {}) {
+        let target = new CourseTarget(Course.courses)
         target.data = data
         return target
     }
-    static students(data: {} = {}) {
-        let target = new GradeTarget(Grade.students)
+    static moulds(data: {} = {}) {
+        let target = new CourseTarget(Course.moulds)
+        target.data = data
+        return target
+    }
+    static commonMoulds(data: {} = {}) {
+        let target = new CourseTarget(Course.commonMoulds)
         target.data = data
         return target
     }
     static deleteById(data: {} = {}) {
-        let target = new GradeTarget(Grade.delete)
+        let target = new CourseTarget(Course.delete)
         target.data = data
         return target
     }
 }
-export default GradeTarget
+export default CourseTarget

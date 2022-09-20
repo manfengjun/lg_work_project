@@ -1,47 +1,47 @@
 import { reactive, ref } from "vue"
-import StudentTarget from "~/api/apis/student"
+import MouldTarget from "~/api/apis/mould"
 import GradeTarget from "~/api/apis/grade"
 import { SpiAxios } from "@service/spi/spi"
 import { Grade } from "~/model/base"
 import Storage from "@service/storage/storage"
 import { ElMessage, FormInstance } from "element-plus"
-class Student {
+import CourseTarget from "~/api/apis/course"
+import TypeTarget from "~/api/apis/type"
+class Mould {
     public id?: number
-    public name!: string
-    public petName?: string
-    public level?: string
-    public grade?: Grade
-    public classId!: number
-    public parent?: string
+    public type!: string
+    public isCommon!: boolean
+    public content!: string
+    public courseId!: number
 }
 const option_status = ref(0)
-const select = ref('')
+const level = ref('')
+const course = ref<number>()
 
-/** 学生数据 */
+/** 模板数据 */
 const data_source = reactive({
     grade: {},
     data: [] as any,
 })
 const getList = () => {
     SpiAxios
-        .create(GradeTarget.students({ "id": select.value }))
+        .create(MouldTarget.moulds({ "level": level.value }))
         .http()
         .then((data) => {
             console.log(data)
-            data_source.grade = data
-            data_source.data = data.students
+            data_source.data = data
         })
         .catch((err) => {
             console.log(err)
         })
 }
-/** 新增学生 */
-const option = (formEl: FormInstance, form: Student) => {
-    form.classId = form.grade?.id!
+/** 新增模板 */
+const option = (formEl: FormInstance, form: Mould) => {
+    form.courseId = form.isCommon ? 1 : course.value ?? 0
     switch (option_status.value) {
         case 0:
             form.id = undefined
-            SpiAxios.create(StudentTarget.insert(form))
+            SpiAxios.create(MouldTarget.insert(form))
                 .http()
                 .then((data) => {
                     ElMessage.success("添加成功")
@@ -54,7 +54,7 @@ const option = (formEl: FormInstance, form: Student) => {
                 })
             break
         case 1:
-            SpiAxios.create(StudentTarget.update(form))
+            SpiAxios.create(MouldTarget.update(form))
                 .http()
                 .then((data) => {
                     ElMessage.success("修改成功")
@@ -71,9 +71,9 @@ const option = (formEl: FormInstance, form: Student) => {
     }
 
 }
-/** 删除学生 */
+/** 删除模板 */
 const deleteById = (id: number) => {
-    SpiAxios.create(StudentTarget.deleteById({ id: id }))
+    SpiAxios.create(MouldTarget.deleteById({ id: id }))
         .http()
         .then((data) => {
             ElMessage.success("删除成功")
@@ -83,20 +83,64 @@ const deleteById = (id: number) => {
             console.log(err)
         })
 }
-/** 班级数据 */
-const grade = reactive({
-    data: [] as Grade[],
+/** 课程主题模板 */
+const courses = reactive({
+    data: [] as any,
 })
-const getGradeList = () => {
+const getCourseList = () => {
     SpiAxios
-        .create(GradeTarget.grades())
+        .create(CourseTarget.moulds({ "level": level.value }))
         .http()
         .then((data) => {
             console.log(data)
-            grade.data = data
+            courses.data = data
         })
         .catch((err) => {
             console.log(err)
         })
 }
-export { select, option_status, Student, data_source, getList, option, deleteById, grade, getGradeList }
+const common_mould= reactive({
+    data: [] as any,
+})
+const getCommonCourseList = () => {
+    SpiAxios
+    .create(CourseTarget.moulds({ "level": level.value }))
+    .http()
+        .then((data) => {
+            console.log(data)
+            types.data = data
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+/** 课程主题模板类型数据 */
+const types = reactive({
+    data: [] as any,
+})
+const getTypeList = () => {
+    SpiAxios
+        .create(TypeTarget.types())
+        .http()
+        .then((data) => {
+            console.log(data)
+            types.data = data
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+export {
+    level,
+    course,
+    option_status,
+    Mould,
+    data_source,
+    getList,
+    option,
+    deleteById,
+    courses,
+    getCourseList,
+    types,
+    getTypeList
+}
