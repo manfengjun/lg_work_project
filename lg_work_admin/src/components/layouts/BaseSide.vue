@@ -58,7 +58,7 @@
         >
         <el-menu-item index="/work/record/record">
           <template #title>
-            <span>成长记录管理</span>
+            <span>成长记录</span>
           </template></el-menu-item
         >
       </el-menu-item-group>

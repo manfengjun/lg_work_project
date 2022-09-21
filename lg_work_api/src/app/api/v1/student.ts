@@ -39,7 +39,6 @@ export default class studentController {
     global.UnifyResponse.success(ctx, await studentSerivce.getAll())
   }
 
-
   @request('post', '/insert')
   @summary('student insert')
   @description('example: /student/insert')

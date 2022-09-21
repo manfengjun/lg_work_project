@@ -1,5 +1,7 @@
+import { Student } from '../class';
 import Course from './course'
 import Mould from './mould'
+import Record from './record';
 import Type from './type'
 
 
@@ -13,4 +15,12 @@ Mould.belongsTo(Course, {
 });
 
 
-export { Course, Mould,Type}
+Student.hasMany(Record, {
+    foreignKey: 'studentId',
+    sourceKey: 'id',
+    as: "records"
+});
+Record.belongsTo(Student, {
+    foreignKey: 'studentId',
+});
+export { Course, Mould, Type, Record }

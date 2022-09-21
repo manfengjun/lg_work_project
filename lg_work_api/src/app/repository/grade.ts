@@ -1,4 +1,5 @@
 import { where } from 'sequelize/types'
+import { Record } from '../model/record'
 import { Grade, Student } from '../model/class'
 import { IGradeModel } from '../model/class/grade'
 
@@ -37,10 +38,14 @@ export const getById = async (id: number) => {
     where: {
       id: `${id}`
     },
-    include: {
+    include: [{
       model: Student,
       as: 'students',
-    }
+      include: [{
+        model: Record,
+        as: 'records',
+      }]
+    }]
   })
   if (!grade) {
     global.UnifyResponse.error({ code: -1, message: '该班级不存在' })

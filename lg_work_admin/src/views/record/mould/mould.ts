@@ -15,6 +15,7 @@ class Mould {
     public courseId!: number
 }
 const option_status = ref(0)
+const mould_common = ref(false)
 const level = ref('')
 const course = ref<number>()
 
@@ -52,6 +53,17 @@ const getCommonList = () => {
 }
 /** 新增模板 */
 const option = (formEl: FormInstance, form: Mould) => {
+    if (!form.isCommon) {
+        if (level.value == '') {
+            ElMessage.error("请选择龄段！")
+            return
+        }
+        if (!course.value) {
+            ElMessage.error("请选择主题！")
+            return
+        }
+
+    }
     form.courseId = form.isCommon ? 1 : course.value ?? 0
     switch (option_status.value) {
         case 0:
@@ -60,8 +72,7 @@ const option = (formEl: FormInstance, form: Mould) => {
                 .http()
                 .then((data) => {
                     ElMessage.success("添加成功")
-                    getList()
-                    getCommonList()
+                    mould_common.value ? getCommonList() : getList()
                     formEl.resetFields()
                 })
                 .catch((err) => {
@@ -74,8 +85,7 @@ const option = (formEl: FormInstance, form: Mould) => {
                 .http()
                 .then((data) => {
                     ElMessage.success("修改成功")
-                    getList()
-                    getCommonList()
+                    mould_common.value ? getCommonList() : getList()
                     formEl.resetFields()
                 })
                 .catch((err) => {
@@ -147,5 +157,6 @@ export {
     courses,
     getCourseList,
     types,
-    getTypeList
+    getTypeList,
+    mould_common
 }

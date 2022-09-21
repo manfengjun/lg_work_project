@@ -2,6 +2,6 @@ import { DataTypes } from 'sequelize';
 import { User } from './account'
 import { Room, Teacher, Student, Grade } from './class'
 
-import { Course, Mould, Type } from './record'
+import { Course, Mould, Type, Record } from './record'
 
-export { User, Room, Teacher, Student, Grade, Course, Mould,Type }
+export { User, Room, Teacher, Student, Grade, Course, Mould, Type, Record }
