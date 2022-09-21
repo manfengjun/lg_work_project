@@ -10,6 +10,7 @@ import { Course } from "../course/course"
 import MouldTarget from "~/api/apis/mould"
 import RecordTarget from "~/api/apis/record"
 import { findProp } from "@vue/compiler-core"
+import ClipboardJS from "clipboard"
 class Record {
     public id?: number
     public content!: string
@@ -142,6 +143,7 @@ const getRecordList = (student: any) => {
             console.log(err)
         })
 }
+
 /** 班级数据 */
 const grade = reactive({
     data: [] as Grade[],
