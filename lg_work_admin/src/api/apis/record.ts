@@ -4,7 +4,7 @@ enum MemberRecord {
     insert,
     update,
     delete,
-    getRecordBy
+    getRecordByStudent
 }
 
 class MemberRecordTarget extends SpiTarget {
@@ -21,7 +21,7 @@ class MemberRecordTarget extends SpiTarget {
             case MemberRecord.records:
                 return HTTPMETHOD.post
 
-            case MemberRecord.getRecordBy:
+            case MemberRecord.getRecordByStudent:
                 return HTTPMETHOD.post
             case MemberRecord.insert:
                 return HTTPMETHOD.post
@@ -59,8 +59,8 @@ class MemberRecordTarget extends SpiTarget {
                 return '/record/update'
             case MemberRecord.records:
                 return '/record/list'
-            case MemberRecord.getRecordBy:
-                return '/record/by'
+            case MemberRecord.getRecordByStudent:
+                return '/record/byStudent'
             case MemberRecord.delete:
                 return '/record/delete'
             default:
@@ -90,8 +90,8 @@ class MemberRecordTarget extends SpiTarget {
         target.data = data
         return target
     }
-    static getRecordBy(data: {} = {}) {
-        let target = new MemberRecordTarget(MemberRecord.getRecordBy)
+    static getRecordByStudent(data: {} = {}) {
+        let target = new MemberRecordTarget(MemberRecord.getRecordByStudent)
         target.data = data
         return target
     }

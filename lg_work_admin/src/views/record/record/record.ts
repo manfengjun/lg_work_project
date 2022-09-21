@@ -57,7 +57,7 @@ const option = (formEl: FormInstance) => {
     form.courseId = form.course?.id!
     form.courseName = form.course?.name!
     form.content = form.mould!.replace('[BEHAVIOR]', form.behavior)
-        .replaceAll('[NAME]', select_student.value.name)
+        .replaceAll('[NAME]', select_student.value.petName)
         .replaceAll('[COURSE]', form.course?.name!)
     switch (option_status.value) {
         case 0:
@@ -132,7 +132,7 @@ const records = reactive({
 })
 const getRecordList = (student: any) => {
     SpiAxios
-        .create(RecordTarget.records())
+        .create(RecordTarget.getRecordByStudent({ id: student.id }))
         .http()
         .then((data) => {
             console.log(data)

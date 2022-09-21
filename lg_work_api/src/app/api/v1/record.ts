@@ -39,9 +39,9 @@ export default class RecordController {
     global.UnifyResponse.success(ctx, await recordSerivce.getAll())
   }
 
-  @request('post', '/by')
+  @request('post', '/byStudent')
   @summary('Get records')
-  @description('example: /record/by')
+  @description('example: /record/byStudent')
   @tag
   @security([{ api_key: [] }])
   @body({
@@ -49,7 +49,7 @@ export default class RecordController {
   })
   async getRecordBy(ctx: Context) {
     const id = ctx.request.body.id
-    global.UnifyResponse.success(ctx, await recordSerivce.getRecordById(id))
+    global.UnifyResponse.success(ctx, await recordSerivce.getRecordByStudent(id))
   }
 
   @request('post', '/insert')
