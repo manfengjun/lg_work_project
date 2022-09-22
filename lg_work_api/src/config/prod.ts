@@ -13,7 +13,7 @@ export const prodConf = {
     HOST: '120.48.133.248',
     PORT: 3306,
     USER: 'root',
-    PASSWORD: 'Jun@3672830'
+    PASSWORD: '861859b7e32fc6c8'
   },
   REDIS: {
     ENABLED: false,
