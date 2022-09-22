@@ -33,14 +33,29 @@ export const findRecord = async (record: IRecordModel) => {
     return data!
 }
 export const getById = async (id: number) => {
-    const record = await Record.findByPk(id)
-
+    const record = await Record.findOne({
+        where: {
+            id: id
+        },
+        order: [[ 'createdAt', 'DESC' ]],
+    })
     if (!record) {
         global.UnifyResponse.error({ code: -1, message: '该成长记录不存在' })
     }
     return record!
 }
-
+export const getByStudent = async (id: number) => {
+    const record = await Record.findAll({
+        where: {
+            studentId: id
+        },
+        order: [[ 'createdAt', 'DESC' ]],
+    })
+    if (!record) {
+        global.UnifyResponse.error({ code: -1, message: '该成长记录不存在' })
+    }
+    return record!
+}
 export const deleteById = async (id: number) => {
     const numDeleted = await Record.destroy({
         where: { id }

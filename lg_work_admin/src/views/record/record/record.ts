@@ -10,6 +10,7 @@ import { Course } from "../course/course"
 import MouldTarget from "~/api/apis/mould"
 import RecordTarget from "~/api/apis/record"
 import { findProp } from "@vue/compiler-core"
+import ClipboardJS from "clipboard"
 class Record {
     public id?: number
     public content!: string
@@ -57,7 +58,7 @@ const option = (formEl: FormInstance) => {
     form.courseId = form.course?.id!
     form.courseName = form.course?.name!
     form.content = form.mould!.replace('[BEHAVIOR]', form.behavior)
-        .replaceAll('[NAME]', select_student.value.name)
+        .replaceAll('[NAME]', select_student.value.petName)
         .replaceAll('[COURSE]', form.course?.name!)
     switch (option_status.value) {
         case 0:
@@ -132,7 +133,7 @@ const records = reactive({
 })
 const getRecordList = (student: any) => {
     SpiAxios
-        .create(RecordTarget.records())
+        .create(RecordTarget.getRecordByStudent({ id: student.id }))
         .http()
         .then((data) => {
             console.log(data)
@@ -142,6 +143,7 @@ const getRecordList = (student: any) => {
             console.log(err)
         })
 }
+
 /** 班级数据 */
 const grade = reactive({
     data: [] as Grade[],

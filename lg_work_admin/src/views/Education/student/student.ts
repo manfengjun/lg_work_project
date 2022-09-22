@@ -38,6 +38,9 @@ const getList = () => {
 /** 新增学生 */
 const option = (formEl: FormInstance, form: Student) => {
     form.classId = form.grade?.id!
+    if (!form.petName) {
+        form.petName = form.name.substring(1)
+    }
     switch (option_status.value) {
         case 0:
             form.id = undefined
