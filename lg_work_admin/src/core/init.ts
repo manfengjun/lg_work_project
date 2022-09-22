@@ -13,7 +13,7 @@ export default class InitManager {
 
   initCore() {
     InitGlobal.init() // global var and methods
-    SpiManager.getInstance().baseUrl = 'http://127.0.0.1:3000/work/v1'
+    SpiManager.getInstance().baseUrl = 'http://120.48.133.248:3000/work/v1'
     this.app.use(router);
 
   }
