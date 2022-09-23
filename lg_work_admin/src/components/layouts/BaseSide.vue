@@ -61,6 +61,11 @@
             <span>成长记录</span>
           </template></el-menu-item
         >
+        <el-menu-item index="/work/record/recomment">
+          <template #title>
+            <span>成长记录新</span>
+          </template></el-menu-item
+        >
       </el-menu-item-group>
     </el-sub-menu>
     
