@@ -95,9 +95,11 @@ const option = (formEl: FormInstance) => {
 }
 /** 模板数据 */
 const moulds = reactive({
-    type_1: [] as any,
-    type_2: [] as any,
-    type_4: [] as any,
+    start_moulds: [] as any,
+    content_moulds: [] as any,
+    behavior_moulds: [] as any,
+    specific_moulds: [] as any,
+    end_moulds: [] as any,
 })
 const getMouldsList = () => {
     SpiAxios
@@ -105,8 +107,8 @@ const getMouldsList = () => {
         .http()
         .then((data) => {
             console.log(data)
-            moulds.type_1 = data.moulds.filter((e: { type: number }) => { return e.type == 1 })
-            moulds.type_4 = data.moulds.filter((e: { type: number }) => { return e.type == 4 })
+            moulds.start_moulds = data.moulds.filter((e: { type: number }) => { return e.type == 1 })
+            moulds.end_moulds = data.moulds.filter((e: { type: number }) => { return e.type == 4 })
             console.log(moulds)
         })
         .catch((err) => {
@@ -118,10 +120,7 @@ const getCourseBy = (id: number) => {
         .create(CourseTarget.moulds({ id: id }))
         .http()
         .then((data) => {
-            const type_1 = moulds.type_1[Math.floor(Math.random() * moulds.type_1.length)].content;
-            const type_4 = moulds.type_4[Math.floor(Math.random() * moulds.type_4.length)].content;
-            const type_2 = data.moulds.length <= 0 ? '' : data.moulds[0].content;
-            form.mould = type_1 + type_2 + '[BEHAVIOR]' + type_4
+            moulds.content_moulds = data.moulds
         })
         .catch((err) => {
             console.log(err)
@@ -162,7 +161,7 @@ const getGradeList = () => {
 }
 /** 课程主题 */
 const courses = reactive({
-    data: [] as any,
+    data: [] as Course[],
 })
 const getCourseList = () => {
     SpiAxios
