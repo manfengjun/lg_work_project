@@ -223,7 +223,7 @@
             link
             type="primary"
             size="small"
-            @click="copy(records.data[scope.$index].content)"
+            @click="copy((records.data[scope.$index] as any).content)"
           >
             复制</el-button
           >

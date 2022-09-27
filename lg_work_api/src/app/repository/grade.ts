@@ -44,7 +44,7 @@ export const getById = async (id: number) => {
       include: [{
         model: Record,
         as: 'records',
-        order: [[ 'createdAt', 'DESC' ]],
+        order: [[ 'id', 'DESC' ]],
       }]
     }]
   })
