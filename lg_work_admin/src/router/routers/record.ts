@@ -15,11 +15,6 @@ const record = [
         path: path + '/record',
         component: () => import('/src/views/record/record/record.vue')
     },
-    {
-        name: 'recomment',
-        path: path + '/recomment',
-        component: () => import('/src/views/record/record/recomment.vue')
-    },
 
 ];
 

@@ -1,0 +1,73 @@
+<template>
+  <tm-app ref="app" color="grey-5">
+    <tm-form @submit="confirm" ref="form" v-model="userSchema">
+      <tm-form-item
+        required
+        label="用户名"
+        field="username"
+        :rules="[
+          {
+            required: true,
+            message: '请输入用户名',
+            validator: (val) => val.length > 0,
+          },
+        ]"
+      >
+        <tm-input
+          :inputPadding="[0, 0]"
+          v-model="userSchema.username"
+          :transprent="true"
+        >
+        </tm-input>
+      </tm-form-item>
+      <tm-form-item
+        required
+        label="密码"
+        field="password"
+        :rules="[
+          {
+            required: true,
+            message: '请输入密码',
+            validator: (val) => val.length > 0,
+          },
+        ]"
+      >
+        <tm-input
+          :inputPadding="[0, 0]"
+          v-model="userSchema.password"
+          :transprent="true"
+          :password="true"
+        >
+        </tm-input>
+      </tm-form-item>
+      <tm-form-item :border="false">
+        <tm-button
+              :shadow="0"
+              text
+              form-type="submit"
+              label="登录"
+              block
+            ></tm-button>
+      </tm-form-item>
+    </tm-form>
+  </tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, nextTick, getCurrentInstance } from "vue";
+const { proxy, ctx } = getCurrentInstance();
+const app = ref<InstanceType<typeof tmApp> | null>(null);
+const form = ref<InstanceType<typeof tmForm> | null>(null);
+const userSchema = ref({
+  username: "",
+  password: "",
+});
+
+const confirm = (e) => {
+  console.log(e);
+};
+
+const testClick = () => {
+  showCity.value = !showCity.value;
+  console.log(1);
+};
+</script>
