@@ -6,6 +6,7 @@
         <el-button :bg="true" type="primary" :icon="Plus" @click="
           option_status = 0;
           dialogFormVisible = true;
+          unref(ruleFormRef)?.resetFields()
         ">新增</el-button>
       </el-header>
       <el-main>
@@ -42,7 +43,7 @@
       <el-form-item label="课程名称" label-width="80px" prop="name">
         <el-input v-model="form.name" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="年龄段" label-width="80px" prop="petName">
+      <el-form-item label="年龄段" label-width="80px" prop="level">
         <el-select v-model="form.level" placeholder="请选择年龄段">
           <el-option label="3岁" value="3" />
           <el-option label="4岁" value="4" />
@@ -68,7 +69,7 @@
     
     
 <script lang="ts" setup>
-import { reactive, ref } from "vue";
+import { reactive, ref, unref } from "vue";
 import { ElMessage, FormInstance, FormRules } from "element-plus";
 import { Plus } from "@element-plus/icons-vue";
 import { Room } from "~/model/base";

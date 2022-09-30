@@ -32,7 +32,7 @@ Record.init(
             primaryKey: true
         },
         content: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(1000),
             allowNull: false
         },
         time: {

@@ -10,6 +10,7 @@
           @click="
             option_status = 0;
             dialogFormVisible = true;
+            unref(ruleFormRef)?.resetFields()
           "
           >新增</el-button
         >
@@ -152,7 +153,7 @@
   
   
 <script lang="ts" setup>
-import { reactive, ref } from "vue";
+import { reactive, ref, unref  } from "vue";
 import { ElMessage, FormInstance, FormRules } from "element-plus";
 import { Plus } from "@element-plus/icons-vue";
 import { Room } from "~/model/base";

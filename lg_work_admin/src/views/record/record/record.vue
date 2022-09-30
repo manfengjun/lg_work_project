@@ -57,6 +57,7 @@
                 size="small"
                 @click="
                   dialogRecordVisible = true;
+                  records.data = [];
                   getRecordList(data_source.data[scope.$index]);
                 "
                 >查看</el-button

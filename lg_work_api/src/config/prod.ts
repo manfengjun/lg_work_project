@@ -10,7 +10,7 @@ export const prodConf = {
   DATABASE: {
     DIALECT: 'mysql',
     DB_NAME: 'lg_work',
-    HOST: '120.48.133.248',
+    HOST: '120.0.0.1',
     PORT: 3306,
     USER: 'root',
     PASSWORD: '861859b7e32fc6c8'

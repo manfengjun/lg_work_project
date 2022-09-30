@@ -44,9 +44,9 @@ export const getById = async (id: number) => {
       include: [{
         model: Record,
         as: 'records',
-        order: [[ 'id', 'DESC' ]],
       }]
-    }]
+    }],
+    order: [['students','records', 'id', 'DESC']]
   })
   if (!grade) {
     global.UnifyResponse.error({ code: -1, message: '该班级不存在' })
