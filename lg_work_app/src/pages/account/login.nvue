@@ -1,55 +1,31 @@
 <template>
   <tm-app ref="app" color="grey-5">
     <tm-form @submit="confirm" ref="form" v-model="userSchema">
-      <tm-form-item
-        required
-        label="用户名"
-        field="username"
-        :rules="[
-          {
-            required: true,
-            message: '请输入用户名',
-            validator: (val) => val.length > 0,
-          },
-        ]"
-      >
-        <tm-input
-          :inputPadding="[0, 0]"
-          v-model="userSchema.username"
-          :transprent="true"
-        >
+      <tm-form-item required label="用户名" field="username" :rules="[
+        {
+          required: true,
+          message: '请输入用户名',
+          validator: (val) => val.length > 0,
+        },
+      ]">
+        <tm-input :inputPadding="[0, 0]" v-model="userSchema.username" :transprent="true">
         </tm-input>
       </tm-form-item>
-      <tm-form-item
-        required
-        label="密码"
-        field="password"
-        :rules="[
-          {
-            required: true,
-            message: '请输入密码',
-            validator: (val) => val.length > 0,
-          },
-        ]"
-      >
-        <tm-input
-          :inputPadding="[0, 0]"
-          v-model="userSchema.password"
-          :transprent="true"
-          :password="true"
-        >
+      <tm-form-item required label="密码" field="password" :rules="[
+        {
+          required: true,
+          message: '请输入密码',
+          validator: (val) => val.length > 0,
+        },
+      ]">
+        <tm-input :inputPadding="[0, 0]" v-model="userSchema.password" :transprent="true" :password="true">
         </tm-input>
       </tm-form-item>
       <tm-form-item :border="false">
-        <tm-button
-              :shadow="0"
-              text
-              form-type="submit"
-              label="登录"
-              block
-            ></tm-button>
+        <tm-button :shadow="0" text form-type="submit" label="登录" block @click="confirm"></tm-button>
       </tm-form-item>
     </tm-form>
+    <tm-notification placement="bottom" ref="msg" :label="message"></tm-notification>
   </tm-app>
 </template>
 <script lang="ts" setup>
@@ -57,17 +33,45 @@ import { ref, nextTick, getCurrentInstance } from "vue";
 const { proxy, ctx } = getCurrentInstance();
 const app = ref<InstanceType<typeof tmApp> | null>(null);
 const form = ref<InstanceType<typeof tmForm> | null>(null);
+const msg = ref<InstanceType<typeof tmMessage> | null>(null)
+const message = ref<string>('')
 const userSchema = ref({
   username: "",
   password: "",
 });
 
 const confirm = (e) => {
+  if (!userSchema.username || userSchema.username.length <= 0) {
+    message.value = "请输入用户名"
+    msg.value.show()
+    return;
+  }
+  if (!userSchema.password || userSchema.password.length <= 0) {
+    ElMessage({
+      message: "请输入密码",
+      type: "warning",
+    });
+    return;
+  }
+  let target = AccountTarget.login(username.value, password.value);
+  SpiAxios.create(target)
+    .http()
+    .then((data) => {
+      storage.set("token", data.token);
+      storage.set("user", data);
+      global.user = data
+      ElMessage({
+        message: "登录成功，欢迎回来！",
+        type: "success",
+      });
+      global.$router.push({
+        name: "center",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  console.log("object", target.headers);
   console.log(e);
-};
-
-const testClick = () => {
-  showCity.value = !showCity.value;
-  console.log(1);
 };
 </script>
