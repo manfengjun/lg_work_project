@@ -299,10 +299,6 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     ElMessage.error('请选择开始语！')
     return
   }
-  if (form.content_mould.length <= 0) {
-    ElMessage.error('请选择课程内容！')
-    return
-  }
   if (form.behavior_mould.length <= 0) {
     ElMessage.error('请填写课堂表现！')
     return

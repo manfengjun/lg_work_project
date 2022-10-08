@@ -38,7 +38,8 @@ export default class GradeController {
   @tag
   @security([{ api_key: [] }])
   async getList(ctx: Context) {
-    global.UnifyResponse.success(ctx, await gradeSerivce.getAll())
+    const userid = ctx.request.body.userid
+    global.UnifyResponse.success(ctx, await gradeSerivce.getAll(userid))
   }
 
   @request('post', '/students')

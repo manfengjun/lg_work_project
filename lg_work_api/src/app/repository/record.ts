@@ -49,6 +49,7 @@ export const getByStudent = async (id: number) => {
         where: {
             studentId: id
         },
+        limit: 10,
         order: [[ 'createdAt', 'DESC' ]],
     })
     if (!record) {

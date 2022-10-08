@@ -15,7 +15,6 @@ export default class InitManager {
     InitGlobal.init() // global var and methods
     SpiManager.getInstance().baseUrl = 'http://120.48.133.248:3000/work/v1'
     this.app.use(router);
-
   }
 
   _initRoutesAndSwagger() {

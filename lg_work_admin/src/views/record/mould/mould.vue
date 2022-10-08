@@ -10,53 +10,13 @@
           @click="
             option_status = 0;
             dialogFormVisible = true;
-            unref(ruleFormRef)?.resetFields()
+            unref(ruleFormRef)?.resetFields();
           "
           >新增</el-button
         >
       </el-header>
 
       <el-main>
-        <el-divider content-position="center">通用模板</el-divider>
-        <el-table :stripe="true" :data="common_source.data">
-          <el-table-column
-            align="center"
-            type="index"
-            label="序号"
-            width="100"
-          />
-          <el-table-column
-            align="center"
-            prop="type"
-            label="模板类型"
-            width="180"
-          />
-          <el-table-column align="left" prop="content" label="模板内容" />
-          <el-table-column fixed="right" label="操作" width="120">
-            <template #default="scope">
-              <el-button
-                link
-                type="primary"
-                size="small"
-                @click="
-                  (mould_common = true), edit(common_source.data[scope.$index])
-                "
-                >编辑</el-button
-              >
-              <el-popconfirm
-                confirm-button-text="确认"
-                cancel-button-text="取消"
-                icon-color="#626AEF"
-                title="您确认要删除吗?"
-                @confirm="deleteById(common_source.data[scope.$index].id)"
-              >
-                <template #reference>
-                  <el-button link type="primary" size="small"> 删除</el-button>
-                </template>
-              </el-popconfirm>
-            </template>
-          </el-table-column>
-        </el-table>
         <div class="select-menu">
           <el-select
             v-model="level"
@@ -124,6 +84,46 @@
                 icon-color="#626AEF"
                 title="您确认要删除吗?"
                 @confirm="deleteById(data_source.data[scope.$index].id)"
+              >
+                <template #reference>
+                  <el-button link type="primary" size="small"> 删除</el-button>
+                </template>
+              </el-popconfirm>
+            </template>
+          </el-table-column>
+        </el-table>
+        <el-divider content-position="center">通用模板</el-divider>
+        <el-table :stripe="true" :data="common_source.data">
+          <el-table-column
+            align="center"
+            type="index"
+            label="序号"
+            width="100"
+          />
+          <el-table-column
+            align="center"
+            prop="type"
+            label="模板类型"
+            width="180"
+          />
+          <el-table-column align="left" prop="content" label="模板内容" />
+          <el-table-column fixed="right" label="操作" width="120">
+            <template #default="scope">
+              <el-button
+                link
+                type="primary"
+                size="small"
+                @click="
+                  (mould_common = true), edit(common_source.data[scope.$index])
+                "
+                >编辑</el-button
+              >
+              <el-popconfirm
+                confirm-button-text="确认"
+                cancel-button-text="取消"
+                icon-color="#626AEF"
+                title="您确认要删除吗?"
+                @confirm="deleteById(common_source.data[scope.$index].id)"
               >
                 <template #reference>
                   <el-button link type="primary" size="small"> 删除</el-button>
@@ -285,7 +285,7 @@ getTypeList();
           flex-direction: row;
 
           .ep-input__wrapper {
-            width: 200px;
+            width: 160px;
           }
         }
 

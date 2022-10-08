@@ -8,7 +8,7 @@ export const create = async (course: ICourseModel) => {
       name: `${course.name}`
     }
   })
-  if (data && data.id) {
+  if (data && data.id && data.level == course.level) {
     global.UnifyResponse.error({ code: -1, message: '课程已存在' })
   }
   return Course.create(course)

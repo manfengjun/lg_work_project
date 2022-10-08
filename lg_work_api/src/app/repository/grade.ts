@@ -61,6 +61,10 @@ export const deleteById = async (id: number) => {
   return numDeleted > 0
 }
 
-export const getAll = async () => {
-  return Grade.findAll()
+export const getAll = async (userid: number) => {
+  return Grade.findAll({
+    where: {
+      teacherId: `${userid}`
+    }
+  })
 }

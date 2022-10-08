@@ -24,8 +24,9 @@ const list = reactive({
     data: [] as any,
 })
 const getList = () => {
+    const user = Storage.get('user')
     SpiAxios
-        .create(GradeTarget.grades())
+        .create(GradeTarget.grades({ userid: user.id }))
         .http()
         .then((data) => {
             console.log(data)

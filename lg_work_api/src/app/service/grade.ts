@@ -37,6 +37,6 @@ export const deleteById = (id: number): Promise<boolean> => {
   return result
 }
 
-export const getAll = (): Promise<IGradeModel[]> => {
-  return gradeRepo.getAll()
+export const getAll = (userid: number): Promise<IGradeModel[]> => {
+  return gradeRepo.getAll(userid)
 }

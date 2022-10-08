@@ -1,22 +1,24 @@
 <template>
   <el-config-provider namespace="ep">
-    <el-card class="box-card">
-      <template #header>
-        <div class="card-header">
-          <span>登录</span>
-        </div>
-      </template>
-      <el-input v-model="username" placeholder="请输入用户名" />
-      <el-input
-        v-model="password"
-        type="password"
-        placeholder="请输入密码"
-        show-password
-      />
-      <el-button type="warning" autocomplete="off" @click="login"
-        >登录</el-button
-      >
-    </el-card>
+    <div class="box">
+      <el-card class="box-card">
+        <template #header>
+          <div class="card-header">
+            <span>登录</span>
+          </div>
+        </template>
+        <el-input v-model="username" placeholder="请输入用户名" />
+        <el-input
+          v-model="password"
+          type="password"
+          placeholder="请输入密码"
+          show-password
+        />
+        <el-button type="warning" autocomplete="off" @click="login"
+          >登录</el-button
+        >
+      </el-card>
+    </div>
   </el-config-provider>
 </template>
 
@@ -50,7 +52,7 @@ const login = () => {
     .then((data) => {
       storage.set("token", data.token);
       storage.set("user", data);
-      global.user = data
+      global.user = data;
       ElMessage({
         message: "登录成功，欢迎回来！",
         type: "success",
@@ -68,32 +70,35 @@ const login = () => {
 
 <style lang="scss">
 .ep-main {
-  height: calc(100vh - 0px);
+  padding: 0;
+}
+.box {
   background-color: #f0f2f5;
+  height: calc(100vh);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.box-card {
-  width: 25%;
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    span {
-      color: #f2711c;
+  .box-card {
+    width: 25%;
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      span {
+        color: #f2711c;
+      }
     }
-  }
-  .ep-input {
-    margin: 0 0 20px 0;
-    height: 40px;
-  }
-  .ep-button {
-    width: 100%;
-    height: 40px;
-  }
-  .text {
-    font-size: 14px;
+    .ep-input {
+      margin: 0 0 20px 0;
+      height: 40px;
+    }
+    .ep-button {
+      width: 100%;
+      height: 40px;
+    }
+    .text {
+      font-size: 14px;
+    }
   }
 }
 </style>

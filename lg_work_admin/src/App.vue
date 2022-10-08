@@ -12,7 +12,4 @@
 .ep-menu--vertical {
   height: calc(100vh - 56px);
 }
-.ep-main {
-  background-color: #f0f2f5;
-}
 </style>
