@@ -153,7 +153,12 @@
             }
         },
         "devServer" : {
-            "https" : false
+            "proxy" : {
+                "/work" : {
+                    "target" : "http://120.48.133.248:3000", 
+                    "changeOrigin" : true 
+                }
+            }
         }
     },
     "mp-jd" : {

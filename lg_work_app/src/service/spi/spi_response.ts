@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import Storage from "@service/storage/storage";
+import Storage from "@/service/storage/storage";
 class SpiResponseInterceptor {
     private static instance: SpiResponseInterceptor
     constructor() {

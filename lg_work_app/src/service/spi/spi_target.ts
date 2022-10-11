@@ -1,4 +1,4 @@
-import { SpiManager } from '@service/spi/spi_manage'
+import { SpiManager } from '@/service/spi/spi_manage'
 enum HTTPMETHOD {
     get = 'get',
     post = 'post',

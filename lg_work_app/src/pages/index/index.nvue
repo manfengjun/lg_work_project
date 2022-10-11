@@ -1,0 +1,132 @@
+<template>
+  <tm-app ref="app" color="grey-5">
+    <tm-navbar title="Work" :shadow="0" hide-home>
+      <template v-slot:left>
+        <view class="flex flex-center flex-row">
+          <tm-icon _class="px-24" :font-size="32" name="tmicon-menu"></tm-icon>
+          <navigator url="settheme" class="px-12">
+            <tm-icon :font-size="32" name="tmicon-cog-fill"></tm-icon>
+          </navigator>
+          <tm-icon
+            @click="setDark"
+            _class="px-24"
+            :font-size="32"
+            name="tmicon-ios-sunny"
+          ></tm-icon>
+        </view>
+      </template>
+    </tm-navbar>
+    <tm-sheet :margin="[0, 0]" :followTheme="true">
+      <view class="flex-row flex-row-center-start pb-10">
+        <tm-image
+          :width="108"
+          :height="108"
+          src="/static/teacher.png"
+        ></tm-image>
+        <view class="pl-16 flex-1" style="width: 0px">
+          <tm-text
+            _class="text-weight-b"
+            :font-size="36"
+            :label="user.username"
+          ></tm-text>
+          <tm-text _class="opacity-6" :label="user.teacherName"></tm-text>
+        </view>
+      </view>
+    </tm-sheet>
+    <tm-sheet>
+      <tm-text
+        :font-size="24"
+        _class="font-weight-b"
+        label="教务中心"
+      ></tm-text>
+      <tm-divider></tm-divider>
+      <tm-grid :width="630" :col="3">
+        <tm-grid-item :height="120">
+          <!-- <tm-icon
+            :font-size="42"
+            :followTheme="true"
+          ></tm-icon> -->
+          <text class="lgicon">&#xe7dc;</text>
+          <tm-text _class="pt-10" :font-size="22" label="学员管理"></tm-text>
+        </tm-grid-item>
+        <tm-grid-item color="orange" :height="120">
+          <tm-icon
+            name="tmicon-md-people"
+            :font-size="42"
+            :followTheme="true"
+          ></tm-icon>
+          <tm-text _class="pt-10" :font-size="22" label="班级管理"></tm-text>
+        </tm-grid-item>
+        <tm-grid-item color="green" :height="120">
+          <tm-icon
+            name="tmicon-md-home"
+            :font-size="42"
+            :followTheme="true"
+          ></tm-icon>
+          <tm-text :font-size="22" label="教室管理"></tm-text>
+        </tm-grid-item>
+      </tm-grid>
+    </tm-sheet>
+    <tm-sheet>
+      <tm-text
+        :font-size="24"
+        _class="font-weight-b"
+        label="成长记录"
+      ></tm-text>
+      <tm-divider></tm-divider>
+      <tm-grid :width="630" :col="3">
+        <tm-grid-item :height="120">
+          <tm-icon
+            name="tmicon-ios-bookmarks"
+            :font-size="42"
+            :followTheme="true"
+          ></tm-icon>
+          <tm-text _class="pt-10" :font-size="22" label="课程管理"></tm-text>
+        </tm-grid-item>
+        <tm-grid-item color="orange" :height="120">
+          <tm-icon
+            name="tmicon-file-fill"
+            :font-size="42"
+            :followTheme="true"
+          ></tm-icon>
+          <tm-text _class="pt-10" :font-size="22" label="模板管理"></tm-text>
+        </tm-grid-item>
+        <tm-grid-item color="green" :height="120">
+          <tm-icon
+            name="tmicon-fileplus-fill"
+            :font-size="42"
+            :followTheme="true"
+          ></tm-icon>
+          <tm-text :font-size="22" label="成长记录"></tm-text>
+        </tm-grid-item>
+      </tm-grid>
+    </tm-sheet>
+  </tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, reactive, nextTick, getCurrentInstance,onBeforeMount } from "vue";
+import storage from "@/service/storage/storage";
+// #ifdef APP-NVUE || APP-PLUS-NVUE
+import { lgiconFont } from '@/static/font/lgicon.ts';
+var domModule = weex.requireModule("dom");
+// #endif
+const { proxy, ctx } = getCurrentInstance();
+const app = ref<InstanceType<typeof tmApp> | null>(null);
+const user = ref<{}>(storage.get("user"));
+const setDark = () => {
+  app.value?.setDark();
+};
+const setTheme = (color: string) => {
+  app.value?.setTheme(color);
+};
+onBeforeMount(() => {
+  //tmicon是我在iconfont上命名的字体名称。
+  //tmiconFont是上面转换ttf后的base64字符集
+  // #ifdef APP-PLUS-NVUE
+  domModule.addRule("fontFace", {
+    fontFamily: "lgicon", //注意这里必须是驼峰命名，跟上面的css样式对照
+    src: "url('data:font/ttf;charset=utf-8;base64," + lgiconFont + "')",
+  });
+  // #endif
+});
+</script>

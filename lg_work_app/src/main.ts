@@ -1,12 +1,12 @@
 
 import { createSSRApp } from "vue";
 import * as Pinia from 'pinia';
-import tmui from "./tmui"
 import App from "./App.vue";
+import InitManager from "./core/init";
 export function createApp() {
   const app = createSSRApp(App);
   app.use(Pinia.createPinia());
-  app.use(tmui)
+  new InitManager(app)
   return {
     app,
     Pinia
