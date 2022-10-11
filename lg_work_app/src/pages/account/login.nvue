@@ -1,5 +1,12 @@
 <template>
   <tm-app ref="app" color="grey-5">
+    <tm-navbar title="Work" :shadow="0" hide-home>
+      <template v-slot:left>
+        <view class="flex flex-center flex-row">
+         
+        </view>
+      </template>
+    </tm-navbar>
     <tm-form @submit="confirm" ref="form" v-model="userSchema">
       <tm-form-item
         required
@@ -84,6 +91,10 @@ const confirm = (e) => {
 			});
     })
     .catch((err) => {
+      msg.value.show({
+        label: err.msg,
+        icon: "tmicon-exclamation-circle",
+      });
       console.log(err);
     });
   console.log("object", target.headers);
