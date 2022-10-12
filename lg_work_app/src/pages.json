@@ -35,7 +35,78 @@
 			}
 		}
 	],
-	"subPackages": [],
+	"subPackages": [
+		{
+			"root": "pages/education",
+			"pages": [
+				{
+					"path": "student",
+					"style": {
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false,
+						"navigationStyle": "custom",
+						"titlePenetrate": "YES",
+						"transparentTitle": "always"
+					}
+				},
+				{
+					"path": "grade",
+					"style": {
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false,
+						"navigationStyle": "custom",
+						"titlePenetrate": "YES",
+						"transparentTitle": "always"
+					}
+				},
+				{
+					"path": "room",
+					"style": {
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false,
+						"navigationStyle": "custom",
+						"titlePenetrate": "YES",
+						"transparentTitle": "always"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/record",
+			"pages": [
+				{
+					"path": "course",
+					"style": {
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false,
+						"navigationStyle": "custom",
+						"titlePenetrate": "YES",
+						"transparentTitle": "always"
+					}
+				},
+				{
+					"path": "mould",
+					"style": {
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false,
+						"navigationStyle": "custom",
+						"titlePenetrate": "YES",
+						"transparentTitle": "always"
+					}
+				},
+				{
+					"path": "record",
+					"style": {
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false,
+						"navigationStyle": "custom",
+						"titlePenetrate": "YES",
+						"transparentTitle": "always"
+					}
+				}
+			]
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

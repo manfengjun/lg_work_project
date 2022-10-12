@@ -1,0 +1,122 @@
+<template>
+  <tm-app ref="app" color="grey-5">
+    <tm-navbar title="学员管理" :shadow="0" hide-home :followTheme="true">
+      <template v-slot:right>
+        <view class="flex flex-center flex-row">
+          <tm-icon
+            _class="px-24"
+            :font-size="32"
+            name="tmicon-menu"
+            @click="showWin = true"
+          ></tm-icon>
+        </view>
+      </template>
+    </tm-navbar>
+    <tm-card
+      v-for="(student, index) in data_source.data"
+      :key="index"
+      :status="data_source.grade.name"
+      statusColor="orange"
+      :title="student.name"
+      :height="200"
+    >
+      <template v-slot:content>
+        <view class="flex flex-row flex-row-center-end">
+          <tm-button
+            :margin="[24, 0]"
+            label="编辑"
+            :font-size="24"
+            :width="120"
+            :height="50"
+          ></tm-button>
+          <tm-button
+            color="white"
+            label="删除"
+            :font-size="24"
+            :width="120"
+            :height="50"
+          ></tm-button>
+        </view>
+      </template>
+    </tm-card>
+    <tm-drawer ref="gradeDrawer" placement="right" v-model:show="showWin">
+      <template v-slot:default>
+        <tm-sheet>
+          <tm-text
+            :font-size="24"
+            _class="font-weight-b"
+            label="我的班级"
+          ></tm-text>
+          <tm-divider></tm-divider>
+          <tm-radio-group model="button" v-model="select_grade">
+            <tm-radio
+              :border="0"
+              :round="3"
+              v-for="(grade, index) in grade_source.data"
+              :key="index"
+              :value="grade.id"
+              :label="grade.name"
+              :fontSize="30"
+              @change="selectGrade(grade)"
+            ></tm-radio>
+          </tm-radio-group>
+        </tm-sheet>
+      </template>
+    </tm-drawer>
+  </tm-app>
+</template>
+<script lang="ts" setup>
+import value from "../../../../lg_work/uni_modules/uview-ui/components/u-text/value";
+import {
+  ref,
+  reactive,
+  nextTick,
+  getCurrentInstance,
+  onBeforeMount,
+} from "vue";
+import GradeTarget from "@/api/apis/grade";
+import { SpiAxios } from "@/service/spi/spi";
+import storage from "@/service/storage/storage";
+const { proxy, ctx } = getCurrentInstance();
+const showWin = ref(false);
+const select_grade = ref(null);
+const app = ref<InstanceType<typeof tmApp> | null>(null);
+const selectGrade = (grade) => {
+  getList(grade.id);
+  showWin.value = false;
+};
+/** 学生数据 */
+const data_source = reactive({
+  grade: {},
+  data: [] as any,
+});
+const getList = (id: number) => {
+  SpiAxios.create(GradeTarget.students({ id: id }))
+    .http()
+    .then((data) => {
+      console.log(data);
+      data_source.grade = data;
+      data_source.data = data.students;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+/** 班级数据 */
+const grade_source = reactive({
+  data: [] as any,
+});
+const getGradeList = () => {
+  const user = storage.get("user");
+  SpiAxios.create(GradeTarget.grades({ userid: user.id }))
+    .http()
+    .then((data) => {
+      console.log(data);
+      grade_source.data = data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+getGradeList();
+</script>

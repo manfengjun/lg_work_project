@@ -1,4 +1,4 @@
-import { HTTPMETHOD, SpiTarget } from "@service/spi/spi_target"
+import { HTTPMETHOD, SpiTarget } from "@/service/spi/spi_target"
 enum Grade {
     grades,
     insert,
