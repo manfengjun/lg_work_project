@@ -6,7 +6,7 @@
       v-for="(room, index) in data_source.data"
       :key="index"
       :status="'年龄段：' + room.level"
-      statusColor="orange"
+      :statusColor="store.tmStore.color"
       :title="room.name"
       :height="200"
     >
@@ -39,8 +39,10 @@ import {
   getCurrentInstance,
   onBeforeMount,
 } from "vue";
+import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
 import RoomTarget from "@/api/apis/room";
 import { SpiAxios } from "@/service/spi/spi";
+const store = useTmpiniaStore();
 const { proxy, ctx } = getCurrentInstance();
 const app = ref<InstanceType<typeof tmApp> | null>(null);
 /** 教室数据 */

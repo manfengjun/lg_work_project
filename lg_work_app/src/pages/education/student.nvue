@@ -16,11 +16,23 @@
       v-for="(student, index) in data_source.data"
       :key="index"
       :status="data_source.grade.name"
-      statusColor="orange"
+      :statusColor="store.tmStore.color"
       :title="student.name"
-      :height="200"
     >
       <template v-slot:content>
+        <tm-sheet no-level :shadow="2" :round="3" :margin="[0, 10]">
+          <tm-button
+            class="copy-btn"
+            :margin="[10, 10]"
+            size="small"
+            :shadow="0"
+            label="到课提醒"
+            @click="remind(student, data_source.grade)"
+          ></tm-button>
+          <tm-more :height="120">
+            <tm-text label="sfsdf"></tm-text>
+          </tm-more>
+        </tm-sheet>
         <view class="flex flex-row flex-row-center-end">
           <tm-button
             :margin="[24, 0]"
@@ -66,7 +78,6 @@
   </tm-app>
 </template>
 <script lang="ts" setup>
-import value from "../../../../lg_work/uni_modules/uview-ui/components/u-text/value";
 import {
   ref,
   reactive,
@@ -74,16 +85,78 @@ import {
   getCurrentInstance,
   onBeforeMount,
 } from "vue";
+import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
 import GradeTarget from "@/api/apis/grade";
 import { SpiAxios } from "@/service/spi/spi";
 import storage from "@/service/storage/storage";
+import * as dayjs from "@/tmui/tool/dayjs/esm/index";
+const DayJs = dayjs.default;
+const store = useTmpiniaStore();
 const { proxy, ctx } = getCurrentInstance();
 const showWin = ref(false);
 const select_grade = ref(null);
 const app = ref<InstanceType<typeof tmApp> | null>(null);
+console.log(DayJs().day(5));
 const selectGrade = (grade) => {
   getList(grade.id);
   showWin.value = false;
+};
+const remind = (student, grade) => {
+  let week = grade.week;
+  let weeknum = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"].filterMap(
+    (e, i) => {
+      if(e == week){
+        return i
+      }
+    }
+  );
+  console.log(weeknum)
+  let weekTimes = this.getDates();
+  let date = new Date();
+  let timeStr = "";
+  let noonStr = "";
+  if (date.getDay() == week.week) {
+    timeStr = uni.$u.timeFormat(date, "mm月dd日");
+    noonStr = "今天";
+  } else {
+    noonStr = "明天";
+    let result = weekTimes.filter((t) => t.getDay() == week.week);
+    timeStr = uni.$u.timeFormat(result[0], "mm月dd日");
+  }
+  let isAm = date.getDay() == week.week ? "今天" : "明天";
+  this.toast =
+    student.petName +
+    ((student.parent && student.parent.length) > 0 ? student.parent : "妈妈") +
+    "您好\n☘️" +
+    noonStr +
+    item.time.slice(0, 2) +
+    "有咱们宝贝的乐高课，记得准时到课哈[玫瑰]\n⏰上课时间：" +
+    "" +
+    timeStr +
+    "(" +
+    week.name +
+    ")" +
+    item.time +
+    "\n🏠上课教室：" +
+    item.room +
+    "\n👨‍🏫授课老师：" +
+    item.teacher +
+    "\n温馨提示：\n①请佩戴口罩，签到进店\n②校区有开水，可以为宝贝带上水杯\n③校区有开空调，可为宝贝带上薄外套\n‍——————— ——————————\n📖锋格练字正式上线啦[哇]\n👉五岁以上的宝贝均可报名参加体验🔥️\n☝️预售优惠名额有限，快快找我抢购吧🖐️";
+};
+const dates = () => {
+  var new_Date = new Date();
+  var timesStamp = new_Date.getTime();
+  var currenDay = new_Date.getDay();
+  var dates = [];
+  for (var i = 0; i < 7; i++) {
+    dates.push(
+      new Date(timesStamp + 24 * 60 * 60 * 1000 * (i - ((currenDay + 6) % 7)))
+      // .toLocaleDateString()
+      // .replace(/[年月]/g, '-')
+      // .replace(/[日上下午]/g, '')
+    );
+  }
+  return dates;
 };
 /** 学生数据 */
 const data_source = reactive({

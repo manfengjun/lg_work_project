@@ -6,7 +6,7 @@
       v-for="(room, index) in data_source.data"
       :key="index"
       :status="room.roomName"
-      statusColor="orange"
+      :statusColor="store.tmStore.color"
       :title="room.name"
       :height="200"
     >
@@ -40,8 +40,10 @@ import {
   onBeforeMount,
 } from "vue";
 import GradeTarget from "@/api/apis/grade";
+import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
 import { SpiAxios } from "@/service/spi/spi";
 import storage from "@/service/storage/storage";
+const store = useTmpiniaStore();
 const { proxy, ctx } = getCurrentInstance();
 const app = ref<InstanceType<typeof tmApp> | null>(null);
 /** 班级数据 */

@@ -16,12 +16,13 @@
       v-for="(student, index) in data_source.data"
       :key="index"
       :status="data_source.grade.name"
-      statusColor="orange"
+      :statusColor="store.tmStore.color"
       :title="student.name"
     >
       <template v-slot:content>
         <tm-timeline>
           <tm-timeline-item
+            :color="store.tmStore.color"
             :size="32"
             type="fill"
             icon="tmicon-check"
@@ -29,6 +30,15 @@
             v-for="(record, index) in student.records"
             :key="index"
           >
+            <tm-button
+              class="copy-btn"
+              :margin="[10, 10]"
+              size="mini"
+              :shadow="0"
+              label="复制"
+              @click="copy(record)"
+            ></tm-button>
+
             <tm-sheet no-level :shadow="2" :round="3" :margin="[0, 10]">
               <tm-more :height="120">
                 <tm-text :label="record.content"></tm-text>
@@ -73,17 +83,28 @@ import {
   getCurrentInstance,
   onBeforeMount,
 } from "vue";
+import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
 import GradeTarget from "@/api/apis/grade";
 import { SpiAxios } from "@/service/spi/spi";
 import storage from "@/service/storage/storage";
+const store = useTmpiniaStore();
 const { proxy, ctx } = getCurrentInstance();
 const showWin = ref(false);
 const select_grade = ref(null);
 const app = ref<InstanceType<typeof tmApp> | null>(null);
+const copy = (record) => {
+  uni.setClipboardData({
+    data: record.content,
+    success: function () {
+      console.log("复制成功");
+    },
+  });
+};
 const selectGrade = (grade) => {
   getList(grade.id);
   showWin.value = false;
 };
+
 /** 学生数据 */
 const data_source = reactive({
   grade: {},
@@ -119,3 +140,10 @@ const getGradeList = () => {
 };
 getGradeList();
 </script>
+<style language="less" scoped>
+.copy-btn {
+  position: absolute;
+  right: 0;
+  top: -10px;
+}
+</style>
