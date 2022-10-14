@@ -20,20 +20,19 @@
       :title="student.name"
     >
       <template v-slot:content>
-        <tm-sheet no-level :shadow="2" :round="3" :margin="[0, 10]">
-          <tm-button
-            class="copy-btn"
-            :margin="[10, 10]"
-            size="small"
-            :shadow="0"
-            label="到课提醒"
-            @click="remind(student, data_source.grade)"
-          ></tm-button>
-          <tm-more :height="120">
-            <tm-text label="sfsdf"></tm-text>
+        <tm-sheet no-level :shadow="2" :round="3" :margin="[0, 0]">
+          <tm-more :height="200">
+            <tm-text :label="student.remind"></tm-text>
           </tm-more>
         </tm-sheet>
         <view class="flex flex-row flex-row-center-end">
+          <tm-button
+            label="发送提醒"
+            :font-size="24"
+            :width="120"
+            :height="50"
+            @click="copy(student.remind)"
+          ></tm-button>
           <tm-button
             :margin="[24, 0]"
             label="编辑"
@@ -75,9 +74,16 @@
         </tm-sheet>
       </template>
     </tm-drawer>
+    <tm-result
+      v-if="data_source.data.length <= 0"
+      :showBtn="false"
+      title="数据为空"
+      subTitle="请选择班级"
+    ></tm-result>
   </tm-app>
 </template>
 <script lang="ts" setup>
+import { Dayjs } from "../../tmui/tool/dayjs/esm";
 import {
   ref,
   reactive,
@@ -90,73 +96,64 @@ import GradeTarget from "@/api/apis/grade";
 import { SpiAxios } from "@/service/spi/spi";
 import storage from "@/service/storage/storage";
 import * as dayjs from "@/tmui/tool/dayjs/esm/index";
+import weekday from "@/tmui/tool/dayjs/esm/plugin/weekday/index";
+import "@/tmui/tool/dayjs/esm/locale/zh-cn";
 const DayJs = dayjs.default;
+DayJs.extend(weekday);
+DayJs.locale("zh-cn");
 const store = useTmpiniaStore();
 const { proxy, ctx } = getCurrentInstance();
 const showWin = ref(false);
 const select_grade = ref(null);
 const app = ref<InstanceType<typeof tmApp> | null>(null);
-console.log(DayJs().day(5));
 const selectGrade = (grade) => {
   getList(grade.id);
   showWin.value = false;
 };
+const copy = (remind) => {
+  uni.setClipboardData({
+    data: remind,
+    success: function () {
+      console.log("复制成功");
+    },
+  });
+};
 const remind = (student, grade) => {
-  let week = grade.week;
-  let weeknum = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"].filterMap(
-    (e, i) => {
-      if(e == week){
-        return i
-      }
-    }
-  );
-  console.log(weeknum)
-  let weekTimes = this.getDates();
-  let date = new Date();
-  let timeStr = "";
-  let noonStr = "";
-  if (date.getDay() == week.week) {
-    timeStr = uni.$u.timeFormat(date, "mm月dd日");
-    noonStr = "今天";
-  } else {
-    noonStr = "明天";
-    let result = weekTimes.filter((t) => t.getDay() == week.week);
-    timeStr = uni.$u.timeFormat(result[0], "mm月dd日");
+  let week = [
+    { num: 0, name: "周一" },
+    { num: 1, name: "周二" },
+    { num: 2, name: "周三" },
+    { num: 3, name: "周四" },
+    { num: 4, name: "周五" },
+    { num: 5, name: "周六" },
+    { num: 6, name: "周日" },
+  ].filter((e) => {
+    return e.name == grade.week;
+  })[0].num;
+  let date = DayJs().weekday(week);
+  let timeStr = "今天";
+  if (date.isAfter(DayJs())) {
+    // 今天之后
+    timeStr = ["今天", "明天", "后天"][date.date() - DayJs().date];
   }
-  let isAm = date.getDay() == week.week ? "今天" : "明天";
-  this.toast =
+  const toast =
     student.petName +
     ((student.parent && student.parent.length) > 0 ? student.parent : "妈妈") +
     "您好\n☘️" +
-    noonStr +
-    item.time.slice(0, 2) +
+    timeStr +
     "有咱们宝贝的乐高课，记得准时到课哈[玫瑰]\n⏰上课时间：" +
     "" +
-    timeStr +
+    date.format("MM月DD日") +
     "(" +
-    week.name +
+    grade.week +
     ")" +
-    item.time +
+    grade.time +
     "\n🏠上课教室：" +
-    item.room +
+    grade.roomName +
     "\n👨‍🏫授课老师：" +
-    item.teacher +
+    grade.teacherName +
     "\n温馨提示：\n①请佩戴口罩，签到进店\n②校区有开水，可以为宝贝带上水杯\n③校区有开空调，可为宝贝带上薄外套\n‍——————— ——————————\n📖锋格练字正式上线啦[哇]\n👉五岁以上的宝贝均可报名参加体验🔥️\n☝️预售优惠名额有限，快快找我抢购吧🖐️";
-};
-const dates = () => {
-  var new_Date = new Date();
-  var timesStamp = new_Date.getTime();
-  var currenDay = new_Date.getDay();
-  var dates = [];
-  for (var i = 0; i < 7; i++) {
-    dates.push(
-      new Date(timesStamp + 24 * 60 * 60 * 1000 * (i - ((currenDay + 6) % 7)))
-      // .toLocaleDateString()
-      // .replace(/[年月]/g, '-')
-      // .replace(/[日上下午]/g, '')
-    );
-  }
-  return dates;
+  return toast;
 };
 /** 学生数据 */
 const data_source = reactive({
@@ -169,7 +166,10 @@ const getList = (id: number) => {
     .then((data) => {
       console.log(data);
       data_source.grade = data;
-      data_source.data = data.students;
+      data_source.data = data.students.map((e) => {
+        e.remind = remind(e, data);
+        return e;
+      });
     })
     .catch((err) => {
       console.log(err);

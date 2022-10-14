@@ -72,6 +72,12 @@
         </tm-sheet>
       </template>
     </tm-drawer>
+    <tm-result
+      v-if="data_source.data.length <= 0"
+      :showBtn="false"
+      title="数据为空"
+      subTitle="请选择班级"
+    ></tm-result>
   </tm-app>
 </template>
   <script lang="ts" setup>

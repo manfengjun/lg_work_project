@@ -1,6 +1,6 @@
 {
     "name" : "tmui3.0",
-    "appid" : "",
+    "appid" : "__UNI__6D69E0C",
     "description" : "tmui3.0新一代组件库，拥抱vue3,pinia,tmui3.0 demo展示应用",
     "versionName" : "3.0.84",
     "versionCode" : "100",
@@ -100,7 +100,7 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "",
+        "appid" : "wx5b5bbc4b81192deb",
         // "lazyCodeLoading": "requiredComponents",
         // "renderer":"skyline",
         "setting" : {
@@ -155,8 +155,8 @@
         "devServer" : {
             "proxy" : {
                 "/work" : {
-                    "target" : "http://120.48.133.248:3000", 
-                    "changeOrigin" : true 
+                    "target" : "http://120.48.133.248:3000",
+                    "changeOrigin" : true
                 }
             }
         }

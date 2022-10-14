@@ -7,21 +7,17 @@
 	},
 	"pages": [
 		{
-			"path": "pages/account/login",
+			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "",
-				"navigationStyle": "custom",
-				"titlePenetrate": "YES",
-				"transparentTitle": "always"
+				"navigationStyle": "custom"
 			}
 		},
 		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "",
-				"navigationStyle": "custom",
-				"titlePenetrate": "YES",
-				"transparentTitle": "always"
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -29,9 +25,7 @@
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false,
-				"navigationStyle": "custom",
-				"titlePenetrate": "YES",
-				"transparentTitle": "always"
+				"navigationStyle": "custom"
 			}
 		}
 	],
@@ -44,9 +38,7 @@
 					"style": {
 						"navigationBarTitleText": "",
 						"enablePullDownRefresh": false,
-						"navigationStyle": "custom",
-						"titlePenetrate": "YES",
-						"transparentTitle": "always"
+						"navigationStyle": "custom"
 					}
 				},
 				{
@@ -54,9 +46,7 @@
 					"style": {
 						"navigationBarTitleText": "",
 						"enablePullDownRefresh": false,
-						"navigationStyle": "custom",
-						"titlePenetrate": "YES",
-						"transparentTitle": "always"
+						"navigationStyle": "custom"
 					}
 				},
 				{
@@ -64,9 +54,7 @@
 					"style": {
 						"navigationBarTitleText": "",
 						"enablePullDownRefresh": false,
-						"navigationStyle": "custom",
-						"titlePenetrate": "YES",
-						"transparentTitle": "always"
+						"navigationStyle": "custom"
 					}
 				}
 			]
@@ -79,9 +67,7 @@
 					"style": {
 						"navigationBarTitleText": "",
 						"enablePullDownRefresh": false,
-						"navigationStyle": "custom",
-						"titlePenetrate": "YES",
-						"transparentTitle": "always"
+						"navigationStyle": "custom"
 					}
 				},
 				{
@@ -89,9 +75,7 @@
 					"style": {
 						"navigationBarTitleText": "",
 						"enablePullDownRefresh": false,
-						"navigationStyle": "custom",
-						"titlePenetrate": "YES",
-						"transparentTitle": "always"
+						"navigationStyle": "custom"
 					}
 				},
 				{
@@ -99,9 +83,7 @@
 					"style": {
 						"navigationBarTitleText": "",
 						"enablePullDownRefresh": false,
-						"navigationStyle": "custom",
-						"titlePenetrate": "YES",
-						"transparentTitle": "always"
+						"navigationStyle": "custom"
 					}
 				}
 			]

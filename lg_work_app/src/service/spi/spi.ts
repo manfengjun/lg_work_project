@@ -4,7 +4,6 @@ import SpiLogInterceptor from "./spi_log"
 import SpiResponseInterceptor from "./spi_response"
 import { SpiManager } from "./spi_manage"
 import { SpiTarget } from "./spi_target"
-import { ElMessage } from "element-plus"
 import { delNullProperty } from "../validate/validate"
 class SpiAxios {
     target: SpiTarget
@@ -46,7 +45,10 @@ class SpiAxios {
                     }
                 } else {
                     if(isToast) {
-                        ElMessage.error(res.data.message)
+						uni.showToast({
+							title: res.data.message,
+							duration: 2000
+						});
                     }
                     let code = res.data.code
                     reject({ code: code, msg: res.data.message, data: '' });
@@ -54,12 +56,18 @@ class SpiAxios {
             }).catch((err) => {
                 if(!err.response.data) {
                     if(isToast) {
-                        ElMessage.error('网络异常')
+						uni.showToast({
+							title: '网络异常',
+							duration: 2000
+						});
                     }
                     reject({ code: -1, msg: "网络异常", data: '' });
                 }
                 if(isToast) {
-                    ElMessage.error(err.response.data.message)
+					uni.showToast({
+						title: err.response.data.message,
+						duration: 2000
+					});
                 }
                 let code = err.response.data.code
                 reject({ code: code, msg: err.response.data.message, data: '' });
