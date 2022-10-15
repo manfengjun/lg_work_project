@@ -1,11 +1,5 @@
 import { SpiManager } from '@/service/spi/spi_manage'
-enum HTTPMETHOD {
-    get = 'get',
-    post = 'post',
-    put = 'put',
-    patch = 'patch',
-    delete = 'delete',
-}
+type fetchConfigMethod = "GET" | "POST" | "PUT" | "DELETE" | "CONNECT" | "HEAD" | "OPTIONS" | "TRACE";
 abstract class SpiTarget {
     // 发出网络请求的基础地址字符串
     private _baseUrl: string = ''
@@ -14,7 +8,7 @@ abstract class SpiTarget {
     private _path: string = ''
 
     /// 网络请求的方式，默认返回get
-    private _method: HTTPMETHOD = HTTPMETHOD.get
+    private _method: fetchConfigMethod = "GET"
 
     /// 网络请求url参数
     private _params: {} = {}
@@ -37,7 +31,7 @@ abstract class SpiTarget {
     public get path(): string {
         return this._path
     }
-    public get method(): HTTPMETHOD {
+    public get method(): fetchConfigMethod {
         return this._method
     }
     public get params(): {} {
@@ -61,4 +55,4 @@ abstract class SpiTarget {
     }
 
 }
-export { SpiTarget, HTTPMETHOD }
+export { SpiTarget, fetchConfigMethod }

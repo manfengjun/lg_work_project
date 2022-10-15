@@ -1,5 +1,5 @@
 {
-  "name": "tmui",
+  "name": "lg_work_app",
   "version": "3.0.84",
   "scripts": {
     "dev:app": "uni -p app",
@@ -45,10 +45,10 @@
     "@dcloudio/uni-mp-toutiao": "3.0.0-alpha-3060420220922001",
     "@dcloudio/uni-mp-weixin": "3.0.0-alpha-3060420220922001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-alpha-3060420220922001",
-    "axios": "^1.1.2",
     "babel-plugin-transform-remove-strict-mode": "^0.0.2",
     "echarts": "5.3.2",
     "pinia": "^2.0.14",
+    "uni-axios-ts": "^1.0.4",
     "vue": "^3.2.36",
     "vue-i18n": "^9.1.10"
   },
@@ -57,7 +57,7 @@
     "@dcloudio/uni-automator": "3.0.0-alpha-3060420220922001",
     "@dcloudio/uni-cli-shared": "3.0.0-alpha-3060420220922001",
     "@dcloudio/vite-plugin-uni": "3.0.0-alpha-3060420220922001",
-    "@types/node": "^17.0.35",
+    "@types/node": "^17.0.45",
     "autoprefixer": "^10.4.7",
     "unplugin-vue-components": "^0.18.5",
     "vite": "^2.9.9"

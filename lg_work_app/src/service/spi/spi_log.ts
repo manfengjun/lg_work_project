@@ -1,4 +1,4 @@
-import { AxiosInstance } from "axios";
+
 
 class SpiLogInterceptor {
     private static instance: SpiLogInterceptor
