@@ -135,6 +135,11 @@ const grade_source = reactive({
 });
 const getGradeList = () => {
   const user = storage.get("user");
+  if (!user) {
+    uni.redirectTo({
+      url: "/pages/account/login",
+    });
+  }
   SpiAxios.create(GradeTarget.grades({ userid: user.id }))
     .http()
     .then((data) => {

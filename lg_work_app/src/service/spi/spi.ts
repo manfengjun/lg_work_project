@@ -19,15 +19,15 @@ class SpiAxios {
             data: this.target.data
         }
         return new Promise((resolve, reject) => {
-            uni.$tm.fetch.request(config,(config: fetchConfig) => {
-                    // beforeRequest
-                    config.header = this.target.headers
-                    config.timeout = SpiManager.getInstance().connectTimeout
-                    config.dataType = "json"
-                    SpiLogInterceptor.getInstance().onRequest(config)
-                    SpiResponseInterceptor.getInstance().onRequest(config)
-                    return config
-                },
+            uni.$tm.fetch.request(config, (config: fetchConfig) => {
+                // beforeRequest
+                config.header = this.target.headers
+                config.timeout = SpiManager.getInstance().connectTimeout
+                config.dataType = "json"
+                SpiLogInterceptor.getInstance().onRequest(config)
+                SpiResponseInterceptor.getInstance().onRequest(config)
+                return config
+            },
                 (config: fetchConfig) => {
                     // afterRequest
                     SpiLogInterceptor.getInstance().onResponse(config)
@@ -55,17 +55,26 @@ class SpiAxios {
                     }
                 }).catch((err) => {
                     console.log(err)
-                    if (!err.response.data) {
+                    if (!err.data) {
                         if (isToast) {
                             uni.$tm.u.toast('网络异常')
                         }
                         reject({ code: -1, msg: "网络异常", data: '' });
                     }
-                    if (isToast) {
-                        uni.$tm.u.toast(err.response.data.message)
+                    if (err.data.code == 10004) {
+                        uni.$tm.u.toast('token失效')
+                        uni.redirectTo({
+                            url: "/pages/account/login",
+                        });
                     }
-                    let code = err.response.data.code
-                    reject({ code: code, msg: err.response.data.message, data: '' });
+                    else {
+                        if (isToast) {
+                            uni.$tm.u.toast(err.data.message)
+                        }
+                    }
+
+                    let code = err.data.code
+                    reject({ code: code, msg: err.data.message, data: '' });
                 })
         });
     }

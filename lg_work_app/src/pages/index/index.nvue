@@ -101,6 +101,7 @@
         </tm-grid-item>
       </tm-grid>
     </tm-sheet>
+    <tm-float-button position="br" :btn="{ icon: 'tmicon-md-power',linear:'bottom',color:'green' }" @click="loginOut"></tm-float-button>
   </tm-app>
 </template>
 <script lang="ts" setup>
@@ -114,12 +115,19 @@ import {
 import storage from "@/service/storage/storage";
 const { proxy, ctx } = getCurrentInstance();
 const app = ref<InstanceType<typeof tmApp> | null>(null);
-const user = ref<{}>({username: '',});
-user.value = storage.get("user")
+const user = ref<{}>({username: '',teacherName:''});
+
+user.value = storage.get("user") ? storage.get("user") : {username: '',teacherName:''}
 const setDark = () => {
   app.value?.setDark();
 };
 const setTheme = (color: string) => {
   app.value?.setTheme(color);
 };
+const loginOut = () => {
+  storage.remove("user")
+  uni.redirectTo({
+      url: "/pages/account/login",
+    });
+}
 </script>
