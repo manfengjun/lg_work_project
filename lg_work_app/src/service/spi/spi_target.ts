@@ -1,5 +1,4 @@
 import { SpiManager } from '@/service/spi/spi_manage'
-type fetchConfigMethod = "GET" | "POST" | "PUT" | "DELETE" | "CONNECT" | "HEAD" | "OPTIONS" | "TRACE";
 abstract class SpiTarget {
     // 发出网络请求的基础地址字符串
     private _baseUrl: string = ''
@@ -55,4 +54,4 @@ abstract class SpiTarget {
     }
 
 }
-export { SpiTarget, fetchConfigMethod }
+export { SpiTarget }

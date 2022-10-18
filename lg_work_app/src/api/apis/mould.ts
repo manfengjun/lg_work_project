@@ -1,4 +1,4 @@
-import { HTTPMETHOD, SpiTarget } from "@service/spi/spi_target"
+import { SpiTarget } from "@/service/spi/spi_target"
 enum Mould {
     moulds,
     insert,
@@ -15,18 +15,18 @@ class MouldTarget extends SpiTarget {
     public get baseUrl(): string {
         return super.baseUrl
     }
-    public get method(): HTTPMETHOD {
+    public get method(): fetchConfigMethod {
         switch (this.type) {
             case Mould.moulds:
-                return HTTPMETHOD.post
+                return "POST"
             case Mould.insert:
-                return HTTPMETHOD.post
+                return "POST"
             case Mould.update:
-                return HTTPMETHOD.put
+                return "PUT"
             case Mould.delete:
-                return HTTPMETHOD.delete
+                return "DELETE"
             default:
-                return HTTPMETHOD.get
+                return "POST"
         }
     }
     public set params(value: {}) {

@@ -7,20 +7,19 @@
 	},
 	"pages": [
 		{
-			"path": "pages/index/index",
+			"path": "pages/account/login",
 			"style": {
 				"navigationBarTitleText": "",
 				"navigationStyle": "custom"
 			}
 		},
 		{
-			"path": "pages/user/login",
+			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "",
 				"navigationStyle": "custom"
 			}
 		},
-		
 		{
 			"path": "pages/index/settheme",
 			"style": {

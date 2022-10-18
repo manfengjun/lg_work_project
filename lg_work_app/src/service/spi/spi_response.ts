@@ -10,26 +10,17 @@ class SpiResponseInterceptor {
         }
         return SpiResponseInterceptor.instance;
     }
-    onRequest(instance: AxiosInstance) {
-        // 添加请求拦截器
-        instance.interceptors.request.use(function (config) {
-            // 一般会请求拦截里面加token
-            const token = Storage.get("token")
-            config.headers!["authorization"] = 'Bearer '+ token;
-            console.log(config.params)
-            return config;
-        }, function (error) {
-            return Promise.reject(error);
-        });
+    onRequest(config: fetchConfig) {
+       // 一般会请求拦截里面加token
+       const token = Storage.get("token")
+       let header:any = config.header!
+       header["authorization"] = 'Bearer '+ token
+       config.header = header
+       console.log(config.data)
+       return config;
     }
-    onResponse(instance: AxiosInstance) {
-        // 添加请求拦截器
-        instance.interceptors.request.use(function (config) {
-            return config;
-        }, function (error) {
-            console.log(error)
-            return Promise.reject(error);
-        });
+    onResponse(result: any) {
+        return result
     }
 }
 export default SpiResponseInterceptor

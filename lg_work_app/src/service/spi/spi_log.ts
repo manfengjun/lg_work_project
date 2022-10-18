@@ -3,7 +3,7 @@
 class SpiLogInterceptor {
     private static instance: SpiLogInterceptor
     constructor() {
-        
+
     }
     static getInstance() {
         if (!SpiLogInterceptor.instance) {
@@ -11,32 +11,17 @@ class SpiLogInterceptor {
         }
         return SpiLogInterceptor.instance;
     }
-    onRequest(instance: AxiosInstance) {
-        // 添加请求拦截器
-        instance.interceptors.request.use(function (config) {
-            console.info('request',"✅ " + config.url)
-            console.info('request',"✅ METHOD:" + config.method);
-            if (config.params != null) {
-                console.log('request','✅ Params:' + config.params);
-            }
-            console.info('request','✅ Body:' + config.data);
-            return config;
-        }, function (error) {
-            // 对请求错误做些什么
-            console.info('request',error)
-            return Promise.reject(error);
-        });
+    onRequest(config: fetchConfig) {
+        console.info('request', "✅ " + config.url)
+        console.info('request', "✅ METHOD:" + config.method);
+        if (config.data != null) {
+            console.log('request', '✅ Params:' + config.data);
+        }
+        console.info('request', '✅ Body:' + config.data);
+
     }
-    onResponse(instance: AxiosInstance) {
-        // 添加请求拦截器
-        instance.interceptors.response.use(function (response) {
-            console.info('🇨🇳 response',response);
-            return response;
-        }, function (error) {
-            // 对请求错误做些什么
-            console.info('❌ response',error)
-            return Promise.reject(error);
-        });
+    onResponse(result: any) {
+        console.info('🇨🇳 response', result);
     }
 }
 export default SpiLogInterceptor

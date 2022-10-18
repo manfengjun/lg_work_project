@@ -1,4 +1,4 @@
-import { HTTPMETHOD, SpiTarget } from "@/service/spi/spi_target"
+import { SpiTarget } from "@/service/spi/spi_target"
 enum Grade {
     grades,
     insert,
@@ -16,20 +16,20 @@ class GradeTarget extends SpiTarget {
     public get baseUrl(): string {
         return super.baseUrl
     }
-    public get method(): HTTPMETHOD {
+    public get method(): fetchConfigMethod {
         switch (this.type) {
             case Grade.grades:
-                return HTTPMETHOD.post
+                return "POST"
                 case Grade.students:
-                return HTTPMETHOD.post
+                return "POST"
             case Grade.insert:
-                return HTTPMETHOD.post
+                return "POST"
             case Grade.update:
-                return HTTPMETHOD.put
+                return "PUT"
             case Grade.delete:
-                return HTTPMETHOD.delete
+                return "DELETE"
             default:
-                return HTTPMETHOD.get
+                return "POST"
         }
     }
     public set params(value: {}) {

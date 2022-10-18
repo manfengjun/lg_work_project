@@ -95,7 +95,8 @@ export class fetchNet {
     static async request(cog:fetchConfig = config,beforeFun?:Function,afterFun?:Function,complete?:Function){
         let newConfig = {...config,...cog}
         if(typeof beforeFun == 'function'){
-            let testFun = await beforeFun();
+            let testFun = await beforeFun(newConfig);
+            console.log(testFun);
             let cb:UniApp.GeneralCallbackResult = {errMsg:"中止请求"}
             if(!testFun) return cb;
         }

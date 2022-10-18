@@ -1,4 +1,4 @@
-import { HTTPMETHOD, SpiTarget } from "@/service/spi/spi_target"
+import { SpiTarget } from "@/service/spi/spi_target"
 enum Account {
   login,
   register
@@ -13,14 +13,14 @@ class AccountTarget extends SpiTarget {
   public get baseUrl(): string {
     return super.baseUrl
   }
-  public get method(): HTTPMETHOD {
+  public get method(): fetchConfigMethod {
     switch (this.type) {
       case Account.login:
-        return HTTPMETHOD.post
+        return "POST"
       case Account.register:
-        return HTTPMETHOD.post
+        return "POST"
       default:
-        return HTTPMETHOD.get
+        return "POST"
     }
   }
   public set params(value: {}) {

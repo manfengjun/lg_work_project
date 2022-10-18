@@ -80,6 +80,7 @@
       title="数据为空"
       subTitle="请选择班级"
     ></tm-result>
+    <tm-float-button position="br" :btn="{ icon: 'tmicon-tag',linear:'bottom',color:'green' }" @click="showWin = true"></tm-float-button>
   </tm-app>
 </template>
 <script lang="ts" setup>

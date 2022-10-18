@@ -1,4 +1,4 @@
-import { HTTPMETHOD, SpiTarget } from "@service/spi/spi_target"
+import { SpiTarget } from "@service/spi/spi_target"
 enum MemberRecord {
     records,
     insert,
@@ -16,21 +16,20 @@ class MemberRecordTarget extends SpiTarget {
     public get baseUrl(): string {
         return super.baseUrl
     }
-    public get method(): HTTPMETHOD {
+    public get method(): fetchConfigMethod {
         switch (this.type) {
             case MemberRecord.records:
-                return HTTPMETHOD.post
-
+                return "POST"
             case MemberRecord.getRecordByStudent:
-                return HTTPMETHOD.post
+                return "POST"
             case MemberRecord.insert:
-                return HTTPMETHOD.post
+                return "POST"
             case MemberRecord.update:
-                return HTTPMETHOD.put
+                return "PUT"
             case MemberRecord.delete:
-                return HTTPMETHOD.delete
+                return "DELETE"
             default:
-                return HTTPMETHOD.get
+                return "POST"
         }
     }
     public set params(value: {}) {

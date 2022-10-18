@@ -1,4 +1,4 @@
-import { HTTPMETHOD, SpiTarget } from "@service/spi/spi_target"
+import { SpiTarget } from "@/service/spi/spi_target"
 enum Course {
     courses,
     insert,
@@ -19,19 +19,19 @@ class CourseTarget extends SpiTarget {
     public get method(): HTTPMETHOD {
         switch (this.type) {
             case Course.courses:
-                return HTTPMETHOD.post
+                return "POST"
             case Course.commonMoulds:
-                return HTTPMETHOD.post
+                return "POST"
             case Course.moulds:
-                return HTTPMETHOD.post
+                return "POST"
             case Course.insert:
-                return HTTPMETHOD.post
+                return "POST"
             case Course.update:
-                return HTTPMETHOD.put
+                return "PUT"
             case Course.delete:
-                return HTTPMETHOD.delete
+                return "DELETE"
             default:
-                return HTTPMETHOD.get
+                return "POST"
         }
     }
     public set params(value: {}) {

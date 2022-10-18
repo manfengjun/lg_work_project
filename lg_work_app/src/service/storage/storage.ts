@@ -6,17 +6,17 @@ export interface StorageInstance {
 
 class StorageClass implements StorageInstance {
     set(key: string, value: any): void {
-        localStorage.setItem(key, JSON.stringify(value));
+        uni.setStorageSync(key, JSON.stringify(value))
     }
     get(key: string): any {
-        let temp = localStorage.getItem(key);
-        if (temp) {
-            return JSON.parse(temp);
+        let res = uni.getStorageSync(key)
+        if (res) {
+            return JSON.parse(res)
         }
-        return null;
+        return null
     }
     remove(key: string): void {
-        localStorage.removeItem(key);
+        uni.removeStorageSync(key)
     }
 }
 let Storage = new StorageClass();
