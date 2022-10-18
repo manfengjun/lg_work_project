@@ -7,14 +7,14 @@
 	},
 	"pages": [
 		{
-			"path": "pages/account/login",
+			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "",
 				"navigationStyle": "custom"
 			}
 		},
 		{
-			"path": "pages/index/index",
+			"path": "pages/account/login",
 			"style": {
 				"navigationBarTitleText": "",
 				"navigationStyle": "custom"

@@ -38,33 +38,31 @@ class SpiAxios {
                     // 200:服务端业务处理正常结束
                     console.info('success', res)
                     let code = res.data.code
-                    if (code === 0) {
-                        resolve(res.data.data)
-                    }
-                    else {
-                        if (isToast) {
-                            uni.showToast({
-                                title: res.data.message,
-                                duration: 2000
-                            });
+                    if (res.statusCode === 200) {
+                        let code = res.data.code
+                        if (code === 0) {
+                            resolve(res.data.data)
                         }
+                        else {
+                            reject({ code: code, msg: res.data.message, data: '' });
+                        }
+                    } else {
+                        if (isToast) {
+                            uni.$tm.u.toast(res.data.message)
+                        }
+                        let code = res.data.code
                         reject({ code: code, msg: res.data.message, data: '' });
                     }
                 }).catch((err) => {
+                    console.log(err)
                     if (!err.response.data) {
                         if (isToast) {
-                            uni.showToast({
-                                title: '网络异常',
-                                duration: 2000
-                            });
+                            uni.$tm.u.toast('网络异常')
                         }
                         reject({ code: -1, msg: "网络异常", data: '' });
                     }
                     if (isToast) {
-                        uni.showToast({
-                            title: err.response.data.message,
-                            duration: 2000
-                        });
+                        uni.$tm.u.toast(err.response.data.message)
                     }
                     let code = err.response.data.code
                     reject({ code: code, msg: err.response.data.message, data: '' });

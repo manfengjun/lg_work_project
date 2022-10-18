@@ -114,7 +114,8 @@ import {
 import storage from "@/service/storage/storage";
 const { proxy, ctx } = getCurrentInstance();
 const app = ref<InstanceType<typeof tmApp> | null>(null);
-const user = ref<{}>(storage.get("user"));
+const user = ref<{}>({username: '',});
+user.value = storage.get("user")
 const setDark = () => {
   app.value?.setDark();
 };

@@ -554,13 +554,15 @@ export function toast(word:string,mask:boolean=true,icon:any='none'){
 	uni.showToast({
 		mask:mask,
 		title:word,
-		icon:icon
+		icon:icon,
+		position: "bottom",
 	})
 	// #endif
 	// #ifdef MP-ALIPAY
 	uni.showToast({
 		title:word,
-		icon:icon
+		icon:icon,
+		position: "bottom"
 	})
 	// #endif
 }
