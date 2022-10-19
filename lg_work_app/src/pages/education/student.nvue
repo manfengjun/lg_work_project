@@ -135,7 +135,7 @@ const remind = (student, grade) => {
   let timeStr = "今天";
   if (date.isAfter(DayJs())) {
     // 今天之后
-    timeStr = ["今天", "明天", "后天"][date.date() - DayJs().date];
+    timeStr = ["今天", "明天", "后天"][date.date() - DayJs().date()];
   }
   const toast =
     student.petName +

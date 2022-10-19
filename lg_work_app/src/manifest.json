@@ -1,5 +1,5 @@
 {
-    "name" : "work",
+    "name" : "tmui3.0",
     "appid" : "__UNI__6D69E0C",
     "description" : "tmui3.0新一代组件库，拥抱vue3,pinia,tmui3.0 demo展示应用",
     "versionName" : "3.0.84",
@@ -142,10 +142,10 @@
         "uniStatistics" : {
             "enable" : false
         },
-        "title" : "tmui3.0",
+        "title" : "work",
         "router" : {
             "mode" : "hash",
-            "base" : "/h5/"
+            "base" : "/"
         },
         "optimization" : {
             "treeShaking" : {
