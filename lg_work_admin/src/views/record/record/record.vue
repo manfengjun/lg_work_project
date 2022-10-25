@@ -95,7 +95,18 @@
               ><span>课程主题</span></el-badge
             >
           </template>
-          <el-radio-group v-model="form.courseId" @change="selectCourse">
+          <div class="radio-button">
+            <el-button
+              v-for="item in courses.data"
+              :key="item.id"
+              type="primary"
+              plain
+              @click="selectCourse(item.id!)"              
+              >{{ item.name }}</el-button
+            >
+          </div>
+
+          <!-- <el-radio-group v-model="form.courseId" @change="selectCourse">
             <el-radio
               v-for="item in courses.data"
               :key="item.id"
@@ -103,7 +114,7 @@
               size="large"
               >{{ item.name }}</el-radio
             >
-          </el-radio-group>
+          </el-radio-group> -->
         </el-tab-pane>
         <el-tab-pane class="start">
           <template #label>
@@ -152,7 +163,12 @@
         </el-tab-pane>
         <el-tab-pane>
           <template #label>
-            <el-badge :value="form.specific_mould && form.specific_mould.length > 0 ? '+1' : ''"
+            <el-badge
+              :value="
+                form.specific_mould && form.specific_mould.length > 0
+                  ? '+1'
+                  : ''
+              "
               ><span>细节描述</span></el-badge
             >
           </template>
@@ -197,11 +213,7 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取消</el-button>
-        <el-button
-          type="primary"
-          @click="
-            submitForm(ruleFormRef);
-          "
+        <el-button type="primary" @click="submitForm(ruleFormRef)"
           >保存</el-button
         >
       </span>
@@ -280,45 +292,46 @@ const edit = (e: Record) => {
   option_status.value = 1;
 };
 const resetForm = () => {
-  form.courseId = 0
-  form.courseName = ''
-  form.start_mould = ''
-  form.content_mould = ''
-  moulds.content_moulds = []
-  form.behavior_mould = ''
-  form.specific_mould = ''
-  form.end_mould = ''
-  form.content = ''
+  form.courseId = 0;
+  form.courseName = "";
+  form.start_mould = "";
+  form.content_mould = "";
+  moulds.content_moulds = [];
+  form.behavior_mould = "";
+  form.specific_mould = "";
+  form.end_mould = "";
+  form.content = "";
 };
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!form.courseId || form.courseId <= 0) {
-    ElMessage.error('请选择课程主题！')
-    return
+    ElMessage.error("请选择课程主题！");
+    return;
   }
   if (form.start_mould.length <= 0) {
-    ElMessage.error('请选择开始语！')
-    return
+    ElMessage.error("请选择开始语！");
+    return;
   }
   if (form.behavior_mould.length <= 0) {
-    ElMessage.error('请填写课堂表现！')
-    return
+    ElMessage.error("请填写课堂表现！");
+    return;
   }
   // if (form.specific_mould.length <= 0) {
   //   ElMessage.error('请填写细节描述！')
   //   return
   // }
   if (form.end_mould.length <= 0) {
-    ElMessage.error('请填写结束语！')
-    return
+    ElMessage.error("请填写结束语！");
+    return;
   }
   dialogFormVisible.value = false;
-  option()
+  option();
 };
 const selectGrade = (val: number) => {
   getList();
 };
 const selectCourse = (val: number) => {
   getCourseBy(val);
+  form.courseId = val
   form.courseName = courses.data.filter((e) => {
     return e.id == val;
   })[0].name;
@@ -328,7 +341,6 @@ const selectContent = (val: any) => {
     form.content_mould = val.content;
     preview();
   }
-  
 };
 getGradeList();
 getMouldsList();
@@ -399,9 +411,13 @@ getMouldsList();
       margin: 10px 5px;
     }
     .course {
-      .ep-radio-group {
-        display: flex;
-        align-items: flex-start;
+      .radio-button {
+        text-align: left;
+        .ep-button {
+          margin-top: 10px;
+          height: 30px;
+          padding: 8px 10px;
+        }
       }
     }
 
