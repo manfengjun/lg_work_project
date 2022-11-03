@@ -3,14 +3,14 @@ import { Mould } from '../model/record'
 import { IMouldModel } from '../model/record/mould'
 
 export const create = async (mould: IMouldModel) => {
-    const data = await Mould.findOne({
-        where: {
-            content: `${mould.content}`
-        }
-    })
-    if (data && data.id) {
-        global.UnifyResponse.error({ code: -1, message: '课程已存在' })
-    }
+    // const data = await Mould.findOne({
+    //     where: {
+    //         content: `${mould.content}`
+    //     }
+    // })
+    // if (data && data.id) {
+    //     global.UnifyResponse.error({ code: -1, message: '课程模板已存在' })
+    // }
     return Mould.create(mould)
 }
 
