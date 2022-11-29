@@ -5,105 +5,46 @@
         <span>成长记录</span>
       </el-header>
       <el-main>
-        <el-select
-          v-model="select"
-          placeholder="请选择班级"
-          size="large"
-          class="select-class"
-          @change="selectGrade"
-        >
-          <el-option
-            v-for="item in grade.data"
-            :key="item.id"
-            :label="item.name"
-            :value="item.id"
-          />
+        <el-select v-model="select" placeholder="请选择班级" size="large" class="select-class" @change="selectGrade">
+          <el-option v-for="item in grade.data" :key="item.id" :label="item.name" :value="item.id" />
         </el-select>
         <el-table :stripe="true" :data="data_source.data">
-          <el-table-column
-            align="center"
-            type="index"
-            label="序号"
-            width="100"
-          />
-          <el-table-column
-            align="center"
-            prop="name"
-            label="姓名"
-            width="180"
-          />
-          <el-table-column
-            align="center"
-            prop="new_record.courseName"
-            label="最近课程主题"
-            width="180"
-          />
-          <el-table-column
-            align="left"
-            prop="new_record.show_content"
-            label="最近成长记录"
-          />
-          <el-table-column
-            align="center"
-            prop="time"
-            label="时间"
-            width="100"
-          />
+          <el-table-column align="center" type="index" label="序号" width="100" />
+          <el-table-column align="center" prop="name" label="姓名" width="180" />
+          <el-table-column align="center" prop="new_record.courseName" label="最近课程主题" width="180" />
+          <el-table-column align="left" prop="new_record.show_content" label="最近成长记录" />
+          <el-table-column align="center" prop="time" label="时间" width="100" />
           <el-table-column fixed="right" label="操作" width="120">
             <template #default="scope">
-              <el-button
-                link
-                type="primary"
-                size="small"
-                @click="
-                  dialogRecordVisible = true;
-                  records.data = [];
-                  getRecordList(data_source.data[scope.$index]);
-                "
-                >查看</el-button
-              >
-              <el-button
-                link
-                type="primary"
-                size="small"
-                @click="
-                  option_status = 0;
-                  dialogFormVisible = true;
-                  select_student = data_source.data[scope.$index];
-                  getCourseList();
-                  resetForm();
-                "
-              >
-                新增</el-button
-              >
+              <el-button link type="primary" size="small" @click="
+                dialogRecordVisible = true;
+              records.data = [];
+              getRecordList(data_source.data[scope.$index]);
+              ">查看</el-button>
+              <el-button link type="primary" size="small" @click="
+                option_status = 0;
+              dialogFormVisible = true;
+              select_student = data_source.data[scope.$index];
+              getCourseList();
+              resetForm();
+              ">
+                新增</el-button>
             </template>
           </el-table-column>
         </el-table>
       </el-main>
     </el-container>
   </div>
-  <el-dialog
-    v-model="dialogFormVisible"
-    :title="option_status == 0 ? '新增成长记录' : '修改成长记录'"
-    width="90%"
-  >
+  <el-dialog v-model="dialogFormVisible" :title="option_status == 0 ? '新增成长记录' : '修改成长记录'" width="90%">
     <div class="insert-dialog">
       <el-tabs tab-position="left" style="height: 500px" class="dialog-tabs">
         <el-tab-pane class="course">
           <template #label>
-            <el-badge :value="form.courseId > 0 ? '+1' : ''"
-              ><span>课程主题</span></el-badge
-            >
+            <el-badge :value="form.courseId > 0 ? '+1' : ''"><span>课程主题</span></el-badge>
           </template>
           <div class="radio-button">
-            <el-button
-              v-for="item in courses.data"
-              :key="item.id"
-              type="primary"
-              plain
-              @click="selectCourse(item.id!)"              
-              >{{ item.name }}</el-button
-            >
+            <el-button v-for="item in courses.data" :key="item.id" type="primary" plain @click="selectCourse(item.id!)">
+              {{ item.name }}</el-button>
           </div>
 
           <!-- <el-radio-group v-model="form.courseId" @change="selectCourse">
@@ -118,128 +59,97 @@
         </el-tab-pane>
         <el-tab-pane class="start">
           <template #label>
-            <el-badge :value="form.start_mould.length > 0 ? '+1' : ''"
-              ><span>开始语</span></el-badge
-            >
+            <el-badge :value="form.start_mould.length > 0 ? '+1' : ''"><span>开始语</span></el-badge>
           </template>
           <el-radio-group v-model="form.start_mould" @change="preview">
-            <el-radio
-              v-for="item in moulds.start_moulds"
-              :key="item.id"
-              :label="item.content"
-              size="large"
-              >{{ item.content }}</el-radio
-            >
+            <el-radio v-for="item in moulds.start_moulds" :key="item.id" :label="item.content" size="large">{{
+                item.content
+            }}</el-radio>
           </el-radio-group>
         </el-tab-pane>
         <el-tab-pane>
           <template #label>
-            <el-badge :value="form.content_mould.length > 0 ? '+1' : ''"
-              ><span>课程内容</span></el-badge
-            >
+            <el-badge :value="form.content_mould.length > 0 ? '+1' : ''"><span>课程内容</span></el-badge>
           </template>
-          <el-table
-            highlight-current-row
-            :stripe="true"
-            :data="moulds.content_moulds"
-            @current-change="selectContent"
-          >
+          <el-table highlight-current-row :stripe="true" :data="moulds.content_moulds" @current-change="selectContent">
             <el-table-column align="left" prop="content" label="模板内容" />
           </el-table>
         </el-tab-pane>
         <el-tab-pane>
           <template #label>
-            <el-badge :value="form.behavior_mould.length > 0 ? '+1' : ''"
-              ><span>课堂表现</span></el-badge
-            >
+            <el-badge :value="form.behavior_mould.length > 0 ? '+1' : ''"><span>课堂表现</span></el-badge>
           </template>
-          <el-input
-            v-model="form.behavior_mould"
-            :autosize="{ minRows: 10, maxRows: 15 }"
-            type="textarea"
-            placeholder="请填写课堂表现"
-            @change="preview"
-          />
+          <el-input v-model="form.behavior_mould" :autosize="{ minRows: 10, maxRows: 15 }" type="textarea"
+            placeholder="请填写课堂表现" @change="preview" />
         </el-tab-pane>
         <el-tab-pane>
           <template #label>
-            <el-badge
-              :value="
-                form.specific_mould && form.specific_mould.length > 0
-                  ? '+1'
-                  : ''
-              "
-              ><span>细节描述</span></el-badge
-            >
+            <el-badge :value="
+              form.specific_mould && form.specific_mould.length > 0
+                ? '+1'
+                : ''
+            "><span>细节描述</span></el-badge>
           </template>
-          <el-input
-            v-model="form.specific_mould"
-            :autosize="{ minRows: 10, maxRows: 15 }"
-            type="textarea"
-            placeholder="请填写细节描述"
-            @change="preview"
-          />
+          <el-input v-model="form.specific_mould" :autosize="{ minRows: 10, maxRows: 15 }" type="textarea"
+            placeholder="请填写细节描述" @change="preview" />
         </el-tab-pane>
         <el-tab-pane class="end">
           <template #label>
-            <el-badge :value="form.end_mould.length > 0 ? '+1' : ''"
-              ><span>结束语</span></el-badge
-            >
+            <el-badge :value="form.end_mould.length > 0 ? '+1' : ''"><span>结束语</span></el-badge>
           </template>
           <el-scrollbar height="500px">
             <el-radio-group v-model="form.end_mould" @change="preview">
-              <el-radio
-                v-for="item in moulds.end_moulds"
-                :key="item.id"
-                :label="item.content"
-                size="large"
-                >{{ item.content }}</el-radio
-              >
+              <el-radio v-for="item in moulds.end_moulds" :key="item.id" :label="item.content" size="large">{{
+                  item.content
+              }}</el-radio>
             </el-radio-group>
           </el-scrollbar>
         </el-tab-pane>
       </el-tabs>
       <el-descriptions title="效果预览" :column="1" class="dialog-description">
         <el-descriptions-item label="姓名">{{
-          select_student.name
+            select_student.name
         }}</el-descriptions-item>
         <el-descriptions-item label="课程主题">{{
-          form.courseName
+            form.courseName
         }}</el-descriptions-item>
-        <el-descriptions-item>{{ form.content }}</el-descriptions-item>
+        <el-descriptions-item>
+          <p v-html="form.content"></p>
+        </el-descriptions-item>
       </el-descriptions>
     </div>
 
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取消</el-button>
-        <el-button type="primary" @click="submitForm(ruleFormRef)"
-          >保存</el-button
-        >
+        <el-button type="primary" @click="submitForm(ruleFormRef)">保存</el-button>
       </span>
     </template>
   </el-dialog>
   <el-dialog v-model="dialogRecordVisible" title="成长记录" width="80%">
     <el-table :stripe="true" :data="records.data">
       <el-table-column align="center" type="index" label="序号" width="100" />
-      <el-table-column
-        align="center"
-        prop="courseName"
-        label="课程主题"
-        width="100"
-      />
-      <el-table-column align="left" prop="content" label="内容" />
+      <el-table-column align="center" prop="courseName" label="课程主题" width="100" />
+
+      <!-- <el-table-column align="left" prop="content" label="内容" /> -->
+      <el-table-column align="left" label="内容">
+        <template #default="scope">
+          <div class="html-content">
+            <p v-html="(records.data[scope.$index] as any).content"></p>
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column fixed="right" label="操作" width="100">
         <template #default="scope">
           <el-button link type="primary" size="small">查看</el-button>
-          <el-button
+          <!-- <el-button
             link
             type="primary"
             size="small"
             @click="copy((records.data[scope.$index] as any).content)"
           >
             复制</el-button
-          >
+          > -->
         </template>
       </el-table-column>
     </el-table>
@@ -388,9 +298,11 @@ getMouldsList();
 .insert-dialog {
   display: flex;
   flex-direction: row;
+
   .dialog-tabs {
     flex: 0.6;
     margin: 0 10px 0 0;
+
     .ep-radio--large {
       width: 100%;
       word-break: break-all;
@@ -399,6 +311,7 @@ getMouldsList();
       text-align: left;
       padding: 10px 0;
     }
+
     .ep-badge {
       --ep-badge-bg-color: var(--ep-color-danger);
       --ep-badge-radius: 10px;
@@ -410,9 +323,11 @@ getMouldsList();
       display: inline-block;
       margin: 10px 5px;
     }
+
     .course {
       .radio-button {
         text-align: left;
+
         .ep-button {
           margin-top: 10px;
           height: 30px;
@@ -440,6 +355,13 @@ getMouldsList();
 
   .dialog-description {
     flex: 0.4;
+  }
+}
+
+.html-content {
+  p {
+    margin: 0;
+    padding: 0;
   }
 }
 

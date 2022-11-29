@@ -98,19 +98,19 @@ const moulds = reactive({
 const preview = () => {
     let preview = ''
     if (form.start_mould.length > 0) {
-        preview += form.start_mould
+        preview += "<P>&nbsp; &nbsp; &nbsp; &nbsp;" + form.start_mould + "</p>"
     }
     if (form.content_mould.length > 0) {
-        preview += form.content_mould
+        preview += "<P>&nbsp; &nbsp; &nbsp; &nbsp;" + form.content_mould + "</p>"
     }
     if (form.behavior_mould.length > 0) {
-        preview += form.behavior_mould
+        preview += "<p>&nbsp; &nbsp; &nbsp; &nbsp;" + form.behavior_mould + "</p>"
     }
     if (form.specific_mould.length > 0) {
-        preview += form.specific_mould
+        preview += "<p>&nbsp; &nbsp; &nbsp; &nbsp;" + form.specific_mould + "</p>"
     }
     if (form.end_mould.length > 0) {
-        preview += form.end_mould
+        preview += "<p>&nbsp; &nbsp; &nbsp; &nbsp;" + form.end_mould
     }
     form.content = preview.replaceAll('[NAME]', select_student.value.petName).replaceAll('[COURSE]', form.courseName)
 }
