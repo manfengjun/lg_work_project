@@ -8,9 +8,6 @@ export const create = async (student: IStudentModel) => {
       name: `${student.name}`
     }
   })
-  if (data && data.id) {
-    global.UnifyResponse.error({ code: -1, message: '学员已存在' })
-  }
   return Student.create(student)
 }
 
