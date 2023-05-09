@@ -46,6 +46,11 @@
         <span>成长记录</span>
       </template>
       <el-menu-item-group>
+        <el-menu-item index="/work/record/search">
+          <template #title>
+            <span>搜索</span>
+          </template></el-menu-item
+        >
         <el-menu-item index="/work/record/course">
           <template #title>
             <span>课程管理</span>
@@ -61,6 +66,7 @@
             <span>成长记录</span>
           </template></el-menu-item
         >
+        
       </el-menu-item-group>
     </el-sub-menu>
     

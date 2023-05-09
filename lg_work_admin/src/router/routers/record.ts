@@ -15,6 +15,11 @@ const record = [
         path: path + '/record',
         component: () => import('/src/views/record/record/record.vue')
     },
+    {
+        name: 'search',
+        path: path + '/search',
+        component: () => import('/src/views/record/search/search.vue')
+    },
 
 ];
 
