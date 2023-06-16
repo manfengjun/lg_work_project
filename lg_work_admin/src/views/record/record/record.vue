@@ -71,7 +71,7 @@
           <template #label>
             <el-badge :value="form.content_mould.length > 0 ? '+1' : ''"><span>课程内容</span></el-badge>
           </template>
-          <el-table highlight-current-row :stripe="true" :data="moulds.content_moulds" @current-change="selectContent">
+          <el-table stripe highlight-current-row max-height="500" :data="moulds.content_moulds" @current-change="selectContent">
             <el-table-column align="left" prop="content" label="模板内容" />
           </el-table>
         </el-tab-pane>

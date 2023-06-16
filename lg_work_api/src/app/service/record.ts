@@ -20,6 +20,9 @@ export const updateRecord = async (
 export const getRecordById = (id: number): Promise<IRecordModel> => {
   return recordRepo.getById(id)
 }
+export const getRecordByCourse = (id: number): Promise<IRecordModel[]> => {
+  return recordRepo.getByCourse(id)
+}
 export const getRecordByStudent = (id: number): Promise<IRecordModel[]> => {
   return recordRepo.getByStudent(id)
 }

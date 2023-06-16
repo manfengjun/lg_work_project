@@ -57,6 +57,18 @@ export const getByStudent = async (id: number) => {
     }
     return record!
 }
+export const getByCourse = async (id: number) => {
+    const record = await Record.findAll({
+        where: {
+            courseId: id
+        },
+        order: [[ 'createdAt', 'DESC' ]],
+    })
+    if (!record) {
+        global.UnifyResponse.error({ code: -1, message: '当前课程还没有成长记录' })
+    }
+    return record!
+}
 export const deleteById = async (id: number) => {
     const numDeleted = await Record.destroy({
         where: { id }

@@ -39,6 +39,18 @@ export default class RecordController {
     global.UnifyResponse.success(ctx, await recordSerivce.getAll())
   }
 
+  @request('post', '/byCourse')
+  @summary('Get records')
+  @description('example: /record/list')
+  @tag
+  @security([{ api_key: [] }])
+  @body({
+    id: { type: 'number', required: true }
+  })
+  async getListByCourse(ctx: Context) {
+    const id = ctx.request.body.id
+    global.UnifyResponse.success(ctx, await recordSerivce.getRecordByCourse(id))
+  }
   @request('post', '/byStudent')
   @summary('Get records')
   @description('example: /record/byStudent')
