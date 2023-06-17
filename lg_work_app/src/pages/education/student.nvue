@@ -3,22 +3,12 @@
     <tm-navbar title="学员管理" :shadow="0" hide-home :followTheme="true">
       <template v-slot:right>
         <view class="flex flex-center flex-row">
-          <tm-icon
-            _class="px-24"
-            :font-size="32"
-            name="tmicon-menu"
-            @click="showWin = true"
-          ></tm-icon>
+          <tm-icon _class="px-24" :font-size="32" name="tmicon-menu" @click="showWin = true"></tm-icon>
         </view>
       </template>
     </tm-navbar>
-    <tm-card
-      v-for="(student, index) in data_source.data"
-      :key="index"
-      :status="data_source.grade.name"
-      :statusColor="store.tmStore.color"
-      :title="student.name"
-    >
+    <tm-card v-for="(student, index) in data_source.data" :key="index" :status="data_source.grade.name"
+      :statusColor="store.tmStore.color" :title="student.name">
       <template v-slot:content>
         <tm-sheet no-level :shadow="2" :round="3" :margin="[0, 0]">
           <tm-more :height="200">
@@ -26,61 +16,27 @@
           </tm-more>
         </tm-sheet>
         <view class="flex flex-row flex-row-center-end">
-          <tm-button
-            label="发送提醒"
-            :font-size="24"
-            :width="120"
-            :height="50"
-            @click="copy(student.remind)"
-          ></tm-button>
-          <tm-button
-            :margin="[24, 0]"
-            label="编辑"
-            :font-size="24"
-            :width="120"
-            :height="50"
-          ></tm-button>
-          <tm-button
-            color="white"
-            label="删除"
-            :font-size="24"
-            :width="120"
-            :height="50"
-          ></tm-button>
+          <tm-button label="发送提醒" :font-size="24" :width="120" :height="50" @click="copy(student.remind)"></tm-button>
+          <tm-button :margin="[24, 0]" label="编辑" :font-size="24" :width="120" :height="50"></tm-button>
+          <tm-button color="white" label="删除" :font-size="24" :width="120" :height="50"></tm-button>
         </view>
       </template>
     </tm-card>
     <tm-drawer ref="gradeDrawer" placement="right" v-model:show="showWin">
       <template v-slot:default>
         <tm-sheet>
-          <tm-text
-            :font-size="24"
-            _class="font-weight-b"
-            label="我的班级"
-          ></tm-text>
+          <tm-text :font-size="24" _class="font-weight-b" label="我的班级"></tm-text>
           <tm-divider></tm-divider>
           <tm-radio-group model="button" v-model="select_grade">
-            <tm-radio
-              :border="0"
-              :round="3"
-              v-for="(grade, index) in grade_source.data"
-              :key="index"
-              :value="grade.id"
-              :label="grade.name"
-              :fontSize="30"
-              @change="selectGrade(grade)"
-            ></tm-radio>
+            <tm-radio :border="0" :round="3" v-for="(grade, index) in grade_source.data" :key="index" :value="grade.id"
+              :label="grade.name" :fontSize="30" @change="selectGrade(grade)"></tm-radio>
           </tm-radio-group>
         </tm-sheet>
       </template>
     </tm-drawer>
-    <tm-result
-      v-if="data_source.data.length <= 0"
-      :showBtn="false"
-      title="数据为空"
-      subTitle="请选择班级"
-    ></tm-result>
-    <tm-float-button position="br" :btn="{ icon: 'tmicon-tag',linear:'bottom',color:'green' }" @click="showWin = true"></tm-float-button>
+    <tm-result v-if="data_source.data.length <= 0" :showBtn="false" title="数据为空" subTitle="请选择班级"></tm-result>
+    <tm-float-button position="br" :btn="{ icon: 'tmicon-tag', linear: 'bottom', color: 'green' }"
+      @click="showWin = true"></tm-float-button>
   </tm-app>
 </template>
 <script lang="ts" setup>
@@ -153,7 +109,9 @@ const remind = (student, grade) => {
     grade.roomName +
     "\n👨‍🏫授课老师：" +
     grade.teacherName +
-    "\n温馨提示：\n①校区有开水，可以为宝贝带上水杯\n②校区有开空调，可为宝贝带上薄外套\n"
+    "\n温馨提示：\n①校区有开水，可以为宝贝带上水杯\n②校区有开空调，可为宝贝带上薄外套\n";
+  return toast;
+
 };
 /** 学生数据 */
 const data_source = reactive({
