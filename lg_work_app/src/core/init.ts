@@ -2,9 +2,7 @@ import InitGlobal from './global'
 import { App, createApp } from "vue";
 import tmui from "../tmui"
 import { SpiManager } from "@/service/spi/spi_manage";
-declare interface Uni {
-    $instance: SpiManager,
-}
+
 export default class InitManager {
   private app: App<Element>
 
@@ -15,9 +13,8 @@ export default class InitManager {
 
   initCore() {
     InitGlobal.init() // global var and methods
-	this.app.use(tmui)
-	uni.$instance = SpiManager.getInstance()
-	uni.$instance.baseUrl = 'https://api.work.ld-cloud.xyz/work/v1'
+    SpiManager.getInstance().baseUrl = 'http://120.48.133.248:3000/work/v1'
+    this.app.use(tmui)
   }
 
   _initRoutesAndSwagger() {

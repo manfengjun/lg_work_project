@@ -5,14 +5,15 @@ class SpiManager {
     public logEnable: boolean = true
 
     private static instance: SpiManager
-    private constructor() {
+    constructor() {
     }
     static getInstance() {
-		if (this.instance == null) {
+        if (!SpiManager.instance) {
             SpiManager.instance = new SpiManager();
         }
         return SpiManager.instance;
     }
+
 }
 
 export { SpiManager }

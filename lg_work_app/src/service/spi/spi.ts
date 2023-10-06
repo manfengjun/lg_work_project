@@ -16,8 +16,7 @@ class SpiAxios {
         let config = {
             url: this.target.baseUrl + this.target.path,
             method: this.target.method,
-            data: this.target.data,
-			sslVerify: false,
+            data: this.target.data
         }
         return new Promise((resolve, reject) => {
             uni.$tm.fetch.request(config, (config: fetchConfig) => {

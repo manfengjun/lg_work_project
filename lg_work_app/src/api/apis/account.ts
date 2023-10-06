@@ -11,7 +11,6 @@ class AccountTarget extends SpiTarget {
     this.type = type
   }
   public get baseUrl(): string {
-	console.log(super.baseUrl);
     return super.baseUrl
   }
   public get method(): fetchConfigMethod {
@@ -60,7 +59,7 @@ class AccountTarget extends SpiTarget {
    * @return {*} 
    * @memberof AccountTarget
    */
-  static login(username: string, password: string): SpiTarget {
+  static login(username: string, password: string) {
     let target = new AccountTarget(Account.login)
     target.data = { 'username': username, 'password': password }
     return target
@@ -74,7 +73,7 @@ class AccountTarget extends SpiTarget {
    * @return {*} 
    * @memberof AccountTarget
    */
-  static register(username: string, password: string): SpiTarget {
+  static register(username: string, password: string) {
     let target = new AccountTarget(Account.login)
     target.data = { 'username': username, 'password': password }
     return target
