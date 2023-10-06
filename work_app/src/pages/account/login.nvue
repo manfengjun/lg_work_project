@@ -1,0 +1,97 @@
+<template>
+  <tm-app ref="app" color="grey-5">
+    <tm-navbar title="Work" :shadow="0" hide-home>
+      <template v-slot:left>
+        <view class="flex flex-center flex-row"></view>
+      </template>
+    </tm-navbar>
+    <tm-form @submit="confirm" ref="form" v-model="userSchema">
+      <tm-form-item
+        required
+        label="用户名"
+        field="username"
+        :rules="[
+          {
+            required: true,
+            message: '请输入用户名',
+            validator: (val) => val.length > 0,
+          },
+        ]"
+      >
+        <tm-input
+          :inputPadding="[0, 0]"
+          v-model="userSchema.username"
+          :transprent="true"
+        ></tm-input>
+      </tm-form-item>
+      <tm-form-item
+        required
+        label="密码"
+        field="password"
+        :rules="[
+          {
+            required: true,
+            message: '请输入密码',
+            validator: (val) => val.length > 0,
+          },
+        ]"
+      >
+        <tm-input
+          :inputPadding="[0, 0]"
+          v-model="userSchema.password"
+          :transprent="true"
+          :password="true"
+        >
+        </tm-input>
+      </tm-form-item>
+      <tm-form-item :border="false">
+        <tm-button
+          :shadow="0"
+          text
+          form-type="submit"
+          label="登录"
+          block
+        ></tm-button>
+      </tm-form-item>
+    </tm-form>
+    <tm-notification placement="bottom" ref="msg"></tm-notification>
+  </tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, reactive } from "vue";
+import AccountTarget from "@/api/apis/account";
+import { SpiAxios } from "@/service/spi/spi";
+import storage from "@/service/storage/storage";
+const app = ref<InstanceType<typeof tmApp> | null>(null);
+const form = ref<InstanceType<typeof tmForm> | null>(null);
+const msg = ref<InstanceType<typeof tmNotification> | null>(null);
+let userSchema = reactive({
+  username: "",
+  password: "",
+});
+const confirm = (e) => {
+  msg.value.show();
+  if (!e.validate) return;
+  let target = AccountTarget.login(userSchema.username, userSchema.password);
+  SpiAxios.create(target)
+    .http()
+    .then((data) => {
+      storage.set("token", data.token);
+      storage.set("user", data);
+      msg.value.show({
+        label: "登录成功",
+        icon: "tmicon-check-circle",
+      });
+      uni.redirectTo({
+        url: "/pages/index/index",
+      });
+    })
+    .catch((err) => {
+      msg.value.show({
+        label: err.msg,
+        icon: "tmicon-exclamation-circle",
+      });
+      console.log(err);
+    });
+};
+</script>

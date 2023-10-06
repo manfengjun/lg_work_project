@@ -10,10 +10,10 @@ export const devConf = {
   DATABASE: {
     DIALECT: 'mysql',
     DB_NAME: 'lg_work',
-    HOST: '120.48.133.248',
+    HOST: '127.0.0.1',
     PORT: 3306,
     USER: 'lg_work',
-    PASSWORD: 'GBcGwCyArd8YaGBt'
+    PASSWORD: 'YpFY2i73Y5kyA7hk'
   },
   REDIS: {
     ENABLED: false,

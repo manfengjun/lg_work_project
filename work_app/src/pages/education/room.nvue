@@ -1,0 +1,64 @@
+<template>
+  <tm-app ref="app" color="grey-5">
+    <tm-navbar title="教室管理" :shadow="0" hide-home :followTheme="true">
+    </tm-navbar>
+    <tm-card
+      v-for="(room, index) in data_source.data"
+      :key="index"
+      :status="'年龄段：' + room.level"
+      :statusColor="store.tmStore.color"
+      :title="room.name"
+      :height="200"
+    >
+      <template v-slot:content>
+        <view class="flex flex-row flex-row-center-end">
+          <tm-button
+            :margin="[24, 0]"
+            label="编辑"
+            :font-size="24"
+            :width="120"
+            :height="50"
+          ></tm-button>
+          <tm-button
+            color="white"
+            label="删除"
+            :font-size="24"
+            :width="120"
+            :height="50"
+          ></tm-button>
+        </view>
+      </template>
+    </tm-card>
+  </tm-app>
+</template>
+<script lang="ts" setup>
+import {
+  ref,
+  reactive,
+  nextTick,
+  getCurrentInstance,
+  onBeforeMount,
+} from "vue";
+import { useTmpiniaStore } from "@/tmui/tool/lib/tmpinia";
+import RoomTarget from "@/api/apis/room";
+import { SpiAxios } from "@/service/spi/spi";
+const store = useTmpiniaStore();
+const { proxy, ctx } = getCurrentInstance();
+const app = ref<InstanceType<typeof tmApp> | null>(null);
+/** 教室数据 */
+const data_source = reactive({
+  data: [] as any,
+});
+const getList = () => {
+  SpiAxios.create(RoomTarget.rooms())
+    .http()
+    .then((data) => {
+      console.log(data);
+      data_source.data = data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+getList();
+</script>

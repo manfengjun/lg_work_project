@@ -22,10 +22,7 @@ abstract class SpiTarget {
     private _logEnable: boolean = true
 
     public get baseUrl(): string {
-        if (SpiManager.getInstance().baseUrl == '') {
-            return ''
-        }
-        return SpiManager.getInstance().baseUrl
+        return uni.$instance.baseUrl
     }
     public get path(): string {
         return this._path

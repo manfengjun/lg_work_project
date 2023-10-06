@@ -1,9 +1,9 @@
 {
-    "name" : "tmui3.0",
+    "name" : "Worker",
     "appid" : "__UNI__6D69E0C",
     "description" : "tmui3.0新一代组件库，拥抱vue3,pinia,tmui3.0 demo展示应用",
     "versionName" : "3.0.84",
-    "versionCode" : "100",
+    "versionCode" : 101,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -155,7 +155,7 @@
         "devServer" : {
             "proxy" : {
                 "/work" : {
-                    "target" : "http://120.48.133.248:3000",
+                    "target" : "http://api.work.ld-cloud.xyz",
                     "changeOrigin" : true
                 }
             }
