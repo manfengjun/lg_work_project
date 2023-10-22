@@ -44,7 +44,7 @@ const option = (formEl: FormInstance, form: Grade) => {
     const user = Storage.get('user')
     form.teacherId = user.id
     form.teacherName = user.teacherName
-    form.name = form.week + ' ' + form.time + ' ' + getLevel(form.level) + '岁 ' + form.teacherName
+    form.name = form.week + ' ' + form.time + ' ' + getLevel(form.level) + ' ' + form.teacherName
     switch (option_status.value) {
         case 0:
             SpiAxios.create(GradeTarget.insert(form))
