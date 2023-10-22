@@ -11,13 +11,13 @@
       </el-header>
       <el-main>
         <el-select v-model="select" placeholder="请选择年龄段" size="large" class="select-class" @change="selectGrade">
-          <el-option label="3岁" value="3" />
-          <el-option label="4岁" value="4" />
-          <el-option label="5岁" value="5" />
-          <el-option label="6岁" value="6" />
-          <el-option label="7岁" value="7" />
-          <el-option label="8岁" value="8" />
-          <el-option label="9岁" value="9" />
+          <el-option label="F1" value="3" />
+          <el-option label="F2" value="4" />
+          <el-option label="F3" value="5" />
+          <el-option label="F4" value="6" />
+          <el-option label="F5" value="7" />
+          <el-option label="S1" value="8" />
+          <el-option label="S2" value="9" />
         </el-select>
         <el-table :stripe="true" :data="data_source.data">
           <el-table-column align="center" type="index" label="序号" width="100" />
@@ -45,13 +45,13 @@
       </el-form-item>
       <el-form-item label="年龄段" label-width="80px" prop="level">
         <el-select v-model="form.level" placeholder="请选择年龄段">
-          <el-option label="3岁" value="3" />
-          <el-option label="4岁" value="4" />
-          <el-option label="5岁" value="5" />
-          <el-option label="6岁" value="6" />
-          <el-option label="7岁" value="7" />
-          <el-option label="8岁" value="8" />
-          <el-option label="9岁" value="9" />
+          <el-option label="F1" value="3" />
+          <el-option label="F2" value="4" />
+          <el-option label="F3" value="5" />
+          <el-option label="F4" value="6" />
+          <el-option label="F5" value="7" />
+          <el-option label="S1" value="8" />
+          <el-option label="S2" value="9" />
         </el-select>
       </el-form-item>
     </el-form>

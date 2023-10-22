@@ -25,13 +25,13 @@
             class="select-class"
             @change="getCourseList"
           >
-            <el-option label="3岁" value="3" />
-            <el-option label="4岁" value="4" />
-            <el-option label="5岁" value="5" />
-            <el-option label="6岁" value="6" />
-            <el-option label="7岁" value="7" />
-            <el-option label="8岁" value="8" />
-            <el-option label="9岁" value="9" />
+            <el-option label="F1" value="3" />
+            <el-option label="F2" value="4" />
+            <el-option label="F3" value="5" />
+            <el-option label="F4" value="6" />
+            <el-option label="F5" value="7" />
+            <el-option label="S1" value="8" />
+            <el-option label="S2" value="9" />
           </el-select>
           <el-select
             v-model="course"

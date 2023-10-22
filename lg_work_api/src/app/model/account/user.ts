@@ -9,6 +9,7 @@ export interface IUserModel {
   token?: string
   roomId?: number
   teacherName?: string
+  ad?: string
 }
 
 export type CUserModel = Omit<IUserModel, 'id'>
@@ -22,7 +23,7 @@ export default class User
   public token?: string
   public roomId?: number
   public teacherName?: string
-
+  public ad?: string
 }
 
 User.init(
@@ -49,6 +50,10 @@ User.init(
       allowNull: true
     },
     teacherName: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    ad: {
       type: DataTypes.STRING,
       allowNull: true
     },

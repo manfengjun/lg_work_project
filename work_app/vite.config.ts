@@ -5,9 +5,7 @@ import { resolve } from "path"
 // import Components from 'unplugin-vue-components/vite'
 // https://vitejs.dev/config/
 export default defineConfig({
-	build: {
-		target: "es6"
-	},
+	base: './',
 	resolve: {
 		alias: [
 			{

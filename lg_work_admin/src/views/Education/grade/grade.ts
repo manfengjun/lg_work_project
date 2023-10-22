@@ -38,12 +38,13 @@ const getList = () => {
 }
 /** 新增班级 */
 const option = (formEl: FormInstance, form: Grade) => {
+    let level = ['']
     form.roomId = form.room?.id!
     form.roomName = form.room?.name!
     const user = Storage.get('user')
     form.teacherId = user.id
     form.teacherName = user.teacherName
-    form.name = form.week + ' ' + form.time + ' ' + form.level + '岁 ' + form.teacherName
+    form.name = form.week + ' ' + form.time + ' ' + getLevel(form.level) + '岁 ' + form.teacherName
     switch (option_status.value) {
         case 0:
             SpiAxios.create(GradeTarget.insert(form))
@@ -104,5 +105,26 @@ const getRoomList = () => {
         .catch((err) => {
             console.log(err)
         })
+}
+
+const getLevel = (level: string) => {
+    switch (level) {
+        case "3":
+            return "F1"
+        case "4":
+            return "F2"
+        case "5":
+            return "F3"
+        case "6":
+            return "F4"
+        case "7":
+            return "F5"
+        case "8":
+            return "S1"
+        case "9":
+            return "S2"
+        default:
+            break;
+    }
 }
 export { Grade, option_status, list, getList, option, deleteById, room, getRoomList }

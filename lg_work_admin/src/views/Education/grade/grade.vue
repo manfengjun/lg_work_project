@@ -64,13 +64,13 @@
     >
       <el-form-item label="年龄段" prop="level" label-width="80px">
         <el-select v-model="form.level" placeholder="请选择年龄段">
-          <el-option label="3" value="3" />
-          <el-option label="4" value="4" />
-          <el-option label="5" value="5" />
-          <el-option label="6" value="6" />
-          <el-option label="7" value="7" />
-          <el-option label="8" value="8" />
-          <el-option label="9" value="9" />
+          <el-option label="F1" value="3" />
+          <el-option label="F2" value="4" />
+          <el-option label="F3" value="5" />
+          <el-option label="F4" value="6" />
+          <el-option label="F5" value="7" />
+          <el-option label="S1" value="8" />
+          <el-option label="S2" value="9" />
         </el-select>
       </el-form-item>
       <el-form-item
