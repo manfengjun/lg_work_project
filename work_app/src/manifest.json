@@ -1,8 +1,8 @@
 {
-    "name" : "Worker",
+    "name" : "tmui3.0",
     "appid" : "__UNI__8F34DF6",
     "description" : "tmui3.0新一代组件库，拥抱vue3,pinia,tmui3.0 demo展示应用",
-    "versionName" : "3.1.08",
+    "versionName" : "3.1.09",
     "versionCode" : "100",
     "transformPx" : false,
     "app-plus" : {
@@ -94,7 +94,7 @@
     "quickapp" : {},
     "mp-weixin" : {
         "appid" : "",
-        "darkmode" : true,
+        "darkmode" : false,
         "setting" : {
             "urlCheck" : false,
             "es6" : true,
@@ -188,7 +188,5 @@
         "uniStatistics" : {
             "enable" : false
         }
-    },
-    "fallbackLocale" : "zh-Hans",
-    "locale" : "zh-Hans"
+    }
 }
