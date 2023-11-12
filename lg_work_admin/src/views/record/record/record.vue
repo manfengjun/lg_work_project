@@ -20,14 +20,14 @@
                 dialogRecordVisible = true;
               records.data = [];
               getRecordList(data_source.data[scope.$index]);
-              ">查看</el-button>
+                              ">查看</el-button>
               <el-button link type="primary" size="small" @click="
                 option_status = 0;
               dialogFormVisible = true;
               select_student = data_source.data[scope.$index];
               getCourseList();
               resetForm();
-              ">
+                              ">
                 新增</el-button>
             </template>
           </el-table-column>
@@ -63,7 +63,7 @@
           </template>
           <el-radio-group v-model="form.start_mould" @change="preview">
             <el-radio v-for="item in moulds.start_moulds" :key="item.id" :label="item.content" size="large">{{
-                item.content
+              item.content
             }}</el-radio>
           </el-radio-group>
         </el-tab-pane>
@@ -71,7 +71,8 @@
           <template #label>
             <el-badge :value="form.content_mould.length > 0 ? '+1' : ''"><span>课程内容</span></el-badge>
           </template>
-          <el-table stripe highlight-current-row max-height="500" :data="moulds.content_moulds" @current-change="selectContent">
+          <el-table stripe highlight-current-row max-height="500" :data="moulds.content_moulds"
+            @current-change="selectContent">
             <el-table-column align="left" prop="content" label="模板内容" />
           </el-table>
         </el-tab-pane>
@@ -100,7 +101,7 @@
           <el-scrollbar height="500px">
             <el-radio-group v-model="form.end_mould" @change="preview">
               <el-radio v-for="item in moulds.end_moulds" :key="item.id" :label="item.content" size="large">{{
-                  item.content
+                item.content
               }}</el-radio>
             </el-radio-group>
           </el-scrollbar>
@@ -108,10 +109,10 @@
       </el-tabs>
       <el-descriptions title="效果预览" :column="1" class="dialog-description">
         <el-descriptions-item label="姓名">{{
-            select_student.name
+          select_student.name
         }}</el-descriptions-item>
         <el-descriptions-item label="课程主题">{{
-            form.courseName
+          form.courseName
         }}</el-descriptions-item>
         <el-descriptions-item>
           <p v-html="form.content"></p>

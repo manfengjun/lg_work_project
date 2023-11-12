@@ -1,25 +1,24 @@
 <template>
 	<tm-app color="grey-5">
-		<tm-navbar title="学员管理" :shadow="0" hide-home :followTheme="true">
+		<tm-navbar title="成长记录" :shadow="0" hide-home :followTheme="true">
 			<template v-slot:right>
 				<view class="flex flex-center flex-row">
 					<tm-icon _class="px-24" :font-size="32" name="tmicon-menu" @click="showWin = true"></tm-icon>
 				</view>
 			</template>
 		</tm-navbar>
+
 		<tm-card v-for="(student, index) in data_source.data" :key="index" :status="data_source.grade.name"
 			:statusColor="store.tmStore.color" :title="student.name">
 			<template v-slot:content>
 				<tm-timeline>
 					<tm-timeline-item :color="store.tmStore.color" :size="32" type="fill" icon="tmicon-check"
-						:time="record.courseName" v-for="(record, index) in student.records" :key="index">
-						<!-- <tm-button class="copy-btn" :margin="[10, 10]" size="mini" :shadow="0" label="复制"
-							@click="copy(record)"></tm-button> -->
-
-						<tm-sheet no-level :shadow="2" :round="3" :margin="[0, 5]">
-							<tm-more :height="120">
-								<tm-html :selectable="true" :content="record.content"></tm-html>
-								<!-- <tm-text :label="record.content"></tm-text> -->
+						:time="record.courseName" v-for="(record, index) in student.records.slice(0,3)" :key="index">
+						<tm-button class="copy-btn" :margin="[10, 15]" size="mini" :shadow="0" label="复制"
+							@click="copy(record)"></tm-button>
+						<tm-sheet no-level :shadow="2" :round="3" :margin="[0, 0]">
+							<tm-more :height="200">
+								<tm-text :label="record.content"></tm-text>
 							</tm-more>
 						</tm-sheet>
 					</tm-timeline-item>
@@ -83,7 +82,15 @@
 			.then((data) => {
 				console.log(data);
 				data_source.grade = data;
-				data_source.data = data.students;
+				data_source.data = data.students.map((s : any) => {
+					let student = s
+					student.record = s.records.map((r : any) => {
+						let record = r
+						record.content = r.content.replace(/<p>/g, '\n').replace(/<P>/g, '\n').replace(/<\/P>/g, '').replace(/<\/p>/g, '').replace(/&nbsp; &nbsp;/g, ' ')
+						return record
+					}).slice(0,2)
+					return student
+				});
 			})
 			.catch((err) => {
 				console.log(err);
@@ -117,18 +124,5 @@
 		position: absolute;
 		right: 0;
 		top: -10px;
-	}
-	/deep/ .absolute {
-		transform: none !important;
-	}
-	/deep/ .itemPos {
-		left: 0px !important;
-	}
-	/deep/ .itemPos uni-text{
-		left:20px !important;
-	}
-	/deep/ .itemPos .pb-24 {
-		padding-left: 10px !important;
-		margin-right: 5px !important;
 	}
 </style>
