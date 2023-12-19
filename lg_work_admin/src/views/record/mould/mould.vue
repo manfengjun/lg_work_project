@@ -32,6 +32,7 @@
             <el-option label="F5" value="7" />
             <el-option label="S1" value="8" />
             <el-option label="S2" value="9" />
+            <el-option label="Scratch" value="10" />
           </el-select>
           <el-select
             v-model="course"
