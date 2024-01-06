@@ -23,7 +23,7 @@ export default class InitManager {
   }
   _setupNetwork() {
     /** baseUrl 配置 */
-    uni.$jm.spi.baseUrl = 'http://39.101.171.97/work/v1'
+    uni.$jm.spi.baseUrl = 'http://39.101.171.97:3000/work/v1'
   }
   _initRoutesAndSwagger() {
   }

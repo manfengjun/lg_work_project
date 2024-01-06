@@ -14,6 +14,7 @@
             <el-option label="F5" value="7" />
             <el-option label="S1" value="8" />
             <el-option label="S2" value="9" />
+            <el-option label="Scratch" value="10" />
           </el-select>
           <el-select v-model="course" placeholder="请选择课程主题" size="large" class="select-class" @change="selectCourse">
             <el-option v-for="item in courses.data" :key="item.id" :label="item.name" :value="item.id" />

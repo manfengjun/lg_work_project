@@ -123,6 +123,8 @@ const getLevel = (level: string) => {
             return "S1"
         case "9":
             return "S2"
+        case "10":
+            return "Scratch"
         default:
             break;
     }

@@ -69,7 +69,7 @@
           <el-option label="F3" value="5" />
           <el-option label="F4" value="6" />
           <el-option label="F5" value="7" />
-          <el-option label="S1" value="8" />
+          <el-option label="Scratch" value="8" />
           <el-option label="S2" value="9" />
         </el-select>
       </el-form-item>
