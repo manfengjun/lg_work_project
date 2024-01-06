@@ -13,7 +13,7 @@ export default class InitManager {
 
   initCore() {
     InitGlobal.init() // global var and methods
-    SpiManager.getInstance().baseUrl = 'https://api.ld-cloud.xyz/work/v1'
+    SpiManager.getInstance().baseUrl = 'http://39.101.171.97/work/v1'
     this.app.use(router);
   }
 
