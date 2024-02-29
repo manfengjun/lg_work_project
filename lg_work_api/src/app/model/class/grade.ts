@@ -12,6 +12,7 @@ export interface IGradeModel {
   roomId: number
   teacherName: string
   roomName: string
+  code?: number
 }
 
 export type CIGradeModel = Omit<IGradeModel, 'id'>
@@ -28,6 +29,7 @@ export default class Grade
   public roomId!: number
   public teacherName!: string
   public roomName!: string
+  public code?: number
 }
 
 Grade.init(
@@ -68,6 +70,10 @@ Grade.init(
     roomName: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    code: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   },
   {

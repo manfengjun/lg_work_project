@@ -18,7 +18,7 @@
       <el-main>
         <el-table :stripe="true" :data="list.data">
           <el-table-column type="index" label="序号" width="100" />
-          <el-table-column prop="name" label="班级名称" width="180" />
+          <el-table-column prop="name" label="班级名称" width="220" />
           <el-table-column prop="week" label="课程日期" width="120" />
           <el-table-column prop="time" label="课程时间" width="120" />
           <el-table-column prop="teacherName" label="课程老师" width="120" />

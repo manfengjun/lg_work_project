@@ -65,6 +65,7 @@ export const getAll = async (userid: number) => {
   return Grade.findAll({
     where: {
       teacherId: `${userid}`
-    }
+    },
+    order: [[ 'code', 'ASC' ]]
   })
 }
