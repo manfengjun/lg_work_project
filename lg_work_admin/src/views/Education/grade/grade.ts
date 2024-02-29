@@ -125,6 +125,8 @@ const getLevel = (level: string) => {
             return "S2"
         case "10":
             return "Scratch"
+        case "11":
+            return "木编"
         default:
             break;
     }

@@ -19,6 +19,7 @@
           <el-option label="S1" value="8" />
           <el-option label="S2" value="9" />
           <el-option label="Scratch" value="10" />
+          <el-option label="木编" value="11" />
         </el-select>
         <el-table :stripe="true" :data="data_source.data">
           <el-table-column align="center" type="index" label="序号" width="100" />
@@ -54,6 +55,7 @@
           <el-option label="S1" value="8" />
           <el-option label="S2" value="9" />
           <el-option label="Scratch" value="10" />
+          <el-option label="木编" value="11" />
         </el-select>
       </el-form-item>
     </el-form>
