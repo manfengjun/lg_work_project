@@ -69,7 +69,19 @@
         
       </el-menu-item-group>
     </el-sub-menu>
-    
+    <el-sub-menu index="4">
+      <template #title>
+        <el-icon><document /></el-icon>
+        <span>常用工具</span>
+      </template>
+      <el-menu-item-group>
+        <el-menu-item index="/work/tool/bill">
+          <template #title>
+            <span>学习账单</span>
+          </template>
+        </el-menu-item>
+      </el-menu-item-group>
+    </el-sub-menu>
   </el-menu>
 </template>
 
