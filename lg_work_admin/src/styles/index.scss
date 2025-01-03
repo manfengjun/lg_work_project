@@ -16,7 +16,9 @@ body {
 a {
   color: var(--ep-color-primary);
 }
-
+.ep-select__wrapper {
+  width: 200px;
+}
 code {
   border-radius: 2px;
   padding: 2px 4px;

@@ -277,6 +277,9 @@ getTypeList();
     }
 
     .ep-main {
+      .ep-select__wrapper {
+					width: 200px;
+			}
       .select-menu {
         display: flex;
         flex-direction: row;

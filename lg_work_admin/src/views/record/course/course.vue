@@ -149,6 +149,9 @@ getList();
     }
 
     .ep-main {
+      .ep-select__wrapper {
+					width: 200px;
+				}
       .select-class {
         margin: 10px 0;
         display: flex;

@@ -86,12 +86,12 @@
 			</p>
 		</div>
 		<div class="photo">
-			<el-image style="width: 201px; height: 268px" :src="requireImg(student.name)" :fit="fit" />
+			<el-image style="width: 201px; height: 268px" :src="getImage(student.name, student.teacher)" />
 		</div>
 		<div class="teacher">
 			<p>
 				<el-text>贝乐创想家</el-text>
-				<el-text class="h-font">{{student.teacher}}</el-text>
+				<el-text class="h-font">{{ student.teacher }}</el-text>
 				<el-text>老师</el-text>
 			</p>
 			<p>
@@ -109,15 +109,36 @@
 		student.value = item;
 		console.log(student);
 	};
-	const requireImg = (name: string) => {
-		return new URL(`../../../assets/bill/student/${name}.png`, import.meta.url).href;
+	const getImage = (name: string, teacher: string) => {
+		var file = "";
+		switch (teacher) {
+			case "君君":
+				file = "jj";
+				break;
+			case "晨晨":
+				file = "cc";
+				break;
+			case "木子":
+				file = "mz";
+				break;
+			case "叶子":
+				file = "yz";
+				break;
+
+			default:
+				break;
+		}
+		return "http://spiptlmsm.hd-bkt.clouddn.com/" + file + "/" + name + ".jpg";
 	};
 	async function exportAsImage() {
 		try {
 			const element = document.getElementById("bill");
 			if (!element) return;
 
-			const canvas = await html2canvas(element);
+			const canvas = await html2canvas(element, {
+				useCORS: true,
+				backgroundColor: "#ffffff"
+			});
 			const img = canvas.toDataURL("image/png");
 
 			const link = document.createElement("a");
@@ -197,13 +218,13 @@
 	.content p {
 		margin: 6px 0;
 	}
-	.teacher{
+	.teacher {
 		float: right;
 		margin-top: 120px;
-		margin-right:100px;
+		margin-right: 100px;
 	}
-	.teacher p{
-		margin:0px;
+	.teacher p {
+		margin: 0px;
 	}
 	.hight {
 		color: #ff6600;
