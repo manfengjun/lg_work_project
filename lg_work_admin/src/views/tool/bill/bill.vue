@@ -204,13 +204,13 @@
 	}
 
 	.ep-text {
-		font-size: 20px;
+		font-size: 18px;
 		font-family: "Bill", Arial, sans-serif;
 		color: rgb(0, 80, 173);
 	}
 
 	.h-font {
-		font-size: 22px !important;
+		font-size: 20px !important;
 		color: rgb(233, 139, 0) !important;
 		font-weight: bold !important;
 	}
